@@ -1,18 +1,16 @@
 <template>
-  <v-app>
-    <v-content>
-      <router-view/>
-    </v-content>
-  </v-app>
+  <div class="home">
+    HOME
+  </div>
 </template>
 
 <script>
 
 export default {
-  name: 'App',
+  name: 'home',
   data() {
     return {
-      //
+
     };
   },
 };
