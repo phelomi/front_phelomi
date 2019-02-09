@@ -1,10 +1,9 @@
 <template>
-  <v-toolbar class="header" :height="headerHeight" fixed>
+  <v-toolbar class="header" :height="headerHeight">
     <v-toolbar-title class="header__logo">
       <img class="" :src="imgPathLogoHorizon" alt="">
     </v-toolbar-title>
-    <!-- <v-spacer></v-spacer> -->
-    <v-toolbar-items class="header__menu">
+    <v-toolbar-items class="header__menu" :style="mdScale">
       <headerButton
         v-for="(item, idx) in menuList"
         :key="`menuList${idx}`"
@@ -12,25 +11,10 @@
         :url="item.url"
       />
     </v-toolbar-items>
-  </v-toolbar>
-  <!-- <div class="header">
-    <div class="header__logo">
-    </div>
-    <nav class="header__nav">
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </nav>
     <div class="header__social">
       <socialButton />
     </div>
-  </div> -->
+  </v-toolbar>
 </template>
 <script>
 import socialButton from '@/components/socialButton.vue';
@@ -64,6 +48,21 @@ export default {
 
       console.log('TCL: headerHeight -> deviceWidth / 1920 * 1311', deviceWidth / 1920 * 1311);
       return deviceWidth / 1920 * 323.633;
+    },
+    mdScale() {
+      // this.$vuetify.breakpoint
+      const deviceWidth = this.$vuetify.breakpoint.width;
+      let scaleStyle = null;
+      if (deviceWidth < 1920) {
+        const scaleSize = deviceWidth / 1920 * 1.2;
+        scaleStyle = {
+          transformOrigin: '0% 50%',
+          transform: `scale(${scaleSize})`,
+        };
+      }
+
+      console.log('TCL: headerHeight -> deviceWidth / 1920 * 1311', scaleStyle);
+      return scaleStyle;
     },
   },
   methods: {

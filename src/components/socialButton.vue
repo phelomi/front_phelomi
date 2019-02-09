@@ -4,8 +4,9 @@
       v-for="(item, idx) in socialButtonList"
       :key="`socialButtonList${idx}`"
       :href="item.url"
+      class="social-button__link"
     >
-      <img :src="item.imgPath" alt="">
+      <img :src="item.imgPath" alt="" class="social-button__img">
     </a>
   </div>
 </template>
