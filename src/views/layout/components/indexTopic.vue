@@ -1,5 +1,5 @@
 <template>
-  <div :class="['index-topic', backgroundColor]">
+  <div :class="['index-topic', backgroundColor]" :style="backgroundImageStyle">
     <v-layout row>
       <v-flex xs6 class="index-topic__title">
         <titleBoat
@@ -38,6 +38,7 @@ export default {
   },
   data() {
     return {
+      publicPath: process.env.BASE_URL,
 
     };
   },
@@ -45,6 +46,9 @@ export default {
     componentLoader() {
       const path = this.contentPath;
       return () => import(`@/${path}`);
+    },
+    backgroundImageStyle() {
+      return { backgroundImage: `url(${this.publicPath}${this.backgroundImage})` };
     },
   },
 };

@@ -63,7 +63,7 @@ Vue.use(Vuetify, {
     error: '#E96143',
     info: '#41BBD6',
     success: '#94BF80',
-    F6B42C: '#FFC107',
+    warning: '#FFC107',
   },
   options: {
     customProperties: true,
