@@ -2,9 +2,7 @@
   <v-app>
     <layout-header />
     <v-content>
-      <v-container fluid>
-        <router-view></router-view>
-      </v-container>
+      <router-view></router-view>
     </v-content>
     <layout-footer />
   </v-app>

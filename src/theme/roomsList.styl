@@ -1,0 +1,36 @@
+.rooms-list
+  padding 0 0.95vw
+  &__img
+    img
+      width 27.54vw
+      height auto
+  &__title
+    border-bottom 3px solid var(--v-primary-base)
+    display flex
+    h2
+      font-size 2.08vw
+      letter-spacing $letter-spacing-h2
+      position relative
+      &:before
+      &:after
+        content ''
+        position absolute
+        background-image url(../assets/title/icon_star.svg)
+        width 1.51vw
+        height 1.44vw
+        top 50%
+      &:before
+        left 0
+        transform translate(-250%, -50%)
+      &:after
+        right 0
+        transform translate(200%, -50%)
+  &__intro
+    p
+      font-size 1.3vw
+      letter-spacing $letter-spacing-h3
+  &__title
+  &__intro
+    padding .4vw 0
+  &__content
+    padding 0 2.42vw
