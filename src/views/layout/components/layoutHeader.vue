@@ -46,7 +46,6 @@ export default {
       // this.$vuetify.breakpoint
       const deviceWidth = this.$vuetify.breakpoint.width;
 
-      console.log('TCL: headerHeight -> deviceWidth / 1920 * 1311', deviceWidth / 1920 * 1311);
       return deviceWidth / 1920 * 323.633;
     },
     mdScale() {
@@ -61,7 +60,6 @@ export default {
         };
       }
 
-      console.log('TCL: headerHeight -> deviceWidth / 1920 * 1311', scaleStyle);
       return scaleStyle;
     },
   },

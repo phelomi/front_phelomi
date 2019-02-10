@@ -1,13 +1,13 @@
 <template>
-  <div :class="['index-topic', backgroundColor]" :style="backgroundImageStyle">
+  <div :class="['index-topic', backgroundColor, outerClass]" :style="backgroundImageStyle">
     <v-layout row>
-      <v-flex xs6 class="index-topic__title">
+      <v-flex v-if="textUp" xs6 class="index-topic__title">
         <titleBoat
           :textUp="textUp"
           :textDown="textDown"
         />
       </v-flex>
-      <v-flex v-show="introText" xs6 class="index-topic__intro">
+      <v-flex v-if="introText" xs6 class="index-topic__intro">
         <p class="textBlack--text text-under-line">{{introText}}</p>
       </v-flex>
     </v-layout>
@@ -32,6 +32,7 @@ export default {
     'contentPath',
     'backgroundColor',
     'backgroundImage',
+    'outerClass',
   ],
   components: {
     titleBoat,

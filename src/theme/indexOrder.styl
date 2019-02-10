@@ -1,0 +1,45 @@
+.index-order
+  min-height 65.5vw
+  &__outer
+    padding-top 9.97vw
+    padding-left 11.18vw
+  &__button
+    text-decoration none
+    width 29.8vw
+    height 29.8vw
+    border-radius 3vw
+    display flex
+    flex-wrap wrap
+    justify-content center
+    background-image url('../assets/button/button_bg_order.jpg')
+    background-size 62.54vw 41.90vw
+    background-position -23.19vw -6.06vw
+    position relative
+    &:before
+      content ''
+      position absolute
+      top 4.427vw
+      left 50%
+      transform translateX(-50%)
+      width 16.13vw
+      height 15.7vw
+      background-size 16.13vw 15.7vw
+      background-image url('../assets/button/text-order.png')
+    p
+      font-weight bold
+      white-space pre-line
+    &:hover
+      &:after
+        content ''
+        position absolute
+        background-image url('../assets/button/button_order_active.svg')
+        background-size 16.40vw 15.78vw
+        width 16.40vw
+        height 15.78vw
+        top 0
+        right 0
+        transform translate(10%,-85%)
+  &__text
+    font-size 2vw
+    letter-spacing $letter-spacing-p
+    padding-top 22vw

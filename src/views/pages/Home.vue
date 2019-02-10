@@ -34,6 +34,7 @@ export default {
           contentPath: 'components/index/news.vue',
           backgroundColor: '',
           backgroundImage: '',
+          outerClass: '',
         },
         {
           textUp: '房型介紹',
@@ -42,6 +43,7 @@ export default {
           contentPath: 'components/index/rooms.vue',
           backgroundColor: 'accent',
           backgroundImage: '',
+          outerClass: '',
         },
         {
           textUp: '交通位置',
@@ -50,6 +52,7 @@ export default {
           contentPath: 'components/index/location.vue',
           backgroundColor: '',
           backgroundImage: '',
+          outerClass: '',
         },
         {
           textUp: '澎湖找樂子',
@@ -58,6 +61,7 @@ export default {
           contentPath: 'components/index/fun.vue',
           backgroundColor: '',
           backgroundImage: 'img/bg_image/bg_haveFun.jpg',
+          outerClass: 'index-topic--fun',
         },
         {
           textUp: '跟我醬玩！',
@@ -66,6 +70,16 @@ export default {
           contentPath: 'components/index/follow.vue',
           backgroundColor: '',
           backgroundImage: '',
+          outerClass: '',
+        },
+        {
+          textUp: '',
+          textDown: '',
+          introText: '',
+          contentPath: 'components/index/order.vue',
+          backgroundColor: '',
+          backgroundImage: 'img/bg_image/bg_order.png',
+          outerClass: 'index-topic--order',
         },
       ],
     };
