@@ -3,7 +3,7 @@
     <v-toolbar-title class="header__logo">
       <img class="" :src="imgPathLogoHorizon" alt="">
     </v-toolbar-title>
-    <v-toolbar-items class="header__menu" :style="mdScale">
+    <v-toolbar-items class="header__menu">
       <headerButton
         v-for="(item, idx) in menuList"
         :key="`menuList${idx}`"
@@ -48,20 +48,20 @@ export default {
 
       return deviceWidth / 1920 * 323.633;
     },
-    mdScale() {
-      // this.$vuetify.breakpoint
-      const deviceWidth = this.$vuetify.breakpoint.width;
-      let scaleStyle = null;
-      if (deviceWidth < 1920) {
-        const scaleSize = deviceWidth / 1920 * 1.2;
-        scaleStyle = {
-          transformOrigin: '0% 50%',
-          transform: `scale(${scaleSize})`,
-        };
-      }
+    // mdScale() {
+    //   // this.$vuetify.breakpoint
+    //   const deviceWidth = this.$vuetify.breakpoint.width;
+    //   let scaleStyle = null;
+    //   if (deviceWidth < 1920) {
+    //     const scaleSize = deviceWidth / 1920 * 1.2;
+    //     scaleStyle = {
+    //       transformOrigin: '0% 50%',
+    //       transform: `scale(${scaleSize})`,
+    //     };
+    //   }
 
-      return scaleStyle;
-    },
+    //   return scaleStyle;
+    // },
   },
   methods: {
 

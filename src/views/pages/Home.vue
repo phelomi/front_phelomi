@@ -10,6 +10,7 @@
       :contentPath="item.contentPath"
       :backgroundColor="item.backgroundColor"
       :backgroundImage="item.backgroundImage"
+      :outerClass="item.outerClass"
     />
   </div>
 </template>
