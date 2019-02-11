@@ -3,4 +3,59 @@
   background-size 100vw 41.26vw
   min-height 41.26vw
   margin-top -14.8vw
+  padding-top 9.22vw
   z-index 100
+  &__outer
+    width 44.4vw
+    height 29.53vw
+    margin 0 auto
+  &__logo
+    display flex
+    justify-content center
+    border-right 0.1vw solid var(--v-secondary-base)
+    img
+      width 11.31vw
+      height auto
+  &__social
+    width 18.15vw
+    height 3.6vw
+  &__copyright
+    width 37.12vw
+    white-space pre-line
+    text-align center
+  &__contact
+    > .layout
+      display flex
+      flex-direction column
+      padding 0 3.26vw
+    &--list
+      a
+        text-decoration none
+        display inline-block
+      img
+        width 2.78vw
+        height auto
+      &-icon
+        flex-basis auto !important
+        padding-right 0.61vw
+      &-text
+        display flex
+        align-items center
+      p
+        white-space nowrap
+        font-size 1.04vw
+        letter-spacing $letter-spacing-2
+        margin 0
+    &--add-friend
+      max-width none
+      button
+        width 8.84vw
+        height 2.70vw
+        img
+          width 1.736vw
+          height 1.48vw
+        p
+          white-space nowrap
+          font-size 0.88vw
+          padding-left .3vw
+          margin 0
