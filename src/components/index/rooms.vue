@@ -17,6 +17,7 @@
             :img="item.img"
             :title="item.title"
             :intro="item.intro"
+            :url="item.url"
           />
         </v-flex>
       </v-layout>
@@ -43,35 +44,41 @@ export default {
             img: rooms001,
             title: '彩虹堡雙人房',
             intro: '讓您彷彿置身銀河般的夢幻',
+            url: '',
           },
           {
             img: rooms002,
             title: '彩虹堡四人房',
             intro: '帶您進入夢幻的七彩國度',
+            url: '',
           },
           {
             img: rooms003,
             title: '星空號四人房',
             intro: '出發！帶您遨遊星空',
+            url: '',
           },
         ],
-        [
-          {
-            img: rooms001,
-            title: '彩虹堡雙人房',
-            intro: '讓您彷彿置身銀河般的夢幻',
-          },
-          {
-            img: rooms002,
-            title: '彩虹堡四人房',
-            intro: '帶您進入夢幻的七彩國度',
-          },
-          {
-            img: rooms003,
-            title: '星空號四人房',
-            intro: '出發！帶您遨遊星空',
-          },
-        ],
+        // [
+        //   {
+        //     img: rooms001,
+        //     title: '彩虹堡雙人房',
+        //     intro: '讓您彷彿置身銀河般的夢幻',
+        //     url: '',
+        //   },
+        //   {
+        //     img: rooms002,
+        //     title: '彩虹堡四人房',
+        //     intro: '帶您進入夢幻的七彩國度',
+        //     url: '',
+        //   },
+        //   {
+        //     img: rooms003,
+        //     title: '星空號四人房',
+        //     intro: '出發！帶您遨遊星空',
+        //     url: '',
+        //   },
+        // ],
       ],
     };
   },
