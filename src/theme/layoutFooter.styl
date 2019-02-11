@@ -17,12 +17,21 @@
       width 11.31vw
       height auto
   &__social
-    width 18.15vw
-    height 3.6vw
+    display flex
+    justify-content center
+    align-items center
+    &--group
+      width 18.15vw
+      height 3.6vw
+      flex-basis auto !important
   &__copyright
-    width 37.12vw
-    white-space pre-line
-    text-align center
+    justify-content center
+    display flex
+    p
+      white-space pre-line
+      text-align center
+      width 37.12vw
+      font-size 0.93vw
   &__contact
     > .layout
       display flex
@@ -47,7 +56,7 @@
         letter-spacing $letter-spacing-2
         margin 0
     &--add-friend
-      max-width none
+      max-width none !important
       button
         width 8.84vw
         height 2.70vw

@@ -44,7 +44,9 @@
         </v-layout>
       </v-flex>
       <v-flex xs3 class="layout-footer__social">
-        <social-button />
+        <div class="layout-footer__social--group">
+          <social-button />
+        </div>
       </v-flex>
       <v-flex xs3 class="layout-footer__copyright">
         <p class="secondary--text">{{copyrightText}}</p>
