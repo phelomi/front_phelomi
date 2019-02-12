@@ -73,9 +73,9 @@ export default {
       imgPathLogoVertical,
       copyrightText: '© 2019 Family Starry Sky Co., Ltd. All rights reserved. 飛樂米星空號有限公司 版權所有\nDesign by 方蘋果數位行銷設計有限公司',
       contactList: [
-        { icon: imgPathPhone, text: '(00)1234-5678', url: '' },
-        { icon: imgPathEmail, text: 'OOOOOO@gmail.com', url: '' },
-        { icon: imgPathAddress, text: '澎湖縣馬公市山水里珠海182號', url: '' },
+        { icon: imgPathPhone, text: '(06)9953288', url: '' },
+        { icon: imgPathEmail, text: '2019starrysky@gmail.com', url: '' },
+        { icon: imgPathAddress, text: '澎湖縣馬公市山水里珠江182號', url: '' },
       ],
       addFriendList: [
         { icon: imgPathWechat, text: '微信加入好友', url: '' },
