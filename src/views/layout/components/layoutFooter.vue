@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-footer">
+  <div class="layout-footer target-contact">
     <v-layout column class="layout-footer__outer">
       <v-flex xs6 class="layout-footer__content">
         <v-layout row>

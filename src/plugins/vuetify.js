@@ -27,6 +27,7 @@ import Vuetify, {
 } from 'vuetify/lib';
 import 'vuetify/src/stylus/app.styl';
 import zhHant from 'vuetify/es5/locale/zh-Hant';
+import { Scroll } from 'vuetify/lib/directives';
 
 Vue.use(Vuetify, {
   components: {
@@ -72,6 +73,9 @@ Vue.use(Vuetify, {
   lang: {
     locales: { zhHant },
     current: 'zhHant',
+  },
+  directives: {
+    Scroll,
   },
   breakpoint: {
     thresholds: {

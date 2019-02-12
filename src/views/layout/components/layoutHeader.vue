@@ -1,6 +1,6 @@
 <template>
   <v-toolbar class="header" :height="headerHeight">
-    <v-toolbar-title class="header__logo">
+    <v-toolbar-title class="header__logo" @click="$router.push('/home')">
       <img class="" :src="imgPathLogoHorizon" alt="">
     </v-toolbar-title>
     <v-toolbar-items class="header__menu">
@@ -8,7 +8,7 @@
         v-for="(item, idx) in menuList"
         :key="`menuList${idx}`"
         :text="item.text"
-        :url="item.url"
+        :target="item.target"
       />
     </v-toolbar-items>
     <div class="header__social">
@@ -31,13 +31,13 @@ export default {
     return {
       imgPathLogoHorizon,
       menuList: [
-        { text: '最新消息', url: '/news' },
-        { text: '房型介紹', url: '/rooms' },
-        { text: '交通位置', url: '/location' },
-        { text: '澎湖找樂子', url: '/fun' },
-        { text: '跟我醬玩', url: '/follow' },
-        { text: '線上訂房', url: '/order' },
-        { text: '聯絡我們', url: '/contact' },
+        { text: '最新消息', target: 'target-news' },
+        { text: '房型介紹', target: 'target-rooms' },
+        { text: '交通位置', target: 'target-location' },
+        { text: '澎湖找樂子', target: 'target-fun' },
+        { text: '跟我醬玩', target: 'target-follow' },
+        { text: '線上訂房', target: 'target-order' },
+        { text: '聯絡我們', target: 'target-contact' },
       ],
     };
   },

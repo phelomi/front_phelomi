@@ -1,8 +1,12 @@
 <template>
-  <div :class="['index-topic', backgroundColor, outerClass]" :style="backgroundImageStyle">
+  <div
+    :class="['index-topic', backgroundColor, outerCssClass, withoutTitleChangeSetOuter]"
+    :style="backgroundImageStyle"
+  >
     <v-layout row>
       <v-flex v-if="textUp" xs6 class="index-topic__title">
-        <titleBoat
+        <title-boat
+          :targetClass="targetClass"
           :textUp="textUp"
           :textDown="textDown"
         />
@@ -32,7 +36,8 @@ export default {
     'contentPath',
     'backgroundColor',
     'backgroundImage',
-    'outerClass',
+    'outerCssClass',
+    'targetClass',
   ],
   components: {
     titleBoat,
@@ -50,6 +55,9 @@ export default {
     },
     backgroundImageStyle() {
       return { backgroundImage: `url(${this.publicPath}${this.backgroundImage})` };
+    },
+    withoutTitleChangeSetOuter() {
+      return !this.textUp && this.targetClass ? this.targetClass : null;
     },
   },
 };

@@ -1,8 +1,8 @@
 .layout-footer
   background-image url('../assets/bg_image/bg_footer.png')
+  background-repeat no-repeat
   background-size 100vw 41.26vw
   min-height 41.26vw
-  margin-top -14.8vw
   padding-top 9.22vw
   z-index 100
   &__outer
@@ -20,6 +20,8 @@
     display flex
     justify-content center
     align-items center
+    margin-top 4vw
+    margin-bottom 2.5vw
     &--group
       width 18.15vw
       height 3.6vw
@@ -33,6 +35,8 @@
       width 37.12vw
       font-size 0.93vw
   &__contact
+    display flex
+    align-items center
     > .layout
       display flex
       flex-direction column

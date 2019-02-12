@@ -10,7 +10,8 @@
       :contentPath="item.contentPath"
       :backgroundColor="item.backgroundColor"
       :backgroundImage="item.backgroundImage"
-      :outerClass="item.outerClass"
+      :outerCssClass="item.outerCssClass"
+      :targetClass="item.targetClass"
     />
   </div>
 </template>
@@ -35,7 +36,8 @@ export default {
           contentPath: 'components/index/news.vue',
           backgroundColor: '',
           backgroundImage: '',
-          outerClass: '',
+          outerCssClass: '',
+          targetClass: 'target-news',
         },
         {
           textUp: '房型介紹',
@@ -44,7 +46,8 @@ export default {
           contentPath: 'components/index/rooms.vue',
           backgroundColor: 'accent',
           backgroundImage: '',
-          outerClass: '',
+          outerCssClass: '',
+          targetClass: 'target-rooms',
         },
         {
           textUp: '交通位置',
@@ -53,7 +56,8 @@ export default {
           contentPath: 'components/index/location.vue',
           backgroundColor: '',
           backgroundImage: '',
-          outerClass: '',
+          outerCssClass: '',
+          targetClass: 'target-location',
         },
         {
           textUp: '澎湖找樂子',
@@ -62,7 +66,8 @@ export default {
           contentPath: 'components/index/fun.vue',
           backgroundColor: '',
           backgroundImage: 'img/bg_image/bg_haveFun.jpg',
-          outerClass: 'index-topic--fun',
+          outerCssClass: 'index-topic--fun',
+          targetClass: 'target-fun',
         },
         {
           textUp: '跟我醬玩！',
@@ -71,7 +76,8 @@ export default {
           contentPath: 'components/index/follow.vue',
           backgroundColor: '',
           backgroundImage: '',
-          outerClass: '',
+          outerCssClass: '',
+          targetClass: 'target-follow',
         },
         {
           textUp: '',
@@ -80,7 +86,8 @@ export default {
           contentPath: 'components/index/order.vue',
           backgroundColor: '',
           backgroundImage: 'img/bg_image/bg_order.png',
-          outerClass: 'index-topic--order',
+          outerCssClass: 'index-topic--order',
+          targetClass: 'target-order',
         },
       ],
     };

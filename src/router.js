@@ -25,7 +25,16 @@ export default new Router({
             title: '首页',
           },
         },
+        {
+          path: 'news',
+          name: 'news',
+          component: () => import('@/views/pages/News.vue'),
+          meta: {
+            title: '首页',
+          },
+        },
       ],
+
     },
   ],
   // {

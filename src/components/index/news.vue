@@ -25,7 +25,7 @@ import news001 from '../../assets/img_sm/news001.jpg';
 import news002 from '../../assets/img_sm/news002.jpg';
 
 export default {
-  name: 'news',
+  name: 'indexNews',
   components: {
     newsList,
   },
@@ -36,24 +36,24 @@ export default {
           {
             img: news001,
             title: '歡慶飛樂米星空號起航',
-            intro: '即日起至5/5，歡慶飛樂米星空號起航，優惠......',
+            intro: '即日起至5/5，歡慶飛樂米星空號起航，優惠活動開跑囉',
           },
           {
             img: news002,
             title: '澎湖花火節',
-            intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜......',
+            intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜，...',
           },
         ],
         [
           {
             img: news001,
             title: '歡慶飛樂米星空號起航',
-            intro: '即日起至5/5，歡慶飛樂米星空號起航，優惠......',
+            intro: '即日起至5/5，歡慶飛樂米星空號起航，優惠活動開跑囉',
           },
           {
             img: news002,
             title: '澎湖花火節',
-            intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜......',
+            intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜，...',
           },
         ],
       ],

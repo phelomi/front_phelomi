@@ -1,10 +1,12 @@
 .header
   background-image url('../assets/bg_image/bg_header.jpg')
+  background-repeat no-repeat
   background-size cover
   &__logo
     min-width 24.21vw
     width 24.21vw
-    padding-right 2.5vw
+    margin-right 2.5vw
+    cursor pointer
     img
       width 100%
       height auto
@@ -17,11 +19,13 @@
     margin-right .5vw
     &__head
       background-image url('../assets/button/button_header_head.svg')
+      background-repeat no-repeat
       width 3.8vw
       height 100%
     &:hover
       .header__button__head
         background-image url('../assets/button/button_header_head_active.svg')
+        background-repeat no-repeat
         display flex
         justify-content center
         align-items center
