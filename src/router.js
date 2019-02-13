@@ -30,7 +30,15 @@ export default new Router({
           name: 'news',
           component: () => import('@/views/pages/News.vue'),
           meta: {
-            title: '首页',
+            title: '最新消息',
+          },
+        },
+        {
+          path: 'follow',
+          name: 'follow',
+          component: () => import('@/views/pages/Follow.vue'),
+          meta: {
+            title: '跟我醬玩！',
           },
         },
       ],

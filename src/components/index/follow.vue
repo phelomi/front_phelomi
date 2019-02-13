@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       followList: [
-        { text: '飛樂米\n私房行程', url: '', color: 'info' },
-        { text: '必遊行程', url: '', color: 'warning' },
-        { text: '2019花火節', url: '', color: 'error' },
+        { text: '飛樂米\n私房行程', url: '/follow', color: 'info' },
+        { text: '必遊行程', url: '/follow', color: 'warning' },
+        { text: '2019花火節', url: '/follow', color: 'error' },
       ],
     };
   },

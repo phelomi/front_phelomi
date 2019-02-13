@@ -1,6 +1,11 @@
 <template>
   <div
-    :class="['index-topic', backgroundColor, outerCssClass, withoutTitleChangeSetOuter]"
+    :class="[
+      'index-topic page-container',
+      backgroundColor,
+      outerCssClass,
+      withoutTitleChangeSetOuter
+    ]"
     :style="backgroundImageStyle"
   >
     <v-layout row>

@@ -1,7 +1,7 @@
 <template>
-  <div class="page-news">
+  <div class="page-news page-container">
     <v-layout row>
-      <v-flex xs6 class="page-news__title">
+      <v-flex xs6 class="primary-title page-news__title">
         <title-boat
           :targetClass="title.targetClass"
           :textUp="title.textUp"
@@ -9,10 +9,10 @@
         />
       </v-flex>
     </v-layout>
-    <div class="page-news__img">
+    <div class="primary-img page-news__img">
       <img src="../../assets/news/ad001.jpg" alt="">
     </div>
-    <div class="page-news__content">
+    <div class="primary-content page-news__content">
       <h2 class="page-news__theme secondary--text text-under-line">{{theme}}</h2>
       <p class="page-news__info textBlack--text">{{info}}</p>
     </div>
