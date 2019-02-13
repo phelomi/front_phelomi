@@ -9,9 +9,19 @@
         />
       </v-flex>
     </v-layout>
-    <div class="primary-img">
-      <img src="../../assets/rooms/ad001.jpg" alt="">
-    </div>
+    <v-carousel class="index-topic__carousels" height="43.86vw" hide-delimiters>
+      <v-carousel-item
+        v-for="(item, idx) in roomsPhotoList"
+        :key="`roomsPhotoList${idx}`"
+        class="page-rooms__carousels"
+        prev-icon="mdi-chevron-left-circle"
+        next-icon="mdi-chevron-right-circle"
+      >
+        <div class="primary-img">
+          <img :src="item" alt="">
+        </div>
+      </v-carousel-item>
+    </v-carousel>
     <div class="primary-content page-rooms__content">
       <v-layout row>
         <v-flex xs9>
@@ -63,6 +73,7 @@
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
 import servicesIcon from '@/components/servicesIcon.vue';
+import ad001 from '../../assets/rooms/ad001.jpg';
 
 export default {
   name: 'pageRooms',
@@ -78,6 +89,7 @@ export default {
         textDown: 'ROOMS',
         targetClass: 'target-rooms',
       },
+      roomsPhotoList: [ad001],
       info: {
         roomType: '面積：8坪\n床型尺寸：加大雙人床*1 (182*188 cm)\n入住人數：2人\n加床：不可',
         liveNotice: '入住時間：下午 3 點後 / 退房時間：上午 11 點前\n請勿攜帶寵物入宿(導盲犬除外)，飯店內全面禁菸。\n早餐服務-6:30至10:00\n客房服務-7:00-10:00 / 11:30-14:00 / 17:30-21:00\n提供設備租用：泳圈、趴板、陽傘、嬰兒推車等。',
