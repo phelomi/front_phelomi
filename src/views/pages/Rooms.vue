@@ -12,8 +12,49 @@
     <div class="primary-img">
       <img src="../../assets/rooms/ad001.jpg" alt="">
     </div>
-    <div class="primary-content">
-
+    <div class="primary-content page-rooms__content">
+      <v-layout row>
+        <v-flex xs9>
+          <div class="page-rooms__left">
+            <div class="page-rooms__space">
+              <div class="page-rooms__theme white--text secondary">房型介紹</div>
+              <p class="page-rooms__text textBlack--text">{{info.roomType}}</p>
+              <div class="page-rooms__services-icon">
+                <services-icon
+                  v-for="(item, idx) in servicesIconList"
+                  :key="`servicesIconList${idx}`"
+                  :type="item"
+                />
+              </div>
+            </div>
+            <div class="page-rooms__space">
+              <div class="page-rooms__theme white--text info">住房須知</div>
+              <p class="page-rooms__text textBlack--text">{{info.liveNotice}}</p>
+            </div>
+            <div class="page-rooms__space">
+              <div class="page-rooms__theme white--text warning">退訂政策</div>
+              <ul>
+                <li
+                  v-for="(item, idx) in info.unsubscribe"
+                  :key="`unsubscribe${idx}`"
+                  class="page-rooms__text textBlack--text"
+                >{{item}}</li>
+              </ul>
+            </div>
+          </div>
+        </v-flex>
+        <v-flex xs3>
+          <div class="page-rooms__right">
+            <v-btn
+              @click="methodOrder"
+              class="page-rooms__order-btn white--text"
+            >{{orderBtnText}}</v-btn>
+            <div class="page-rooms__summary">
+              <p>{{info.roomSummary}}</p>
+            </div>
+          </div>
+        </v-flex>
+      </v-layout>
     </div>
     <show-rooms />
   </div>
@@ -21,12 +62,14 @@
 <script>
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
+import servicesIcon from '@/components/servicesIcon.vue';
 
 export default {
   name: 'pageRooms',
   components: {
     titleBoat,
     showRooms,
+    servicesIcon,
   },
   data() {
     return {
@@ -35,21 +78,26 @@ export default {
         textDown: 'ROOMS',
         targetClass: 'target-rooms',
       },
-      info: [
-        {
-          title: 'DAY1：璀璨花火X玄武岩祕境',
-          text: '6:50 台北松山機場登機 → 7：50 馬公機場→通樑古榕(吃仙人掌冰/花枝丸)  → 跨海大橋拍跳躍照 → 祕境(玄武岩) → 二崁古厝(吃烤小管/杏仁茶/仙人掌汁)→午餐(40年老店魚麵)→摩西分海之奎壁山→下午茶(超浪漫的白灣沙灘海景)  →祕境(天仁湖)→晚餐(馬路益燒肉飯)→觀音亭澎湖花火節  →夜宿彼得潘民宿',
-        },
-        {
-          title: 'DAY2：山水沙灘X人間美景吉貝沙尾海灘',
-          text: '08：30 起床吃飽飽 →龍門紀念碑 →山水沙灘 →菊島居民家中吃點心→午餐(金鎖港飲食店)→13：30 北海遊客中心赤崁碼頭搭船 → 吉貝石滬與綠石槽→   吉貝沙尾八合一水上活動 → 16：00 搭船回本島→ 拍照(落跑吧愛情!拍攝地) →下午茶(回家澎湖狗蝦炸粿/玉冠仙草冰)→ 逛中央老街(四眼井/天后宮)→晚餐(老媽媽道地海產)  → 夜宿彼得潘民宿',
-        },
-        {
-          title: 'DAY3：浮潛X潮間帶巡禮',
-          text: '08：30 民宿早餐 → 10：00 搭船白坑→白灣坑休閒一日遊（巡航東海大、小雞善嶼、錠鉤嶼，奎壁山踏浪、體驗浮潛、潮間帶巡禮、抱墩圍網捕魚抓螃蟹、觸摸海星/海參/寄居蟹等各種海底生物）→龜壁港社彩繪村→不給拍肉圓→採買媽宮伴手禮→20:00回溫暖的家。',
-        },
-      ],
+      info: {
+        roomType: '面積：8坪\n床型尺寸：加大雙人床*1 (182*188 cm)\n入住人數：2人\n加床：不可',
+        liveNotice: '入住時間：下午 3 點後 / 退房時間：上午 11 點前\n請勿攜帶寵物入宿(導盲犬除外)，飯店內全面禁菸。\n早餐服務-6:30至10:00\n客房服務-7:00-10:00 / 11:30-14:00 / 17:30-21:00\n提供設備租用：泳圈、趴板、陽傘、嬰兒推車等。',
+        unsubscribe: [
+          '訂金：收取總額房價30%（連假3日以上收取50%）',
+          '取消：距住宿日14日前全額退還訂金、10~13日退還70%、7~9日退還50%、4~6日退還40%、2~3日退還30%、1日前退還20%、住宿當日恕無退還訂金。',
+          '更改：請於住宿前1天通知（依房況配合更改房型，無法取消間數）',
+          '延期：住宿前3天通知可保留訂金1次，並依原入住日起保留3個月，逾期未入住或取消將扣全額訂金不另行通知',
+          '保留：已付訂金保留預訂至當日下午6點止；延遲入住須預先通知；逾時無法與房客取得聯繫時始可售出預訂客房，恕不退還訂金',
+        ],
+        roomSummary: 'A202 童趣樂高四人房\n平日/$2680\n假日/$2880\n11-3月/$1800\n房型/A棟',
+      },
+      servicesIconList: ['wifi', 'tv', 'shower', 'tea'],
+      orderBtnText: '立即\n訂房',
     };
+  },
+  methods: {
+    methodOrder() {
+      console.log('Order');
+    },
   },
 };
 </script>
