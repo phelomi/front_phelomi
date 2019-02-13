@@ -57,7 +57,7 @@
           <div class="page-rooms__right">
             <v-btn
               @click="methodOrder"
-              class="page-rooms__order-btn white--text"
+              class="page-rooms__order-btn white--text error"
             >{{orderBtnText}}</v-btn>
             <div class="page-rooms__summary">
               <p>{{info.roomSummary}}</p>

@@ -12,7 +12,7 @@
             xs12
           >
             <a
-              href="javascript:;"
+              @click="$router.push('/location')"
               :class="['index-location__button', item.bgColor, `index-location__button--${idx}`]"
             >
               <img
