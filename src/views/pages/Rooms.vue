@@ -89,7 +89,7 @@ export default {
         textDown: 'ROOMS',
         targetClass: 'target-rooms',
       },
-      roomsPhotoList: [ad001],
+      roomsPhotoList: [ad001, ad001, ad001],
       info: {
         roomType: '面積：8坪\n床型尺寸：加大雙人床*1 (182*188 cm)\n入住人數：2人\n加床：不可',
         liveNotice: '入住時間：下午 3 點後 / 退房時間：上午 11 點前\n請勿攜帶寵物入宿(導盲犬除外)，飯店內全面禁菸。\n早餐服務-6:30至10:00\n客房服務-7:00-10:00 / 11:30-14:00 / 17:30-21:00\n提供設備租用：泳圈、趴板、陽傘、嬰兒推車等。',
