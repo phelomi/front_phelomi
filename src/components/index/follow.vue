@@ -8,7 +8,10 @@
         xs4
         class="index-follow__outer"
       >
-      <a :href="item.url" :class="`index-follow__button index-follow__button--${item.color}`">
+      <a
+        @click="$router.push(item.url)"
+        :class="`index-follow__button index-follow__button--${item.color}`"
+      >
         <p
           :class="`${item.color}--text index-follow__text`"
         >{{item.text}}</p>

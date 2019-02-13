@@ -41,6 +41,14 @@ export default new Router({
             title: '跟我醬玩！',
           },
         },
+        {
+          path: 'rooms',
+          name: 'rooms',
+          component: () => import('@/views/pages/Rooms.vue'),
+          meta: {
+            title: '房型介紹',
+          },
+        },
       ],
 
     },

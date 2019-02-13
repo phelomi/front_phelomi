@@ -1,6 +1,6 @@
 <template>
   <div class="rooms-list">
-    <a :href="url" class="rooms-list__link">
+    <a @click="$router.push(url)" class="rooms-list__link">
       <v-layout column>
         <v-flex xs8 class="rooms-list__img">
           <img :src="img" alt="">

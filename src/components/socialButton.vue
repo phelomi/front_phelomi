@@ -4,6 +4,7 @@
       v-for="(item, idx) in socialButtonList"
       :key="`socialButtonList${idx}`"
       :href="item.url"
+      target="_blank"
       class="social-button__link"
     >
       <img :src="item.imgPath" alt="" class="social-button__img">

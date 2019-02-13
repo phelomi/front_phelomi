@@ -14,7 +14,7 @@
                 xs3
                 class="layout-footer__contact--list"
               >
-                <a :href="item.url">
+                <a :href="item.url" target="_blank">
                   <v-layout row>
                     <v-flex xs4 class="layout-footer__contact--list-icon">
                       <img :src="item.icon" alt="">
