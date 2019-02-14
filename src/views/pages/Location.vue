@@ -35,6 +35,7 @@ import mapPosition from '../../assets/location/map_position.png';
 import mapAirplane from '../../assets/location/map_airplane.png';
 import mapShip from '../../assets/location/map_ship.png';
 
+import constVar from '@/utils/constVar';
 
 export default {
   name: 'pageLocation',
@@ -42,8 +43,12 @@ export default {
     titleBoat,
     locationList,
   },
+  mounted() {
+    this.$vuetify.goTo(0, constVar.scrollPagAni);
+  },
   data() {
     return {
+      constVar,
       title: {
         textUp: '交通位置',
         textDown: 'LOCATION',
@@ -74,7 +79,7 @@ export default {
         },
         {
           title: '搭船',
-          titleIconSrc: iconAirplane,
+          titleIconSrc: iconShip,
           targetTitle: '馬公碼頭位於',
           targetAddress: '澎湖縣馬公市新營路25號',
           trafficTitle: '船班資訊',
@@ -92,11 +97,11 @@ export default {
               target: '凱旋六號', describe: '航程約', number: '85', unit: '分鐘',
             },
           ],
-          imageSrc: mapAirplane,
+          imageSrc: mapShip,
         },
         {
           title: '搭飛機',
-          titleIconSrc: iconShip,
+          titleIconSrc: iconAirplane,
           targetTitle: '澎湖機場位於',
           targetAddress: '澎湖縣湖西鄉隘門村126-5號',
           trafficTitle: '班機資訊',
@@ -114,7 +119,7 @@ export default {
               target: '遠東航空', describe: '航程約', number: '30～50', unit: '分鐘',
             },
           ],
-          imageSrc: mapShip,
+          imageSrc: mapAirplane,
         },
       ],
     };

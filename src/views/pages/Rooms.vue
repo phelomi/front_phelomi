@@ -74,6 +74,7 @@ import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
 import servicesIcon from '@/components/servicesIcon.vue';
 import ad001 from '../../assets/rooms/ad001.jpg';
+import constVar from '@/utils/constVar';
 
 export default {
   name: 'pageRooms',
@@ -82,8 +83,12 @@ export default {
     showRooms,
     servicesIcon,
   },
+  mounted() {
+    this.$vuetify.goTo(0, constVar.scrollPagAni);
+  },
   data() {
     return {
+      constVar,
       title: {
         textUp: '彩虹堡雙人房',
         textDown: 'ROOMS',

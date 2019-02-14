@@ -35,6 +35,7 @@ import showRooms from '@/views/layout/components/showRooms.vue';
 import adSm001 from '../../assets/follow/ad_sm001.jpg';
 import adSm002 from '../../assets/follow/ad_sm002.jpg';
 import adSm003 from '../../assets/follow/ad_sm003.jpg';
+import constVar from '@/utils/constVar';
 
 export default {
   name: 'pageFollow',
@@ -42,8 +43,12 @@ export default {
     titleBoat,
     showRooms,
   },
+  mounted() {
+    this.$vuetify.goTo(0, constVar.scrollPagAni);
+  },
   data() {
     return {
+      constVar,
       title: {
         textUp: '跟我醬玩！',
         textDown: '澎湖行程建議',

@@ -22,6 +22,7 @@
 <script>
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
+import constVar from '@/utils/constVar';
 
 export default {
   name: 'pageNews',
@@ -29,8 +30,12 @@ export default {
     titleBoat,
     showRooms,
   },
+  mounted() {
+    this.$vuetify.goTo(0, constVar.scrollPagAni);
+  },
   data() {
     return {
+      constVar,
       title: {
         textUp: '最新消息',
         textDown: 'GOOD NEWS',
