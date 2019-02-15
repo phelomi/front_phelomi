@@ -22,6 +22,7 @@ export default {
     };
   },
   mounted() {
+    /* eslint-disable */
     init();
     let canvas; let stage; let exportRoot; let anim_container; let dom_overlay_container; let
       fnStartAnimation;
@@ -54,7 +55,7 @@ export default {
       stage = new lib.Stage(canvas);
       stage.enableMouseOver();
       // Registers the "tick" event listener.
-      fnStartAnimation = function () {
+      fnStartAnimation = () => {
         stage.addChild(exportRoot);
         createjs.Ticker.setFPS(lib.properties.fps);
         createjs.Ticker.addEventListener('tick', stage);
@@ -149,8 +150,10 @@ export default {
           lib.properties.width = 1920;
           const w = lib.properties.width;
           const h = lib.properties.height;
-          const iw = window.innerWidth;
-          const ih = window.innerHeight;
+          // const iw = window.innerWidth;
+          const iw = document.body.clientWidth;
+          // const ih = window.innerHeight;
+          const ih = document.body.clientHeight;
           const pRatio = window.devicePixelRatio || 1;
           const xRatio = iw / w;
           // const yRatio = ih / h;
@@ -183,6 +186,7 @@ export default {
       AdobeAn.compositionLoaded(lib.properties.id);
       fnStartAnimation();
     }
+    /* eslint-enable */
   },
 };
 </script>
