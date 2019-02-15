@@ -1,7 +1,15 @@
 .index-topic
   position relative
   &--fun
-    background-size 100.11vw 68.42vw
+    position relative
+    min-height 68.38vw
+    .index-topic__title
+      z-index 1
+    > .layout:nth-of-type(2)
+      position absolute
+      top 0
+      left 0
+  //   background-size 100.11vw 68.42vw
   &--order
     background-size 100.38vw 92.81vw
     margin-bottom -14.8vw
