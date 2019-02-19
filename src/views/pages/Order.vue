@@ -76,7 +76,6 @@
                       @click="$set(selectMenu,idx,false)"
                     >取消</v-btn>
                     <v-btn
-                      flat
                       color="primary"
                       @click="$refs[`menu${idx}`][0].save(orderParamsStepOne[item.key])"
                     >確定</v-btn>
@@ -107,13 +106,16 @@
                 ></v-select>
               </v-flex>
           -->
-          <v-btn
-            color="primary"
-            @click="e1 = 2"
-          >
-            Continue
-          </v-btn>
-          <v-btn flat>Cancel</v-btn>
+          <v-layout row justify-end>
+            <v-flex xs1>
+              <v-btn
+                color="primary"
+                @click="e1 = 2"
+              >
+                下一步
+              </v-btn>
+            </v-flex>
+          </v-layout>
         </v-stepper-content>
 
         <v-stepper-content step="2">
