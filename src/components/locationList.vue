@@ -22,7 +22,9 @@
             <div class="primary--text location-list__traffic-list--row">
               <div class="location-list__traffic-list--target">{{item.target}}</div>
               <div class="location-list__traffic-list--describe">{{item.describe}}</div>
-              <div class="location-list__traffic-list--number white--text error">{{item.number}}</div>
+              <div
+                class="location-list__traffic-list--number white--text error"
+              >{{item.number}}</div>
               <div class="location-list__traffic-list--unit">{{item.unit}}</div>
             </div>
           </div>

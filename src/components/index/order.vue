@@ -2,7 +2,7 @@
   <div class="index-order">
     <v-layout row>
       <v-flex xs6  offset-xs6 class="index-order__outer">
-        <a href="javascript:;" class="index-order__button">
+        <a @click="$router.push('/order')" class="index-order__button">
           <p class="index-order__text white--text">{{text}}</p>
         </a>
       </v-flex>

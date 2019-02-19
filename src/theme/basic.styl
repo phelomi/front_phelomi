@@ -1,3 +1,21 @@
+// override
+.v-stepper
+  &__header
+    height auto
+  &__step
+    flex-wrap wrap
+    justify-content center
+    padding 1.3vw
+    span
+      margin 0 0 .2vw 0
+    ^[0]__label
+      align-items center
+      flex-basis 100%
+  &__content
+    min-height 60vh
+.v-picker__body
+  min-width 100%
+
 .page-container
   padding $padding-md-h $padding-md-w
 .primary-title

@@ -54,7 +54,15 @@ export default new Router({
           name: 'location',
           component: () => import('@/views/pages/Location.vue'),
           meta: {
-            title: '房型介紹',
+            title: '交通位置',
+          },
+        },
+        {
+          path: 'order',
+          name: 'order',
+          component: () => import('@/views/pages/Order.vue'),
+          meta: {
+            title: '預定房型',
           },
         },
       ],
