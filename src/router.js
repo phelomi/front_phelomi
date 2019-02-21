@@ -22,7 +22,7 @@ export default new Router({
           name: 'home',
           component: () => import('@/views/pages/Home.vue'),
           meta: {
-            title: '首页',
+            title: '首頁',
           },
         },
         {
@@ -66,12 +66,22 @@ export default new Router({
           },
         },
       ],
-
+    },
+    // 維護頁
+    {
+      path: '/maintenance',
+      component: () => import('@/views/pages/Maintenance.vue'),
+      meta: {
+        title: '維護中',
+      },
+    },
+    // 404
+    {
+      path: '*',
+      component: () => import('@/views/pages/Error.vue'),
+      meta: {
+        title: '找不到頁面',
+      },
     },
   ],
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   component: () => import('@/views/pages/Home.vue'),
-  // },
 });

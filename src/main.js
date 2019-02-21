@@ -8,6 +8,8 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import '@mdi/font/css/materialdesignicons.css';
 import '@/theme/index.styl';
 
+import '@/permission';
+
 Vue.config.productionTip = false;
 
 new Vue({

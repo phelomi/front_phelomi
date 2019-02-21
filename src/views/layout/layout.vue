@@ -5,6 +5,11 @@
       <router-view></router-view>
     </v-content>
     <layout-footer />
+    <v-icon
+      class="scroll-to-top"
+      color="secondary"
+      @click="$vuetify.goTo(0, constVar.scrollPagAni)"
+    >mdi-chevron-up-circle-outline</v-icon>
   </v-app>
 </template>
 <script>
