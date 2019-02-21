@@ -126,12 +126,7 @@ export default {
       validStepTwo: false,
       validStepThree: false,
       orderParamsStepOne: this.getParamsOriginStepOne(),
-      datePickerRange: {
-        startDate: this.getDate(),
-        endDate: this.getDate(this.addDays(Date.now(), 2)),
-        minDate: this.getDate(),
-        maxDate: this.getDate(this.addDays(Date.now(), 90)),
-      },
+      datePickerRange: this.getDatePickerRangeOri(),
       // nameRules: [
       //   v => !!v || '此欄位為必填',
       // ],
@@ -143,6 +138,14 @@ export default {
   methods: {
     getDate,
     addDays,
+    getDatePickerRangeOri() {
+      return {
+        startDate: this.getDate(),
+        endDate: this.getDate(this.addDays(Date.now(), 2)),
+        minDate: this.getDate(),
+        maxDate: this.getDate(this.addDays(Date.now(), 90)),
+      };
+    },
     getParamsOriginStepOne() {
       return {
         roomType: null,
@@ -159,8 +162,9 @@ export default {
 
     },
     methodFormResetStepOne() {
-      this.orderParamsStepOne = this.getParamsOriginStepOne();
-      this.$refs.formStepOne.resetValidation();
+      this.datePickerRange = this.getDatePickerRangeOri();
+      // this.orderParamsStepOne = this.getParamsOriginStepOne();
+      // this.$refs.formStepOne.resetValidation();
     },
     methodDayFormat(date) {
       return getDate(date, 'date');

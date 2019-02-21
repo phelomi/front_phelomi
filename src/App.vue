@@ -7,13 +7,10 @@
 </template>
 
 <script>
-import constVar from '@/utils/constVar';
-
 export default {
   name: 'App',
   data() {
     return {
-      constVar,
     };
   },
 };

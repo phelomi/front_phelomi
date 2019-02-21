@@ -13,6 +13,7 @@
   </v-app>
 </template>
 <script>
+import constVar from '@/utils/constVar';
 import layoutHeader from './components/layoutHeader.vue';
 import layoutFooter from './components/layoutFooter.vue';
 
@@ -27,6 +28,7 @@ export default {
   },
   data() {
     return {
+      constVar,
     };
   },
   methods: {
