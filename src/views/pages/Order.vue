@@ -20,79 +20,29 @@
 
       <v-stepper-items>
         <v-stepper-content step="1">
-          <v-form v-model="validStepOne" ref="formStepOne" lazy-validation>
+          <!-- <v-form v-model="validStepOne" ref="formStepOne" lazy-validation> -->
             <v-layout row wrap>
-              <v-flex sm12 md2>請依入住期間，查詢房間狀況</v-flex>
-              <v-flex
-                sm12
-                md3
-                v-for="(item, idx) in orderTimeParams"
-                :key="`orderTimeParams${idx}`"
-              >
-                <v-menu
-                  :ref="`menu${idx}`"
-                  :close-on-content-click="false"
-                  v-model="selectMenu[idx]"
-                  :nudge-right="40"
-                  :value="orderParamsStepOne[item.key]"
-                  lazy
-                  transition="scale-transition"
-                  offset-y
-                  full-width
-                >
-                  <v-text-field
-                    slot="activator"
-                    v-model="orderParamsStepOne[item.key]"
-                    :label="item.label"
-                    clearable
-                    prepend-icon="mdi-calendar"
-                    readonly
-                    :rules="nameRules"
-                    required
-                  ></v-text-field>
-                  <v-date-picker
-                    v-model="orderParamsStepOne[item.pick]"
-                    scrollable
-                    no-title
-                    locale="zh-Hant"
-                    show-current
-                    class="d-flex"
-                    :min="idx===0
-                      ? getDate()
-                      : getDate(orderParamsStepOne[orderTimeParams[idx-1].key])"
-                    :max="idx===0 && orderParamsStepOne[orderTimeParams[idx+1].key]
-                      ? getDate(orderParamsStepOne[orderTimeParams[idx+1].key])
-                      : ''"
-                  >
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      flat
-                      color="primary"
-                      @click="orderParamsStepOne[item.pick] = getDate()"
-                    >今日</v-btn>
-                    <v-btn
-                      flat
-                      color="primary"
-                      @click="$set(selectMenu,idx,false)"
-                    >取消</v-btn>
-                    <v-btn
-                      color="primary"
-                      @click="$refs[`menu${idx}`][0].save(orderParamsStepOne[item.key])"
-                    >確定</v-btn>
-                  </v-date-picker>
-                </v-menu>
+              <v-flex sm12 md3>
+                <h3 class="primary--text">請依入住期間，查詢房間狀況</h3>
               </v-flex>
-              <v-flex sm12 md2  offset-md1>
-                <v-btn @click="methodSearchRommByTime">
+              <v-flex sm12 md6>
+                <date-range
+                  :options="datePickerRange"
+                />
+              </v-flex>
+              <v-flex sm12 md2 ml-5>
+                <v-btn @click="methodSearchRommByTime" class="primary">
                   <v-icon>mdi-magnify</v-icon>
-                  查詢
+                  查詢房間
                 </v-btn>
                 <v-btn flat @click="methodFormResetStepOne">
                   重置
                 </v-btn>
               </v-flex>
             </v-layout>
-          </v-form>
+          <!-- </v-form> -->
+          <v-divider class="my-5"></v-divider>
+
           <!--
               <v-flex sm12 md4 lg3 px-1 >
                 <v-select
@@ -153,13 +103,15 @@
 </template>
 <script>
 import titleBoat from '@/components/titleBoat.vue';
+import dateRange from '@/components/dateRange.vue';
 import constVar from '@/utils/constVar';
-import getDate from '@/utils/dateMethod';
+import { getDate, addDays } from '@/utils/dateMethod';
 
 export default {
   name: 'pageOrder',
   components: {
     titleBoat,
+    dateRange,
   },
   data() {
     return {
@@ -174,40 +126,23 @@ export default {
       validStepTwo: false,
       validStepThree: false,
       orderParamsStepOne: this.getParamsOriginStepOne(),
-      orderTimeParams: [
-        { label: '入住時間', key: 'checkInTimeShow', pick: 'checkInTimePick' },
-        { label: '退房時間', key: 'checkOutTimeShow', pick: 'checkOutTimePick' },
-      ],
-      selectMenu: [false, false],
-      nameRules: [
-        v => !!v || '此欄位為必填',
-      ],
+      datePickerRange: {
+        startDate: this.getDate(),
+        endDate: this.getDate(this.addDays(Date.now(), 2)),
+        minDate: this.getDate(),
+        maxDate: this.getDate(this.addDays(Date.now(), 90)),
+      },
+      // nameRules: [
+      //   v => !!v || '此欄位為必填',
+      // ],
     };
   },
   mounted() {
     this.$vuetify.goTo(0, constVar.scrollPagAni);
-    console.log('TCL: getDate', this.getDate());
-  },
-  watch: {
-    'orderParamsStepOne.checkInTimePick': {
-      handler(newVal) {
-        if (newVal) {
-          this.$set(this.orderParamsStepOne, 'checkInTimeShow', this.getDate(newVal, 'dateFormat'));
-        }
-      },
-      immediate: true,
-    },
-    'orderParamsStepOne.checkOutTimePick': {
-      handler(newVal) {
-        if (newVal) {
-          this.$set(this.orderParamsStepOne, 'checkOutTimeShow', this.getDate(newVal, 'dateFormat'));
-        }
-      },
-      immediate: true,
-    },
   },
   methods: {
     getDate,
+    addDays,
     getParamsOriginStepOne() {
       return {
         roomType: null,
@@ -215,10 +150,6 @@ export default {
         phoneShow: null,
         emailShow: null,
         nationalityShow: null,
-        checkInTimeShow: null,
-        checkInTimePick: null,
-        checkOutTimeShow: null,
-        checkOutTimePick: null,
         priceShow: null,
         totalPriceShow: null,
         noteShow: null,
@@ -230,6 +161,9 @@ export default {
     methodFormResetStepOne() {
       this.orderParamsStepOne = this.getParamsOriginStepOne();
       this.$refs.formStepOne.resetValidation();
+    },
+    methodDayFormat(date) {
+      return getDate(date, 'date');
     },
   },
 };
