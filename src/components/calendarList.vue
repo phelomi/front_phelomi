@@ -4,38 +4,60 @@
       <h2 class="primary--text">{{year}}</h2>
     </div>
     <div class="calendar-list__date-list">
-      <calendar-date
+      <component
+        :is="currentComponent"
         v-for="(item, idx) in dateList"
         :key="`dateList${idx}`"
         :date="item.date"
         :rooms="item.rooms"
-        :class="idx === 0 ?  calendarDateOffset(item.date) : ''"
+        :offset="getOffset(idx,item.date)"
+        @selectRoom="selectRoom($event, item.date)"
       />
     </div>
   </div>
 </template>
 <script>
-import calendarDate from '@/components/calendarDate.vue';
-import { getDate } from '@/utils/dateMethod';
+import calendarSelectDate from '@/components/calendarSelectDate.vue';
+import calendarShowDate from '@/components/calendarShowDate.vue';
+import { getDate, subtractDays } from '@/utils/dateMethod';
 
 export default {
   name: 'calendarList',
   components: {
-    calendarDate,
+    calendarSelectDate,
+    calendarShowDate,
   },
-  props: ['year', 'dateList'],
+  props: ['year', 'dateList', 'type'],
   data() {
     return {
 
     };
   },
+  computed: {
+    currentComponent() {
+      return this.type === 'edit' ? calendarSelectDate : calendarShowDate;
+    },
+  },
   mounted() {
   },
   methods: {
-    calendarDateOffset(date) {
-      const haveOffset = getDate(date, 'dayIndex');
-      return haveOffset ? `calendar-date-offset-${haveOffset}` : '';
+    getDate,
+    subtractDays,
+    selectRoom(selected, date) {
+      this.$emit('getSelectedRoom', date, selected);
     },
+    getOffset(currentIdx, currentDate) {
+      if (currentIdx === 0) {
+        return this.getDate(currentDate, 'dayIndex');
+      }
+      const haveOffset = this.subtractDays(this.dateList[currentIdx].date, this.dateList[currentIdx - 1].date);
+      return haveOffset || null;
+    },
+    // calendarDateOffset() {
+    //   console.log(this.idx, this.date);
+    //   const haveOffset = getDate(this.date, 'dayIndex');
+    //   return haveOffset ? `calendar-date--offset-${haveOffset}` : '';
+    // },
   },
 };
 </script>

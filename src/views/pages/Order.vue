@@ -55,48 +55,48 @@
               <calendar-list
                 v-for="(item, idx) in calendarByYear"
                 :key="`calendarByYear${idx}`"
+                type="edit"
                 :year="item"
                 :dateList="availableRoomList[item]"
+                @getSelectedRoom="getSelectedRoom"
                 />
             </v-flex>
             <v-flex xs12 offset-md11 md1>
               <v-btn
                 color="primary"
-                @click="e1 = 2"
+                @click="toStep(2),checkSelectedRoom()"
               >
                 下一步
               </v-btn>
             </v-flex>
           </v-layout>
-          <!--
-              <v-flex sm12 md4 lg3 px-1 >
-                <v-select
-                  v-model="orderParamsStepOne.roomType"
-                  :items="constVar.roomTypeList"
-                  item-text="value"
-                  item-value="id"
-                  label="訂房房型"
-                  :rules="nameRules"
-                  required
-                ></v-select>
-              </v-flex>
-          -->
-
         </v-stepper-content>
 
         <v-stepper-content step="2">
-          <v-card
-            class="mb-5"
-            color="grey lighten-1"
-            height="200px"
-          ></v-card>
-          <v-btn
-            color="primary"
-            @click="e1 = 3"
-          >
-            Continue
-          </v-btn>
-          <v-btn flat>Cancel</v-btn>
+          <v-layout row wrap v-if="calendarByYear.length > 0">
+            <v-flex sm12 md3>
+              <h3 class="primary--text">確認訂房資訊</h3>
+            </v-flex>
+            <v-flex sm12>
+              <calendar-list
+                v-for="(item, idx) in calendarByYearCheck"
+                :key="`calendarByYearCheck${idx}`"
+                type="show"
+                :year="item"
+                :dateList="availableRoomListCheck[item]"
+                @getSelectedRoom="getSelectedRoom"
+                />
+            </v-flex>
+            <v-flex xs12 offset-md10 md2>
+              <v-btn
+                color="primary"
+                @click="toStep(3)"
+              >
+                確定送出
+              </v-btn>
+              <v-btn flat @click="toStep(1)">回上一步</v-btn>
+            </v-flex>
+          </v-layout>
         </v-stepper-content>
 
         <v-stepper-content step="3">
@@ -105,13 +105,13 @@
             color="grey lighten-1"
             height="200px"
           ></v-card>
-          <v-btn
+          <!-- <v-btn
             color="primary"
-            @click="e1 = 1"
+            @click="toStep(1)"
           >
             Continue
           </v-btn>
-          <v-btn flat>Cancel</v-btn>
+          <v-btn flat>Cancel</v-btn> -->
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -147,20 +147,20 @@ export default {
       datePickerRange: this.getDatePickerRangeOri(),
       roomOccList: {
         occ: {
-          // 20181228: { A: 3, B: 1, C: 2 },
-          // 20181229: { A: 2, B: 3, C: 0 },
-          // 20181230: { A: 0, B: 1, C: 2 },
-          // 20181231: { A: 5, B: 0, C: 3 },
-          // 20190101: { A: 2, B: 2, C: 4 },
-          // 20190102: { A: 1, B: 3, C: 3 },
-          // 20190103: { A: 5, B: 1, C: 2 },
-          20190226: { A: 2, B: 3, C: 0 },
-          20190227: { A: 0, B: 1, C: 2 },
-          20190228: { A: 3, B: 1, C: 2 },
-          20190231: { A: 5, B: 0, C: 3 },
-          20190301: { A: 2, B: 2, C: 4 },
-          20190302: { A: 1, B: 3, C: 3 },
-          20190303: { A: 5, B: 1, C: 2 },
+          20181228: { A: 3, B: 1, C: 2 },
+          20181229: { A: 2, B: 3, C: 0 },
+          20181230: { A: 0, B: 1, C: 2 },
+          20181231: { A: 5, B: 0, C: 3 },
+          20190101: { A: 2, B: 2, C: 4 },
+          20190102: { A: 1, B: 3, C: 3 },
+          20190103: { A: 5, B: 1, C: 2 },
+          // 20190226: { A: 2, B: 3, C: 0 },
+          // 20190227: { A: 0, B: 1, C: 2 },
+          // 20190228: { A: 3, B: 1, C: 2 },
+          // 20190301: { A: 2, B: 2, C: 4 },
+          // 20190302: { A: 1, B: 3, C: 3 },
+          // 20190303: { A: 5, B: 1, C: 2 },
+          // 20190304: { A: 5, B: 0, C: 3 },
         },
         info: {
           A: 5, B: 3, C: 4,
@@ -168,17 +168,24 @@ export default {
       },
       calendarByYear: [],
       availableRoomList: {},
+      selectedRoom: new Map(),
+      checkOrderRoomList: {},
+      calendarByYearCheck: [],
+      availableRoomListCheck: {},
       // nameRules: [
       //   v => !!v || '此欄位為必填',
       // ],
     };
   },
   mounted() {
-    this.$vuetify.goTo(0, constVar.scrollPagAni);
+    this.scrollToTop();
   },
   methods: {
     getDate,
     addDays,
+    scrollToTop() {
+      this.$vuetify.goTo(0, constVar.scrollPagAni);
+    },
     formatNumberDate(numberDate) {
       const stringDate = numberDate.toString();
       const year = stringDate.slice(0, 4);
@@ -210,11 +217,11 @@ export default {
         noteShow: null,
       };
     },
-    methodSearchRommByTime() {
-      this.calendarByYear.splice(0);
-      this.availableRoomList = {};
+    formatOccList(occList) {
+      let calendarByYear = [];
       const searchRangeBaseYear = {};
-      Object.keys(this.roomOccList.occ).forEach((item, idx) => {
+      const availableRoomList = {};
+      Object.keys(occList).forEach((item, idx) => {
         const res = this.formatNumberDate(item);
         const yearKey = Object.keys(res)[0];
         const dateValue = res[Object.keys(res)[0]];
@@ -224,7 +231,7 @@ export default {
           searchRangeBaseYear[yearKey] = [...searchRangeBaseYear[yearKey], dateValue];
         }
       });
-      this.calendarByYear = Object.keys(searchRangeBaseYear);
+      calendarByYear = Object.keys(searchRangeBaseYear);
       // ["2018/12/28", "2018/12/29", "2018/12/30", "2018/12/31"]
       // const availableRoomList = {
       //   2018: [
@@ -234,9 +241,21 @@ export default {
       //     { date: '2018/12/31', rooms: {} },
       //   ],
       // };
-      this.calendarByYear.forEach((item, idx) => {
-        this.availableRoomList[item] = searchRangeBaseYear[item].map((date => ({ date, rooms: this.roomOccList.occ[this.reverseFormatNumberDate(date)] })));
+      calendarByYear.forEach((item, idx) => {
+        availableRoomList[item] = searchRangeBaseYear[item]
+          .map((date => ({ date, rooms: occList[this.reverseFormatNumberDate(date)] })));
       });
+      return {
+        calendarByYear,
+        availableRoomList,
+      };
+    },
+    methodSearchRommByTime() {
+      this.calendarByYear.splice(0);
+      this.availableRoomList = {};
+      const { calendarByYear, availableRoomList } = this.formatOccList(this.roomOccList.occ);
+      this.calendarByYear = calendarByYear;
+      this.availableRoomList = availableRoomList;
     },
     methodFormResetStepOne() {
       this.datePickerRange = this.getDatePickerRangeOri();
@@ -245,6 +264,47 @@ export default {
     },
     methodFormResetRoom() {
       this.calendarByYear.splice(0);
+    },
+    toStep(step) {
+      this.e1 = step;
+      this.scrollToTop();
+    },
+    getSelectedRoom(date, selected) {
+      this.selectedRoom.set(this.reverseFormatNumberDate(date), selected);
+      this.selectedRoom = new Map([...this.selectedRoom.entries()].sort());
+      console.log('TCL: getSelectedRoom -> this.selectedRoom', this.selectedRoom);
+      this.checkOrderRoomList = {};
+      for (const [key, value] of this.selectedRoom.entries()) {
+        let allow = false;
+        Object.keys(value).forEach((valKey) => {
+          if (value[valKey]) allow = true;
+        });
+        if (allow) this.checkOrderRoomList[key] = value;
+      }
+      console.log('TCL: getSelectedRoom -> this.checkOrderRoomList', this.checkOrderRoomList);
+      this.orderSelectedRoom();
+    },
+    checkSelectedRoom() {
+      const { calendarByYear, availableRoomList } = this.formatOccList(this.checkOrderRoomList);
+      this.calendarByYearCheck = calendarByYear;
+      this.availableRoomListCheck = availableRoomList;
+    },
+    orderSelectedRoom() {
+      const result = [];
+      const selectedRoomKeyList = [...this.selectedRoom.keys()];
+      selectedRoomKeyList.forEach((key) => {
+        // this.selectedRoom.get(key)
+        const valueList = this.selectedRoom.get(key);
+        Object.keys(valueList).forEach((val) => {
+          for (let i = 0; i < valueList[val]; i += 1) {
+            result.push({
+              date: key,
+              roomCid: val,
+            });
+          }
+        });
+      });
+      console.log('TCL: orderSelectedRoom -> result', result);
     },
   },
 };

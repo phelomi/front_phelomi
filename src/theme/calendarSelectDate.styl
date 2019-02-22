@@ -1,16 +1,8 @@
 $marginBase = 14.28
-.calendar-date
-  flex-basis 14.28%
+.calendar-select-date
   for idx in (1..6)
     &-offset-{idx}
       margin-left ($marginBase * idx)%
-  &__title
-    text-align center
-    p
-      letter-spacing $letter-spacing-2
-  &__row
-    display flex
-    font-size $font-size-p
   &__room-type
   &__room-available
     flex-basis 30%

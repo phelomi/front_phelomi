@@ -31,3 +31,10 @@ export const addDays = (timeType, days) => {
   const newDate = timestamp + days * 24 * 60 * 60 * 1000;
   return newDate;
 };
+export const subtractDays = (dateOne, dateTwo) => {
+  const dateOneTime = new Date(dateOne).valueOf();
+  const dateTwoTime = new Date(dateTwo).valueOf();
+  const days = Math.abs((dateOneTime - dateTwoTime) / (24 * 60 * 60 * 1000));
+  console.log('TCL: subtractDays -> days', days);
+  return days - 1;
+};

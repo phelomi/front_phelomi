@@ -6,3 +6,18 @@
   &__date-list
     display flex
     flex-wrap wrap
+
+$marginBase = 14.28
+.calendar-date
+  &__basis
+    flex-basis 14.28%
+  for idx in (1..6)
+    &--offset-{idx}
+      margin-left ($marginBase * idx)%
+  &__row
+    display flex
+    font-size $font-size-p
+  &__title
+    text-align center
+    p
+      letter-spacing $letter-spacing-2
