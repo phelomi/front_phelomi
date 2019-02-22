@@ -12,17 +12,23 @@
         v-for="(item, idx) in roomsKeys"
         :key="`roomsKeys${idx}`"
       >
-        <div class="calendar-select-date__room-type textBlack--text">{{item}}</div>
+        <div class="calendar-select-date__room-available">
+          <p :class="`${colorList[idx]}--text`" >{{remainingRoom(item)}} x ● 1,500元</p>
+        </div>
+        <div class="calendar-select-date__button-group">
+          <v-btn>-</v-btn>
+          <p>{{orderRoom[item]}}</p>
+          <v-btn>+</v-btn>
+        </div>
+
+        <!-- <div class="calendar-select-date__room-type textBlack--text">{{item}}</div>
         <v-text-field
           type="number"
           min="0"
           :max="rooms[item]"
           v-model.number="orderRoom[item]"
           class="calendar-select-date__room-input"
-        ></v-text-field>
-        <div class="calendar-select-date__room-available">
-          <p class="textBlack--text">/ {{remainingRoom(item)}}</p>
-        </div>
+        ></v-text-field> -->
       </div>
     </div>
   </div>
@@ -36,6 +42,7 @@ export default {
   data() {
     return {
       orderRoom: {},
+      colorList: ['info', 'success', 'error', 'warning'],
     };
   },
   watch: {

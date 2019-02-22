@@ -266,7 +266,7 @@ export default {
         noteShow: null,
       };
     },
-    formatOccList(occList) {
+    formatOccList(occList, calcRemain = false, oriList) {
       let calendarByYear = [];
       const searchRangeBaseYear = {};
       const availableRoomList = {};
@@ -291,8 +291,20 @@ export default {
       //   ],
       // };
       calendarByYear.forEach((item, idx) => {
-        availableRoomList[item] = searchRangeBaseYear[item]
-          .map((date => ({ date, rooms: occList[this.reverseFormatNumberDate(date)] })));
+        availableRoomList[item] = searchRangeBaseYear[item].map(((date) => {
+          const roomList = occList[this.reverseFormatNumberDate(date)];
+          const remainRoomList = {};
+          if (calcRemain) {
+            Object.keys(roomList).forEach((key) => {
+              remainRoomList[key] = oriList[key] - roomList[key];
+            });
+          }
+          return {
+            date,
+            rooms: calcRemain ? remainRoomList : occList[this.reverseFormatNumberDate(date)],
+          };
+        }
+        ));
       });
       return {
         calendarByYear,
@@ -302,7 +314,11 @@ export default {
     methodSearchRommByTime() {
       this.calendarByYear.splice(0);
       this.availableRoomList = {};
-      const { calendarByYear, availableRoomList } = this.formatOccList(this.roomOccList.occ);
+      const { calendarByYear, availableRoomList } = this.formatOccList(
+        this.roomOccList.occ,
+        true,
+        this.roomOccList.info,
+      );
       this.calendarByYear = calendarByYear;
       this.availableRoomList = availableRoomList;
     },
@@ -321,7 +337,6 @@ export default {
     getSelectedRoom(date, selected) {
       this.selectedRoom.set(this.reverseFormatNumberDate(date), selected);
       this.selectedRoom = new Map([...this.selectedRoom.entries()].sort());
-      console.log('TCL: getSelectedRoom -> this.selectedRoom', this.selectedRoom);
       this.checkOrderRoomList = {};
       for (const [key, value] of this.selectedRoom.entries()) {
         let allow = false;
@@ -330,7 +345,6 @@ export default {
         });
         if (allow) this.checkOrderRoomList[key] = value;
       }
-      console.log('TCL: getSelectedRoom -> this.checkOrderRoomList', this.checkOrderRoomList);
       this.orderSelectedRoom();
     },
     checkSelectedRoom() {
@@ -353,7 +367,6 @@ export default {
           }
         });
       });
-      console.log('TCL: orderSelectedRoom -> result', result);
     },
     methodFormPersonInfoReset() {
       this.orderPersonInfo = this.getOrderPersonInfoOri();
