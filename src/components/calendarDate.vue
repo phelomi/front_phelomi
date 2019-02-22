@@ -1,0 +1,63 @@
+<template>
+  <div class="calendar-date">
+    <div class="calendar-date__title">
+      <p class="primary--text">{{dateTitle}}</p>
+    </div>
+    <div class="calendar-date__content">
+      <div
+        class="calendar-date__row"
+        v-for="(item, idx) in roomsKeys"
+        :key="`roomsKeys${idx}`"
+      >
+        <div class="calendar-date__room-type textBlack--text">{{item}}</div>
+        <v-text-field
+          type="number"
+          min="0"
+          :max="rooms[item]"
+          v-model.number="orderRoom[item]"
+          class="calendar-date__room-input"
+        ></v-text-field>
+        <div class="calendar-date__room-available">
+          <p class="textBlack--text">/ {{remainingRoom(item)}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import { getDate } from '@/utils/dateMethod';
+
+export default {
+  name: 'calendarDate',
+  props: ['date', 'rooms'],
+  data() {
+    return {
+      orderRoom: {},
+    };
+  },
+  watch: {
+    rooms: {
+      handler(val) {
+        Object.keys(val).forEach((item) => { this.$set(this.orderRoom, item, 0); });
+      },
+      immediate: true,
+    },
+  },
+  computed: {
+    dateTitle() {
+      return `${this.getDate(this.date, 'date')}(${this.getDate(this.date, 'day')})`;
+    },
+    roomsKeys() {
+      return Object.keys(this.rooms);
+    },
+  },
+  mounted() {
+  },
+  methods: {
+    getDate,
+    remainingRoom(item) {
+      return this.rooms[item] - this.orderRoom[item];
+    },
+  },
+};
+</script>

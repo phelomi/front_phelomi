@@ -14,7 +14,9 @@ export const getDate = (timeType, type = 'fullDate') => {
   const day = dayList[d.getDay()];
   if (type === 'fullDate') return `${year}-${month}-${date}`;
   if (type === 'fullDateFormat') return `${year}/${month}/${date}`;
-  if (type === 'date') return `${date}`;
+  if (type === 'date') return `${month}/${date}`;
+  if (type === 'day') return `${day}`;
+  if (type === 'dayIndex') return d.getDay();
   if (type === 'timestamp') return timestamp;
   return '--';
 };
