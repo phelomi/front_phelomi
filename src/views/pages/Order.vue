@@ -74,7 +74,7 @@
 
         <v-stepper-content step="2">
           <v-layout row wrap v-if="calendarByYear.length > 0">
-            <v-flex sm12 md3>
+            <v-flex sm12 md3 offset-md-9>
               <h3 class="primary--text">確認訂房資訊</h3>
             </v-flex>
             <v-flex sm12>
@@ -87,10 +87,41 @@
                 @getSelectedRoom="getSelectedRoom"
                 />
             </v-flex>
-            <v-flex xs12 offset-md10 md2>
+          </v-layout>
+          <v-divider class="my-5"></v-divider>
+          <v-layout row wrap v-if="calendarByYear.length > 0">
+            <v-flex sm12 md3>
+              <h3 class="primary--text">填寫個人資料</h3>
+            </v-flex>
+            <v-flex sm12 md6>
+              <v-form
+                v-model="valid"
+                ref="form"
+                lazy-validation
+                class="page-order__form--person-info"
+              >
+                <v-flex
+                  sm12
+                  px-2
+                  v-for="(item, idx) in orderPersonInfoList"
+                  :key="`orderPersonInfoList${idx}`"
+                  :class="item.class"
+                >
+                  <v-text-field
+                    v-model="orderPersonInfo[item.model]"
+                    :label="item.label"
+                    clearable
+                    :rules="nameRules"
+                    required
+                  ></v-text-field>
+                </v-flex>
+              </v-form>
+            </v-flex>
+            <v-flex xs12 offset-md9 md3>
+              <v-btn flat @click="methodFormPersonInfoReset">重新填寫</v-btn>
               <v-btn
                 color="primary"
-                @click="toStep(3)"
+                @click="methodProcessPersonInfoParams"
               >
                 確定送出
               </v-btn>
@@ -172,9 +203,18 @@ export default {
       checkOrderRoomList: {},
       calendarByYearCheck: [],
       availableRoomListCheck: {},
-      // nameRules: [
-      //   v => !!v || '此欄位為必填',
-      // ],
+      valid: false,
+      nameRules: [
+        v => !!v || '此欄位為必填',
+      ],
+      orderPersonInfoList: [
+        { model: 'name', label: '聯絡姓名', class: 'md6' },
+        { model: 'phone', label: '聯絡電話', class: 'md6' },
+        { model: 'email', label: '電子郵件', class: 'md6' },
+        { model: 'nationality', label: '國籍', class: 'md6' },
+        { model: 'note', label: '備註', class: 'md12' },
+      ],
+      orderPersonInfo: this.getOrderPersonInfoOri(),
     };
   },
   mounted() {
@@ -196,6 +236,15 @@ export default {
     },
     reverseFormatNumberDate(stringDate) {
       return Number(stringDate.replace(/\/|-*/g, ''));
+    },
+    getOrderPersonInfoOri() {
+      return {
+        name: null,
+        phone: null,
+        email: null,
+        nationality: null,
+        note: null,
+      };
     },
     getDatePickerRangeOri() {
       return {
@@ -305,6 +354,15 @@ export default {
         });
       });
       console.log('TCL: orderSelectedRoom -> result', result);
+    },
+    methodFormPersonInfoReset() {
+      this.orderPersonInfo = this.getOrderPersonInfoOri();
+      this.$refs.form.resetValidation();
+    },
+    methodProcessPersonInfoParams() {
+      if (this.$refs.form.validate()) {
+        this.toStep(3);
+      }
     },
   },
 };
