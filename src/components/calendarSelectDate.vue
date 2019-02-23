@@ -12,7 +12,7 @@
         v-for="(item, idx) in roomsKeys"
         :key="`roomsKeys${idx}`"
       >
-        <div class="calendar-select-date__room-available">
+        <div class="calendar-date__room-available">
           <p :class="`${colorList[idx]}--text`" >● 1,500元 剩 {{remainingRoom(item)}}</p>
         </div>
         <div class="calendar-select-date__button-group">
@@ -28,18 +28,6 @@
             :disabled="!rooms[item] || rooms[item] === orderRoom[item]"
           >+</v-btn>
         </div>
-        <!-- <div class="calendar-select-date__room-available">
-          <p :class="`${colorList[idx]}--text`" ></p>
-        </div> -->
-
-        <!-- <div class="calendar-select-date__room-type textBlack--text">{{item}}</div>
-        <v-text-field
-          type="number"
-          min="0"
-          :max="rooms[item]"
-          v-model.number="orderRoom[item]"
-          class="calendar-select-date__room-input"
-        ></v-text-field> -->
       </div>
     </div>
   </div>

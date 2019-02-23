@@ -12,9 +12,8 @@
         v-for="(item, idx) in roomsKeys"
         :key="`roomsKeys${idx}`"
       >
-        <div class="calendar-show-date__room-type textBlack--text">{{item}}</div>
-        <div class="calendar-show-date__room-available">
-          <p class="textBlack--text">{{rooms[item]}}</p>
+        <div class="calendar-date__room-available" v-if="rooms[item]">
+          <p :class="`${colorList[idx]}--text`" >{{showOrderedRoom(item)}}</p>
         </div>
       </div>
     </div>
@@ -29,6 +28,7 @@ export default {
   data() {
     return {
       // orderRoom: {},
+      colorList: ['info', 'success', 'error', 'warning'],
     };
   },
   watch: {
@@ -57,6 +57,9 @@ export default {
   },
   methods: {
     getDate,
+    showOrderedRoom(item) {
+      return this.rooms[item] ? `房型${item} ● 1,500元 x ${this.rooms[item]}` : '';
+    },
   },
 };
 </script>

@@ -61,9 +61,10 @@
                 @getSelectedRoom="getSelectedRoom"
                 />
             </v-flex>
-            <v-flex xs12 offset-md11 md1>
+            <v-flex xs12 class="page-order__footer mt-5">
               <v-btn
                 color="primary"
+                class="page-order__button-primary"
                 @click="toStep(2),checkSelectedRoom()"
               >
                 下一步
@@ -117,15 +118,22 @@
                 </v-flex>
               </v-form>
             </v-flex>
-            <v-flex xs12 offset-md9 md3>
-              <v-btn flat @click="methodFormPersonInfoReset">重新填寫</v-btn>
+            <v-flex xs12 class="page-order__footer mt-5">
+              <v-btn
+                flat
+                @click="methodFormPersonInfoReset"
+              >重新填寫</v-btn>
               <v-btn
                 color="primary"
+                class="page-order__button-primary"
                 @click="methodProcessPersonInfoParams"
               >
                 確定送出
               </v-btn>
-              <v-btn flat @click="toStep(1)">回上一步</v-btn>
+              <v-btn
+                flat
+                @click="toStep(1)"
+              >回上一步</v-btn>
             </v-flex>
           </v-layout>
         </v-stepper-content>
