@@ -13,13 +13,24 @@
         :key="`roomsKeys${idx}`"
       >
         <div class="calendar-select-date__room-available">
-          <p :class="`${colorList[idx]}--text`" >{{remainingRoom(item)}} x ● 1,500元</p>
+          <p :class="`${colorList[idx]}--text`" >● 1,500元 剩 {{remainingRoom(item)}}</p>
         </div>
         <div class="calendar-select-date__button-group">
-          <v-btn>-</v-btn>
-          <p>{{orderRoom[item]}}</p>
-          <v-btn>+</v-btn>
+          <v-btn
+            @click="updateRoomNum(item,-1)"
+            :disabled="!rooms[item] || !orderRoom[item]"
+          >-</v-btn>
+          <p
+            :class="!rooms[item] ? 'grey--text text--lighten-1': 'textBlack--text'"
+          >{{orderRoom[item]}}</p>
+          <v-btn
+            @click="updateRoomNum(item,1)"
+            :disabled="!rooms[item] || rooms[item] === orderRoom[item]"
+          >+</v-btn>
         </div>
+        <!-- <div class="calendar-select-date__room-available">
+          <p :class="`${colorList[idx]}--text`" ></p>
+        </div> -->
 
         <!-- <div class="calendar-select-date__room-type textBlack--text">{{item}}</div>
         <v-text-field
@@ -73,6 +84,14 @@ export default {
     getDate,
     remainingRoom(item) {
       return this.rooms[item] - this.orderRoom[item];
+    },
+    updateRoomNum(item, addNum) {
+      const min = 0;
+      const max = this.rooms[item];
+      const res = this.orderRoom[item] + addNum;
+      if (res >= min && res <= max) {
+        this.orderRoom[item] += addNum;
+      }
     },
   },
 };
