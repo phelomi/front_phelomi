@@ -12,6 +12,7 @@
         :rooms="item.rooms"
         :offset="getOffset(idx,item.date)"
         @selectRoom="selectRoom($event, item.date)"
+        :clearSelected.sync="clearSelected"
       />
     </div>
   </div>
@@ -27,7 +28,7 @@ export default {
     calendarSelectDate,
     calendarShowDate,
   },
-  props: ['year', 'dateList', 'type'],
+  props: ['year', 'dateList', 'type', 'clearSelected'],
   data() {
     return {
 

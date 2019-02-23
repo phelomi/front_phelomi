@@ -48,7 +48,10 @@
             </v-flex>
             <v-flex sm12 offset-md6 md2>
               <v-btn flat @click="methodFormResetRoom">
-                重置
+                重置搜尋結果
+              </v-btn>
+              <v-btn flat @click="clearSelected = true">
+                重置已選房型
               </v-btn>
             </v-flex>
             <v-flex sm12>
@@ -59,13 +62,14 @@
                 :year="item"
                 :dateList="availableRoomList[item]"
                 @getSelectedRoom="getSelectedRoom"
+                :clearSelected.sync="clearSelected"
                 />
             </v-flex>
             <v-flex xs12 class="page-order__footer mt-5">
               <v-btn
                 color="primary"
                 class="page-order__button-primary"
-                @click="toStep(2),checkSelectedRoom()"
+                @click="checkSelectedRoom()"
               >
                 下一步
               </v-btn>
@@ -154,6 +158,20 @@
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
+    <v-snackbar
+      v-model="notifySetting.open"
+      top
+      right
+      :timeout="notifySetting.timeout"
+      :color="notifySetting.color"
+      class="textBlack--text"
+    >{{notifySetting.text}}<v-btn
+        flat
+        @click="notifySetting.open = false"
+      >
+        <v-icon color="textBlack">mdi-close</v-icon>
+      </v-btn>
+    </v-snackbar>
   </div>
 </template>
 <script>
@@ -223,6 +241,13 @@ export default {
         { model: 'note', label: '備註', class: 'md12' },
       ],
       orderPersonInfo: this.getOrderPersonInfoOri(),
+      clearSelected: false,
+      notifySetting: {
+        open: false,
+        timeout: 5000,
+        text: '',
+        color: '',
+      },
     };
   },
   mounted() {
@@ -359,6 +384,17 @@ export default {
       const { calendarByYear, availableRoomList } = this.formatOccList(this.checkOrderRoomList);
       this.calendarByYearCheck = calendarByYear;
       this.availableRoomListCheck = availableRoomList;
+
+      if (this.calendarByYearCheck.length && Object.keys(this.availableRoomListCheck).length) {
+        this.toStep(2);
+      } else {
+        this.notifySetting = {
+          ...this.notifySetting,
+          open: true,
+          text: '提醒您，您尚未選擇房型！',
+          color: 'warning',
+        };
+      }
     },
     orderSelectedRoom() {
       const result = [];

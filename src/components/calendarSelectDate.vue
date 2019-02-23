@@ -37,7 +37,7 @@ import { getDate } from '@/utils/dateMethod';
 
 export default {
   name: 'calendarDate',
-  props: ['date', 'rooms', 'offset'],
+  props: ['date', 'rooms', 'offset', 'clearSelected'],
   data() {
     return {
       orderRoom: {},
@@ -56,6 +56,14 @@ export default {
         this.$emit('selectRoom', val);
       },
       deep: true,
+    },
+    clearSelected: {
+      handler(val) {
+        if (val) {
+          Object.keys(this.orderRoom).forEach((item) => { this.$set(this.orderRoom, item, 0); });
+        }
+      },
+      immediate: true,
     },
   },
   computed: {
