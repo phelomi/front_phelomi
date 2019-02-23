@@ -12,8 +12,11 @@ $marginBase = 14.28
   &__basis
     flex-basis 14.28%
   for idx in (1..6)
-    &--offset-{idx}
+    &--offset-left-{idx}
       margin-left ($marginBase * idx)%
+  for idx in (1..6)
+    &--offset-right-{idx}
+      margin-right ($marginBase * idx)%
   &__row
     display flex
     font-size $font-size-p

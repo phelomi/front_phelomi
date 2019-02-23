@@ -1,7 +1,8 @@
 <template>
   <div :class="[
     'calendar-select-date calendar-date__basis',
-    offset ? `calendar-date--offset-${offset}`: ''
+    offset && offset.left ? `calendar-date--offset-left-${offset.left}`: '',
+    offset && offset.right ? `calendar-date--offset-right-${offset.right}`: '',
   ]">
     <div class="calendar-date__title">
       <p class="primary--text">{{dateTitle}}</p>

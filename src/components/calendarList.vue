@@ -10,7 +10,7 @@
         :key="`dateList${idx}`"
         :date="item.date"
         :rooms="item.rooms"
-        :offset="getOffset(idx,item.date)"
+        :offset="getOffset(idx)"
         @selectRoom="selectRoom($event, item.date)"
         :clearSelected.sync="clearSelected"
       />
@@ -47,18 +47,32 @@ export default {
     selectRoom(selected, date) {
       this.$emit('getSelectedRoom', date, selected);
     },
-    getOffset(currentIdx, currentDate) {
+    getOffset(currentIdx) {
+      const currentDate = this.dateList[currentIdx].date;
+      const currentDayIdx = this.getDate(currentDate, 'dayIndex');
+      let left = null;
+      let right = null;
+
       if (currentIdx === 0) {
-        return this.getDate(currentDate, 'dayIndex');
+        // 第一個
+        left = currentDayIdx;
+      } else {
+        const prevDate = this.dateList[currentIdx - 1].date;
+        const currentOffset = this.subtractDays(currentDate, prevDate);
+        left = currentOffset < currentDayIdx ? currentOffset : currentDayIdx;
       }
-      const haveOffset = this.subtractDays(this.dateList[currentIdx].date, this.dateList[currentIdx - 1].date);
-      return haveOffset || null;
+      if (currentIdx === this.dateList.length - 1) {
+        // 最後一個
+        right = null;
+      } else {
+        const nextDate = this.dateList[currentIdx + 1].date;
+        const nextDayIdx = this.getDate(nextDate, 'dayIndex');
+        const nextOffset = this.subtractDays(nextDate, currentDate);
+        if (nextOffset >= (6 - currentDayIdx)) right = 6 - currentDayIdx;
+      }
+
+      return { left, right };
     },
-    // calendarDateOffset() {
-    //   console.log(this.idx, this.date);
-    //   const haveOffset = getDate(this.date, 'dayIndex');
-    //   return haveOffset ? `calendar-date--offset-${haveOffset}` : '';
-    // },
   },
 };
 </script>
