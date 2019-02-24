@@ -112,6 +112,7 @@ export default {
   },
   mounted() {
     if (this.highlightRange) this.setInRangeData();
+    this.onDateRangeChange();
   },
   methods: {
     getDate,
