@@ -181,7 +181,7 @@ import titleBoat from '@/components/titleBoat.vue';
 import dateRange from '@/components/dateRange.vue';
 import calendarList from '@/components/calendarList.vue';
 import constVar from '@/utils/constVar';
-import { getDate, addDays,subtractDays } from '@/utils/dateMethod';
+import { getDate, addDays, subtractDays } from '@/utils/dateMethod';
 
 export default {
   name: 'pageOrder',
@@ -252,6 +252,8 @@ export default {
         color: '',
       },
       selectedDateRange: null,
+      emptyRoomType: {},
+      emptyOccList: {},
     };
   },
   mounted() {
@@ -273,6 +275,7 @@ export default {
       return { [year]: `${year}/${month}/${date}` };
     },
     reverseFormatNumberDate(stringDate) {
+      if (typeof stringDate === 'number') stringDate = this.getDate(stringDate, 'fullDateFormat');
       return Number(stringDate.replace(/\/|-*/g, ''));
     },
     getOrderPersonInfoOri() {
@@ -352,13 +355,12 @@ export default {
     async methodSearchRommByTime() {
       this.calendarByYear.splice(0);
       this.availableRoomList = {};
-      console.log('TCL: data -> datePickerRange', this.datePickerRange);
       const { startTime, endTime } = this.selectedDateRange;
       const params = {
         startTime: this.subtractDays(startTime, 7),
         endTime: this.addDays(endTime, 7),
       };
-      console.log('TCL: methodSearchRommByTime -> params', params);
+      this.methodFormatOccList(params);
       const res = await httpMethod({
         url: '/v1/api/front/occ/list',
         method: 'GET',
@@ -372,8 +374,10 @@ export default {
           text: `${res.msg}`,
           color: 'success',
         };
+        // Object.keys(res.data.info)
+        this.methodGetEmptyRoom(res.data.info);
         const { calendarByYear, availableRoomList } = this.formatOccList(
-          res.data.occ,
+          { ...this.emptyOccList, ...res.data.occ },
           true,
           res.data.info,
         );
@@ -386,6 +390,21 @@ export default {
           text: res.msg || '查詢失敗，請重新再弒，或聯絡客服人員',
           color: 'error',
         };
+      }
+    },
+    methodGetEmptyRoom(roomInfo) {
+      Object.keys(roomInfo).forEach((roomType) => {
+        this.emptyRoomType[roomType] = 0;
+      });
+    },
+    methodFormatOccList(params) {
+      const { startTime, endTime } = params;
+      // this.reverseFormatNumberDate(this.getDate(startTime,'fullDateFormat'))
+      this.emptyOccList = {};
+      let countStartTime = startTime;
+      while (countStartTime <= endTime) {
+        this.emptyOccList[this.reverseFormatNumberDate(countStartTime)] = this.emptyRoomType;
+        countStartTime = this.addDays(countStartTime, 1);
       }
     },
     methodFormResetStepOne() {
