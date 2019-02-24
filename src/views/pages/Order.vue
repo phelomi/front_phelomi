@@ -28,6 +28,7 @@
               <v-flex sm12 md6>
                 <date-range
                   :options="datePickerRange"
+                  @getSelectedDate="getSelectedDate"
                 />
               </v-flex>
               <v-flex sm12 md2 ml-5>
@@ -175,6 +176,7 @@
   </div>
 </template>
 <script>
+import httpMethod from '@/utils/httpMethod';
 import titleBoat from '@/components/titleBoat.vue';
 import dateRange from '@/components/dateRange.vue';
 import calendarList from '@/components/calendarList.vue';
@@ -249,6 +251,7 @@ export default {
         text: '',
         color: '',
       },
+      selectedDateRange: null,
     };
   },
   mounted() {
@@ -345,16 +348,44 @@ export default {
         availableRoomList,
       };
     },
-    methodSearchRommByTime() {
+    async methodSearchRommByTime() {
       this.calendarByYear.splice(0);
       this.availableRoomList = {};
-      const { calendarByYear, availableRoomList } = this.formatOccList(
-        this.roomOccList.occ,
-        true,
-        this.roomOccList.info,
-      );
-      this.calendarByYear = calendarByYear;
-      this.availableRoomList = availableRoomList;
+      console.log('TCL: data -> datePickerRange', this.datePickerRange);
+      const { startTime, endTime } = this.selectedDateRange;
+      const params = {
+        startTime: this.getDate(startTime, 'timestamp'),
+        endTime: this.getDate(endTime, 'timestamp'),
+      };
+      console.log('TCL: methodSearchRommByTime -> params', params);
+      const res = await httpMethod({
+        url: '/v1/api/front/occ/list',
+        method: 'GET',
+        params,
+      });
+      console.log(res);
+      if (!res.code) {
+        this.notifySetting = {
+          ...this.notifySetting,
+          open: true,
+          text: `${res.msg}`,
+          color: 'success',
+        };
+        const { calendarByYear, availableRoomList } = this.formatOccList(
+          this.roomOccList.occ,
+          true,
+          this.roomOccList.info,
+        );
+        this.calendarByYear = calendarByYear;
+        this.availableRoomList = availableRoomList;
+      } else {
+        this.notifySetting = {
+          ...this.notifySetting,
+          open: true,
+          text: res.msg || '新增失敗，請重新再弒，或聯絡客服人員',
+          color: 'error',
+        };
+      }
     },
     methodFormResetStepOne() {
       this.datePickerRange = this.getDatePickerRangeOri();
@@ -421,6 +452,9 @@ export default {
       if (this.$refs.form.validate()) {
         this.toStep(3);
       }
+    },
+    getSelectedDate(val) {
+      this.selectedDateRange = val;
     },
   },
 };

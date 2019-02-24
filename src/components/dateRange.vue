@@ -118,7 +118,10 @@ export default {
     addDays,
     onDateRangeChange() {
       if (this.highlightRange) this.setInRangeData();
-      this.$emit('input', [this.startDate, this.endDate]);
+      this.$emit('getSelectedDate', {
+        startTime: this.startDate,
+        endTime: this.endDate,
+      });
     },
     setInRangeData() {
       const inRangeData = {
