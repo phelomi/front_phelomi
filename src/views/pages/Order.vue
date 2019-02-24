@@ -181,7 +181,7 @@ import titleBoat from '@/components/titleBoat.vue';
 import dateRange from '@/components/dateRange.vue';
 import calendarList from '@/components/calendarList.vue';
 import constVar from '@/utils/constVar';
-import { getDate, addDays } from '@/utils/dateMethod';
+import { getDate, addDays,subtractDays } from '@/utils/dateMethod';
 
 export default {
   name: 'pageOrder',
@@ -260,6 +260,7 @@ export default {
   methods: {
     getDate,
     addDays,
+    subtractDays,
     scrollToTop() {
       this.$vuetify.goTo(0, constVar.scrollPagAni);
     },
@@ -354,8 +355,8 @@ export default {
       console.log('TCL: data -> datePickerRange', this.datePickerRange);
       const { startTime, endTime } = this.selectedDateRange;
       const params = {
-        startTime: this.getDate(startTime, 'timestamp'),
-        endTime: this.getDate(endTime, 'timestamp'),
+        startTime: this.subtractDays(startTime, 7),
+        endTime: this.addDays(endTime, 7),
       };
       console.log('TCL: methodSearchRommByTime -> params', params);
       const res = await httpMethod({
@@ -372,9 +373,9 @@ export default {
           color: 'success',
         };
         const { calendarByYear, availableRoomList } = this.formatOccList(
-          this.roomOccList.occ,
+          res.data.occ,
           true,
-          this.roomOccList.info,
+          res.data.info,
         );
         this.calendarByYear = calendarByYear;
         this.availableRoomList = availableRoomList;
@@ -382,7 +383,7 @@ export default {
         this.notifySetting = {
           ...this.notifySetting,
           open: true,
-          text: res.msg || '新增失敗，請重新再弒，或聯絡客服人員',
+          text: res.msg || '查詢失敗，請重新再弒，或聯絡客服人員',
           color: 'error',
         };
       }

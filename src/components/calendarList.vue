@@ -20,7 +20,7 @@
 <script>
 import calendarSelectDate from '@/components/calendarSelectDate.vue';
 import calendarShowDate from '@/components/calendarShowDate.vue';
-import { getDate, subtractDays } from '@/utils/dateMethod';
+import { getDate, getDayRange } from '@/utils/dateMethod';
 
 export default {
   name: 'calendarList',
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     getDate,
-    subtractDays,
+    getDayRange,
     selectRoom(selected, date) {
       this.$emit('getSelectedRoom', date, selected);
     },
@@ -58,7 +58,7 @@ export default {
         left = currentDayIdx;
       } else {
         const prevDate = this.dateList[currentIdx - 1].date;
-        const currentOffset = this.subtractDays(currentDate, prevDate);
+        const currentOffset = this.getDayRange(currentDate, prevDate);
         left = currentOffset < currentDayIdx ? currentOffset : currentDayIdx;
       }
       if (currentIdx === this.dateList.length - 1) {
@@ -67,7 +67,7 @@ export default {
       } else {
         const nextDate = this.dateList[currentIdx + 1].date;
         const nextDayIdx = this.getDate(nextDate, 'dayIndex');
-        const nextOffset = this.subtractDays(nextDate, currentDate);
+        const nextOffset = this.getDayRange(nextDate, currentDate);
         if (nextOffset >= (6 - currentDayIdx)) right = 6 - currentDayIdx;
       }
 
