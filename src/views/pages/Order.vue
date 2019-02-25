@@ -143,7 +143,7 @@
                     v-model="orderPersonInfo[item.model]"
                     :label="item.label"
                     clearable
-                    :rules="item.required ? nameRules : []"
+                    :rules="ruleList[item.rules]"
                     :required="item.required"
                   ></v-text-field>
                 </v-flex>
@@ -173,18 +173,45 @@
         </v-stepper-content>
 
         <v-stepper-content step="3">
-          <v-card
-            class="mb-5"
-            color="grey lighten-1"
-            height="200px"
-          ></v-card>
-          <!-- <v-btn
-            color="primary"
-            @click="toStep(1)"
-          >
-            Continue
-          </v-btn>
-          <v-btn flat>Cancel</v-btn> -->
+          <v-layout row wrap>
+            <v-flex sm12 md3 offset-md-9>
+              <h3 class="primary--text">訂單已完成，請核對以下資訊</h3>
+            </v-flex>
+            <v-flex sm12 md6>
+              <v-flex
+                sm12
+                v-for="(item, idx) in orderPersonInfoList"
+                :key="`orderPersonInfoList${idx}`"
+                :class="item.class"
+              >
+                <v-text-field
+                  v-model="orderPersonInfo[item.model]"
+                  :label="item.label"
+                  clearable
+                  :rules="ruleList[item.rules]"
+                  :required="item.required"
+                  disabled
+                ></v-text-field>
+              </v-flex>
+            </v-flex>
+            <v-flex sm12>
+              <calendar-list
+                v-for="(item, idx) in calendarByYearCheck"
+                :key="`calendarByYearCheck${idx}`"
+                type="show"
+                :year="item"
+                :dateList="availableRoomListCheck[item]"
+                @getSelectedRoom="getSelectedRoom"
+                :roomTypeInfo="roomTypeInfo"
+                />
+            </v-flex>
+          <v-layout row wrap>
+          </v-layout>
+          <v-divider class="my-5"></v-divider>
+            <v-flex sm12 md3 offset-md-9>
+              <h3 class="primary--text">匯款資訊如下</h3>
+            </v-flex>
+          </v-layout>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -265,24 +292,41 @@ export default {
       calendarByYearCheck: [],
       availableRoomListCheck: {},
       valid: false,
-      nameRules: [
-        v => !!v || '此欄位為必填',
-      ],
+      ruleList: {
+        require: [
+          v => !!v || '此欄位為必填',
+        ],
+        phone: [
+          (v) => {
+            if (!v) return '此欄位為必填';
+            const reg = /^(\d+\.\d\d|\d+)$/;
+            return reg.test(v) || '請輸入電話號碼，不用任何符號';
+          },
+        ],
+        email: [
+          (v) => {
+            if (!v) return '此欄位為必填';
+            const reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+            return reg.test(v) || '請輸入正確的Email格式';
+          },
+        ],
+        none: [],
+      },
       orderPersonInfoList: [
         {
-          model: 'name', label: '聯絡姓名', required: true, class: 'md6',
+          model: 'name', label: '聯絡姓名', required: true, rules: 'require', class: 'md6',
         },
         {
-          model: 'phone', label: '聯絡電話', required: true, class: 'md6',
+          model: 'phone', label: '聯絡電話', required: true, rules: 'phone', class: 'md6',
         },
         {
-          model: 'email', label: '電子郵件', required: true, class: 'md6',
+          model: 'email', label: '電子郵件', required: true, rules: 'email', class: 'md6',
         },
         {
-          model: 'nationality', label: '國籍', required: true, class: 'md6',
+          model: 'nationality', label: '國籍', required: true, rules: 'require', class: 'md6',
         },
         {
-          model: 'note', label: '備註', required: false, class: 'md12',
+          model: 'note', label: '備註', required: false, rules: 'none', class: 'md12',
         },
       ],
       orderPersonInfo: this.getOrderPersonInfoOri(),

@@ -6,13 +6,13 @@
     <div class="calendar-list__date-list">
       <component
         :is="currentComponent"
+        :ref="`calendar${type}`"
         v-for="(item, idx) in dateList"
         :key="`dateList${idx}`"
         :date="item.date"
         :rooms="item.rooms"
         :offset="getOffset(idx)"
         @selectRoom="selectRoom($event, item.date)"
-        :clearSelected.sync="clearSelected"
         :roomTypeInfo="roomTypeInfo"
       />
     </div>
@@ -29,15 +29,27 @@ export default {
     calendarSelectDate,
     calendarShowDate,
   },
-  props: ['year', 'dateList', 'type', 'clearSelected','roomTypeInfo'],
+  props: ['year', 'dateList', 'type', 'clearSelected', 'roomTypeInfo'],
   data() {
     return {
-
     };
   },
   computed: {
     currentComponent() {
       return this.type === 'edit' ? calendarSelectDate : calendarShowDate;
+    },
+  },
+  watch: {
+    clearSelected: {
+      handler(val) {
+        if (val) {
+          this.$refs.calendaredit.forEach((component) => {
+            component.methodCleadSelectedRoom();
+          });
+          this.$emit('update:clearSelected', false);
+        }
+      },
+      immediate: true,
     },
   },
   mounted() {

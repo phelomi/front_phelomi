@@ -40,7 +40,7 @@ import { currencies } from '@/utils/calculation';
 
 export default {
   name: 'calendarDate',
-  props: ['date', 'rooms', 'offset', 'clearSelected', 'roomTypeInfo'],
+  props: ['date', 'rooms', 'offset', 'roomTypeInfo'],
 
   data() {
     return {
@@ -60,14 +60,6 @@ export default {
         this.$emit('selectRoom', val);
       },
       deep: true,
-    },
-    clearSelected: {
-      handler(val) {
-        if (val) {
-          Object.keys(this.orderRoom).forEach((item) => { this.$set(this.orderRoom, item, 0); });
-        }
-      },
-      immediate: true,
     },
   },
   computed: {
@@ -96,6 +88,9 @@ export default {
     },
     methodShowRoomType(item) {
       return ` ${this.currencies(this.roomTypeInfo[item].price) || '--'}元 剩 ${this.remainingRoom(item)}`;
+    },
+    methodCleadSelectedRoom() {
+      Object.keys(this.orderRoom).forEach((item) => { this.$set(this.orderRoom, item, 0); });
     },
   },
 };
