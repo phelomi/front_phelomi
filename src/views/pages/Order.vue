@@ -275,6 +275,16 @@
               <h3 class="primary--text">匯款資訊如下</h3>
             </v-flex>
           </v-layout>
+            <!-- <v-flex xs12 class="page-order__footer mt-5">
+              <v-btn
+                color="info"
+                class="page-order__button-primary"
+                @click="methodNewOrder"
+                :disabled="waitResponse"
+              >
+                新增訂單
+              </v-btn>
+            </v-flex> -->
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -716,7 +726,6 @@ export default {
       this.$refs.form.resetValidation();
     },
     async methodProcessPersonInfoParams() {
-      console.log('TCL: methodProcessPersonInfoParams -> this.$refs.form.validate()', this.$refs.form.validate());
       if (this.$refs.form.validate()) {
         const {
           name,
@@ -772,6 +781,15 @@ export default {
     },
     getSelectedDate(val) {
       this.selectedDateRange = val;
+    },
+    methodNewOrder() {
+      this.methodFormPersonInfoReset();
+      this.calendarByYearCheck = [];
+      this.availableRoomList = {};
+      this.availableRoomListCheck = {};
+      this.methodFormResetRoom();
+      this.methodClearSelectedRoom();
+      this.toStep(1);
     },
   },
 };
