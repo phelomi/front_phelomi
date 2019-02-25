@@ -125,7 +125,7 @@
             <v-flex sm12 md3>
               <h3 class="primary--text">填寫個人資料</h3>
             </v-flex>
-            <v-flex sm12 md6>
+            <v-flex sm12 md7>
               <v-form
                 v-model="valid"
                 ref="form"
@@ -140,12 +140,76 @@
                   :class="item.class"
                 >
                   <v-text-field
+                    v-if="item.type === 'input'"
                     v-model="orderPersonInfo[item.model]"
                     :label="item.label"
                     clearable
                     :rules="ruleList[item.rules]"
                     :required="item.required"
                   ></v-text-field>
+                  <v-radio-group
+                    v-if="item.type === 'radio'"
+                    v-model="orderPersonInfo[item.model]"
+                    :rules="ruleList[item.rules]"
+                    :required="item.required"
+                    row
+                  >
+                    <p class="form__label">{{item.label}}</p>
+                    <v-radio
+                      v-for="(option,idx) in item.options"
+                      :key="`options${idx}`"
+                      :label="option.label"
+                      :value="option.value"
+                      color="primary"
+                    ></v-radio>
+                  </v-radio-group>
+                  <v-radio-group
+                    v-if="item.type === 'radioOther'"
+                    v-model="orderPersonInfo[item.model]"
+                    :rules="ruleList[item.rules]"
+                    :required="item.required"
+                    row
+                    class="form__radio-other-group"
+                  >
+                    <p class="form__label">{{item.label}}</p>
+                    <v-radio
+                      v-for="(option,idx) in item.options"
+                      :key="`radioOptions${idx}`"
+                      :label="option.label"
+                      :value="option.value"
+                      color="primary"
+                    ></v-radio>
+                    <v-text-field
+                      v-model="orderPersonInfo[item.otherModel]"
+                      class="form__radio-other-group--other-input"
+                      placeholder="請依照護照上填寫"
+                      :disabled="orderPersonInfo[item.model] !== 2"
+                      :required="orderPersonInfo[item.model] !== 2"
+                      :rules="ruleList.require"
+                      clearable
+                    ></v-text-field>
+                  </v-radio-group>
+                  <div
+                    v-if="item.type === 'checkboxOther'"
+                    class="form__checkbox-other-group"
+                  >
+                    <p class="form__label">{{item.label}}</p>
+                    <v-checkbox
+                      v-for="(option, idx) in item.options"
+                      :key="`checkboxOptions${idx}`"
+                      v-model="orderPersonInfo[item.model]"
+                      :label="option.label"
+                      :value="option.value"
+                      color="primary"
+                    ></v-checkbox>
+                    <v-text-field
+                      v-model="orderPersonInfo[item.otherModel]"
+                      class="form__checkbox-other-group--other-input"
+                      placeholder="請輸入其他需求"
+                      :disabled="!orderPersonInfo[item.model].find(i => i === 2)"
+                      clearable
+                    ></v-text-field>
+                  </div>
                 </v-flex>
               </v-form>
             </v-flex>
@@ -187,7 +251,6 @@
                 <v-text-field
                   v-model="orderPersonInfo[item.model]"
                   :label="item.label"
-                  clearable
                   :rules="ruleList[item.rules]"
                   :required="item.required"
                   disabled
@@ -259,7 +322,7 @@ export default {
       validStepOne: false,
       validStepTwo: false,
       validStepThree: false,
-      orderParamsStepOne: this.getParamsOriginStepOne(),
+      // orderParamsStepOne: this.getParamsOriginStepOne(),
       datePickerRange: this.getDatePickerRangeOri(),
       roomOccList: {
         occ: {
@@ -314,19 +377,98 @@ export default {
       },
       orderPersonInfoList: [
         {
-          model: 'name', label: '聯絡姓名', required: true, rules: 'require', class: 'md6',
+          type: 'input',
+          model: 'name',
+          label: '聯絡姓名',
+          required: true,
+          rules: 'require',
+          class: 'md6',
         },
         {
-          model: 'phone', label: '聯絡電話', required: true, rules: 'phone', class: 'md6',
+          type: 'radio',
+          model: 'gender',
+          label: '客戶性別',
+          required: true,
+          rules: 'require',
+          class: 'md6',
+          options: [
+            { label: '男', value: '男' },
+            { label: '女', value: '女' },
+          ],
         },
         {
-          model: 'email', label: '電子郵件', required: true, rules: 'email', class: 'md6',
+          type: 'input',
+          model: 'phone',
+          label: '聯絡電話',
+          required: true,
+          rules: 'phone',
+          class: 'md6',
         },
         {
-          model: 'nationality', label: '國籍', required: true, rules: 'require', class: 'md6',
+          type: 'input',
+          model: 'email',
+          label: '電子郵件',
+          required: true,
+          rules: 'email',
+          class: 'md6',
         },
         {
-          model: 'note', label: '備註', required: false, rules: 'none', class: 'md12',
+          type: 'radioOther',
+          model: 'nationalityOption',
+          otherModel: 'nationalityText',
+          label: '國籍',
+          required: true,
+          rules: 'require',
+          class: 'md6',
+          options: [
+            { label: '本國', value: 1 },
+            { label: '其他', value: 2 },
+          ],
+        },
+        {
+          type: 'radio',
+          model: 'breakfast',
+          label: '早餐',
+          required: true,
+          rules: 'require',
+          class: 'md6',
+          options: [
+            { label: '正常', value: '正常' },
+            { label: '素食', value: '素食' },
+            { label: '不食用（不用不退費請知悉）', value: '不食用' },
+          ],
+        },
+        {
+          type: 'input',
+          model: 'number',
+          label: '人數',
+          required: true,
+          rules: 'require',
+          class: 'md4',
+        },
+        {
+          type: 'checkboxOther',
+          model: 'demandOption',
+          otherModel: 'demandText',
+          label: '其他需求',
+          required: false,
+          rules: 'none',
+          class: 'md8',
+          options: [
+            { label: '無', value: '無' },
+            { label: '租機車', value: '租機車' },
+            { label: '租轎車', value: '租轎車' },
+            { label: '租船出海', value: '租船出海' },
+            { label: '其他', value: 2 },
+          ],
+        },
+        {
+          type: 'input',
+          model: 'note',
+          label: '備註',
+          required: false,
+          rules: 'none',
+          class: 'md12',
         },
       ],
       orderPersonInfo: this.getOrderPersonInfoOri(),
@@ -368,9 +510,15 @@ export default {
     getOrderPersonInfoOri() {
       return {
         name: null,
+        gender: null,
         phone: null,
         email: null,
-        nationality: null,
+        nationalityOption: null,
+        nationalityText: null,
+        breakfast: null,
+        number: null,
+        demandOption: [],
+        demandText: null,
         note: null,
       };
     },
@@ -382,18 +530,18 @@ export default {
         maxDate: this.getDate(this.addDays(Date.now(), 90)),
       };
     },
-    getParamsOriginStepOne() {
-      return {
-        roomType: null,
-        nameShow: null,
-        phoneShow: null,
-        emailShow: null,
-        nationalityShow: null,
-        priceShow: null,
-        totalPriceShow: null,
-        noteShow: null,
-      };
-    },
+    // getParamsOriginStepOne() {
+    //   return {
+    //     roomType: null,
+    //     nameShow: null,
+    //     phoneShow: null,
+    //     emailShow: null,
+    //     nationalityShow: null,
+    //     priceShow: null,
+    //     totalPriceShow: null,
+    //     noteShow: null,
+    //   };
+    // },
     formatOccList(occList, calcRemain = false, oriList) {
       let calendarByYear = [];
       const searchRangeBaseYear = {};
@@ -562,8 +710,31 @@ export default {
     },
     async methodProcessPersonInfoParams() {
       if (this.$refs.form.validate()) {
+        const {
+          name,
+          gender,
+          phone,
+          email,
+          nationalityOption,
+          nationalityText,
+          breakfast,
+          number,
+          demandOption,
+          demandText,
+          note,
+        } = this.orderPersonInfo;
         const params = {
-          ...this.orderPersonInfo,
+          name,
+          gender,
+          phone,
+          email,
+          nationality: nationalityOption === 1 ? '本國' : nationalityText,
+          breakfast,
+          number,
+          demand: demandOption.find(i => i === 2)
+            ? [...demandOption, demandText]
+            : demandOption.filter(i => i !== 2),
+          note,
           roomInfo: this.orderSelectedRoom(),
         };
         this.waitResponse = true;
