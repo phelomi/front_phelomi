@@ -14,7 +14,8 @@
         :key="`roomsKeys${idx}`"
       >
         <div class="calendar-date__room-available">
-          <p :class="`${colorList[idx]}--text`" >● 1,500元 剩 {{remainingRoom(item)}}</p>
+          <p :class="`${colorList[idx]}--text`" >
+            <span class="calendar-date__dot">●</span>{{methodShowRoomType(item)}}</p>
         </div>
         <div class="calendar-select-date__button-group">
           <v-btn
@@ -35,10 +36,12 @@
 </template>
 <script>
 import { getDate } from '@/utils/dateMethod';
+import { currencies } from '@/utils/calculation';
 
 export default {
   name: 'calendarDate',
-  props: ['date', 'rooms', 'offset', 'clearSelected'],
+  props: ['date', 'rooms', 'offset', 'clearSelected', 'roomTypeInfo'],
+
   data() {
     return {
       orderRoom: {},
@@ -79,6 +82,7 @@ export default {
   },
   methods: {
     getDate,
+    currencies,
     remainingRoom(item) {
       return this.rooms[item] - this.orderRoom[item];
     },
@@ -89,6 +93,9 @@ export default {
       if (res >= min && res <= max) {
         this.orderRoom[item] += addNum;
       }
+    },
+    methodShowRoomType(item) {
+      return ` ${this.currencies(this.roomTypeInfo[item].price) || '--'}元 剩 ${this.remainingRoom(item)}`;
     },
   },
 };

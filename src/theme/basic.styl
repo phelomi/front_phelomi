@@ -18,6 +18,7 @@
 .v-snack__content
   font-size 1vw
   letter-spacing $letter-spacing-2
+  white-space nowrap
 
 .page-container
   padding $padding-md-h $padding-md-w
@@ -57,3 +58,14 @@ p
   right 4.37vw
   z-index 100
   cursor pointer
+.loading-view
+  width 100%
+  height 100%
+  position absolute
+  top 0
+  left 0
+  background-color rgba(235,235,235,.3)
+  display flex
+  justify-content center
+  align-items center
+  z-index 10

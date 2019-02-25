@@ -22,10 +22,11 @@
 </template>
 <script>
 import { getDate } from '@/utils/dateMethod';
+import { currencies } from '@/utils/calculation';
 
 export default {
   name: 'calendarDate',
-  props: ['date', 'rooms', 'offset'],
+  props: ['date', 'rooms', 'offset', 'roomTypeInfo'],
   data() {
     return {
       // orderRoom: {},
@@ -58,8 +59,11 @@ export default {
   },
   methods: {
     getDate,
+    currencies,
     showOrderedRoom(item) {
-      return this.rooms[item] ? `房型${item} ● 1,500元 x ${this.rooms[item]}` : '';
+      return this.rooms[item]
+        ? `${this.roomTypeInfo[item].name} ${this.currencies(this.roomTypeInfo[item].price) || '--'}元 x ${this.rooms[item]}`
+        : '';
     },
   },
 };

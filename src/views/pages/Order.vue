@@ -32,11 +32,19 @@
                 />
               </v-flex>
               <v-flex sm12 md2 ml-5>
-                <v-btn @click="methodSearchRommByTime" class="primary">
+                <v-btn
+                  @click="methodSearchRommByTime"
+                  class="primary"
+                  :disabled="waitResponse"
+                >
                   <v-icon>mdi-magnify</v-icon>
                   查詢房間
                 </v-btn>
-                <v-btn flat @click="methodFormResetStepOne">
+                <v-btn
+                  flat
+                  @click="methodFormResetStepOne"
+                  :disabled="waitResponse"
+                >
                   重置
                 </v-btn>
               </v-flex>
@@ -48,10 +56,18 @@
               <h3 class="primary--text">請選擇房間</h3>
             </v-flex>
             <v-flex sm12 offset-md6 md2>
-              <v-btn flat @click="methodFormResetRoom">
+              <v-btn
+                flat
+                @click="methodFormResetRoom"
+                :disabled="waitResponse"
+              >
                 重置搜尋結果
               </v-btn>
-              <v-btn flat @click="clearSelected = true">
+              <v-btn
+                flat
+                @click="clearSelected = true"
+                :disabled="waitResponse"
+              >
                 重置已選房型
               </v-btn>
             </v-flex>
@@ -64,6 +80,7 @@
                 :dateList="availableRoomList[item]"
                 @getSelectedRoom="getSelectedRoom"
                 :clearSelected.sync="clearSelected"
+                :roomTypeInfo="roomTypeInfo"
                 />
             </v-flex>
             <v-flex xs12 class="page-order__footer mt-5">
@@ -71,6 +88,7 @@
                 color="primary"
                 class="page-order__button-primary"
                 @click="checkSelectedRoom()"
+                :disabled="waitResponse"
               >
                 下一步
               </v-btn>
@@ -79,6 +97,13 @@
         </v-stepper-content>
 
         <v-stepper-content step="2">
+          <div class="loading-view" v-if="waitResponse">
+            <v-progress-circular
+              :size="50"
+              color="primary"
+              indeterminate
+            ></v-progress-circular>
+          </div>
           <v-layout row wrap v-if="calendarByYear.length > 0">
             <v-flex sm12 md3 offset-md-9>
               <h3 class="primary--text">確認訂房資訊</h3>
@@ -91,6 +116,7 @@
                 :year="item"
                 :dateList="availableRoomListCheck[item]"
                 @getSelectedRoom="getSelectedRoom"
+                :roomTypeInfo="roomTypeInfo"
                 />
             </v-flex>
           </v-layout>
@@ -117,8 +143,8 @@
                     v-model="orderPersonInfo[item.model]"
                     :label="item.label"
                     clearable
-                    :rules="nameRules"
-                    required
+                    :rules="item.required ? nameRules : []"
+                    :required="item.required"
                   ></v-text-field>
                 </v-flex>
               </v-form>
@@ -127,17 +153,20 @@
               <v-btn
                 flat
                 @click="methodFormPersonInfoReset"
+                :disabled="waitResponse"
               >重新填寫</v-btn>
               <v-btn
                 color="primary"
                 class="page-order__button-primary"
                 @click="methodProcessPersonInfoParams"
+                :disabled="waitResponse"
               >
                 確定送出
               </v-btn>
               <v-btn
                 flat
                 @click="toStep(1)"
+                :disabled="waitResponse"
               >回上一步</v-btn>
             </v-flex>
           </v-layout>
@@ -192,6 +221,7 @@ export default {
   },
   data() {
     return {
+      waitResponse: false,
       constVar,
       title: {
         textUp: '預定房型',
@@ -223,7 +253,9 @@ export default {
           20190305: { A: 2, B: 1, C: 2 },
         },
         info: {
-          A: 5, B: 3, C: 4,
+          A: { length: 2, name: '三人房型', price: 100000 },
+          B: { length: 2, name: '四人房型', price: 200000 },
+          C: { length: 2, name: '二人房型', price: 220000 },
         },
       },
       calendarByYear: [],
@@ -237,11 +269,21 @@ export default {
         v => !!v || '此欄位為必填',
       ],
       orderPersonInfoList: [
-        { model: 'name', label: '聯絡姓名', class: 'md6' },
-        { model: 'phone', label: '聯絡電話', class: 'md6' },
-        { model: 'email', label: '電子郵件', class: 'md6' },
-        { model: 'nationality', label: '國籍', class: 'md6' },
-        { model: 'note', label: '備註', class: 'md12' },
+        {
+          model: 'name', label: '聯絡姓名', required: true, class: 'md6',
+        },
+        {
+          model: 'phone', label: '聯絡電話', required: true, class: 'md6',
+        },
+        {
+          model: 'email', label: '電子郵件', required: true, class: 'md6',
+        },
+        {
+          model: 'nationality', label: '國籍', required: true, class: 'md6',
+        },
+        {
+          model: 'note', label: '備註', required: false, class: 'md12',
+        },
       ],
       orderPersonInfo: this.getOrderPersonInfoOri(),
       clearSelected: false,
@@ -253,6 +295,7 @@ export default {
       },
       selectedDateRange: null,
       emptyRoomType: {},
+      roomTypeInfo: {},
       emptyOccList: {},
     };
   },
@@ -337,7 +380,7 @@ export default {
           const remainRoomList = {};
           if (calcRemain) {
             Object.keys(roomList).forEach((key) => {
-              remainRoomList[key] = oriList[key] - roomList[key];
+              remainRoomList[key] = oriList[key].length - roomList[key];
             });
           }
           return {
@@ -361,20 +404,20 @@ export default {
         endTime: this.addDays(endTime, 7),
       };
       this.methodFormatOccList(params);
+      this.waitResponse = true;
       const res = await httpMethod({
         url: '/v1/api/front/occ/list',
         method: 'GET',
         params,
       });
       console.log(res);
-      if (!res.code) {
+      if (res && !res.code) {
         this.notifySetting = {
           ...this.notifySetting,
           open: true,
           text: `${res.msg}`,
           color: 'success',
         };
-        // Object.keys(res.data.info)
         this.methodGetEmptyRoom(res.data.info);
         const { calendarByYear, availableRoomList } = this.formatOccList(
           { ...this.emptyOccList, ...res.data.occ },
@@ -391,10 +434,15 @@ export default {
           color: 'error',
         };
       }
+      this.waitResponse = false;
     },
     methodGetEmptyRoom(roomInfo) {
+      this.emptyRoomType = {};
+      this.roomTypeInfo = {};
       Object.keys(roomInfo).forEach((roomType) => {
         this.emptyRoomType[roomType] = 0;
+        const { name, price } = roomInfo[roomType];
+        this.roomTypeInfo[roomType] = { name, price };
       });
     },
     methodFormatOccList(params) {
@@ -430,7 +478,6 @@ export default {
         });
         if (allow) this.checkOrderRoomList[key] = value;
       }
-      this.orderSelectedRoom();
     },
     checkSelectedRoom() {
       const { calendarByYear, availableRoomList } = this.formatOccList(this.checkOrderRoomList);
@@ -463,14 +510,41 @@ export default {
           }
         });
       });
+      return result;
     },
     methodFormPersonInfoReset() {
       this.orderPersonInfo = this.getOrderPersonInfoOri();
       this.$refs.form.resetValidation();
     },
-    methodProcessPersonInfoParams() {
+    async methodProcessPersonInfoParams() {
       if (this.$refs.form.validate()) {
-        this.toStep(3);
+        const params = {
+          ...this.orderPersonInfo,
+          roomInfo: this.orderSelectedRoom(),
+        };
+        this.waitResponse = true;
+        const res = await httpMethod({
+          url: '/v1/api/front/order/new',
+          method: 'POST',
+          data: params,
+        });
+        if (res && !res.code) {
+          this.notifySetting = {
+            ...this.notifySetting,
+            open: true,
+            text: `${res.msg}`,
+            color: 'success',
+          };
+          this.toStep(3);
+        } else {
+          this.notifySetting = {
+            ...this.notifySetting,
+            open: true,
+            text: res.msg || '新增失敗，請重新再弒，或聯絡客服人員',
+            color: 'error',
+          };
+        }
+        this.waitResponse = false;
       }
     },
     getSelectedDate(val) {
