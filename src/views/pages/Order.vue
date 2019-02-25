@@ -184,8 +184,8 @@
                       class="form__radio-other-group--other-input"
                       placeholder="請依照護照上填寫"
                       :disabled="orderPersonInfo[item.model] !== 2"
-                      :required="orderPersonInfo[item.model] !== 2"
-                      :rules="ruleList.require"
+                      :required="orderPersonInfo[item.model] === 2"
+                      :rules="orderPersonInfo[item.model] === 2 ? ruleList.require : []"
                       clearable
                     ></v-text-field>
                   </v-radio-group>
@@ -716,6 +716,7 @@ export default {
       this.$refs.form.resetValidation();
     },
     async methodProcessPersonInfoParams() {
+      console.log('TCL: methodProcessPersonInfoParams -> this.$refs.form.validate()', this.$refs.form.validate());
       if (this.$refs.form.validate()) {
         const {
           name,
@@ -739,8 +740,8 @@ export default {
           breakfast,
           number,
           demand: demandOption.find(i => i === 2)
-            ? [...demandOption, demandText]
-            : demandOption.filter(i => i !== 2),
+            ? [...demandOption.filter(i => i !== 2), demandText]
+            : demandOption,
           note,
           roomInfo: this.orderSelectedRoom(),
         };
