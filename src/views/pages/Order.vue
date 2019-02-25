@@ -65,7 +65,7 @@
               </v-btn>
               <v-btn
                 flat
-                @click="clearSelected = true"
+                @click="methodClearSelectedRoom"
                 :disabled="waitResponse"
               >
                 重置已選房型
@@ -590,6 +590,8 @@ export default {
     async methodSearchRommByTime() {
       this.calendarByYear.splice(0);
       this.availableRoomList = {};
+      this.checkOrderRoomList = {};
+
       const { startTime, endTime } = this.selectedDateRange;
       const params = {
         startTime: this.subtractDays(startTime, 7),
@@ -654,6 +656,11 @@ export default {
     },
     methodFormResetRoom() {
       this.calendarByYear.splice(0);
+      this.checkOrderRoomList = {};
+    },
+    methodClearSelectedRoom() {
+      this.clearSelected = true;
+      this.checkOrderRoomList = {};
     },
     toStep(step) {
       this.e1 = step;
