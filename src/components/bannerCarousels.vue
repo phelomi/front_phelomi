@@ -1,5 +1,5 @@
 <template>
-  <v-carousel class="banner-carousels" height="58.81vw" hide-controls>
+  <v-carousel class="banner-carousels" height="58.81vw" hide-controls :interval="10000">
     <v-carousel-item
       v-for="(item, idx) in bannerList"
       :key="`bannerList${idx}`"
