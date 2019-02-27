@@ -55,7 +55,7 @@
             <v-flex sm12 md3>
               <h3 class="primary--text">請選擇房間</h3>
             </v-flex>
-            <v-flex sm12 offset-md6 md2>
+            <v-flex sm12 md9 class="text-align-end">
               <v-btn
                 flat
                 @click="methodFormResetRoom"
@@ -310,7 +310,9 @@ import titleBoat from '@/components/titleBoat.vue';
 import dateRange from '@/components/dateRange.vue';
 import calendarList from '@/components/calendarList.vue';
 import constVar from '@/utils/constVar';
-import { getDate, addDays, subtractDays } from '@/utils/dateMethod';
+import {
+  getDate, addDays, subtractDays, getDayRange,
+} from '@/utils/dateMethod';
 
 export default {
   name: 'pageOrder',
@@ -502,6 +504,7 @@ export default {
     getDate,
     addDays,
     subtractDays,
+    getDayRange,
     scrollToTop() {
       this.$vuetify.goTo(0, constVar.scrollPagAni);
     },
@@ -552,6 +555,7 @@ export default {
     //     noteShow: null,
     //   };
     // },
+    // 整理日期，為了顯示月曆
     formatOccList(occList, calcRemain = false, oriList) {
       let calendarByYear = [];
       const searchRangeBaseYear = {};
@@ -597,16 +601,34 @@ export default {
         availableRoomList,
       };
     },
+    formatDateSearchRange() {
+      // 開始時間不能小於今天
+      // 開始至結束，時間不能超過一個月
+      // 最長不能超過三個月
+      const { startTime, endTime } = this.selectedDateRange;
+      const params = {
+        startTime: this.subtractDays(startTime, 7, false),
+        endTime: this.addDays(endTime, 7),
+      };
+      if (this.getDayRange(endTime, startTime) + 1 >= 30) {
+        this.notifySetting = {
+          ...this.notifySetting,
+          open: true,
+          text: '搜尋時間間隔，不能大於30天。若有此需求，可來電詢問！',
+          color: 'warning',
+        };
+        return false;
+      }
+      return params;
+    },
+    // 查詢某段時間可以入住的房間
     async methodSearchRommByTime() {
       this.calendarByYear.splice(0);
       this.availableRoomList = {};
       this.checkOrderRoomList = {};
 
-      const { startTime, endTime } = this.selectedDateRange;
-      const params = {
-        startTime: this.subtractDays(startTime, 7),
-        endTime: this.addDays(endTime, 7),
-      };
+      const params = this.formatDateSearchRange();
+      if (!params) return;
       this.methodFormatOccList(params);
       this.waitResponse = true;
       const res = await httpMethod({

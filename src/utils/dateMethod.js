@@ -31,7 +31,8 @@ export const addDays = (timeType, days) => {
   const newDate = timestamp + days * 24 * 60 * 60 * 1000;
   return newDate;
 };
-export const subtractDays = (timeType, days) => {
+export const subtractDays = (timeType, days, past = true) => {
+  const todatTimestamp = new Date().setHours(0, 0, 0, 0);
   let timestamp = null;
   if (typeof timeType === 'string' || typeof timeType === 'number') {
     const numberTime = new Date(timeType).valueOf();
@@ -39,6 +40,13 @@ export const subtractDays = (timeType, days) => {
     timestamp = numberTime;
   }
   const newDate = timestamp - days * 24 * 60 * 60 * 1000;
+  if (!past) {
+    let bigNewDate = newDate;
+    while (bigNewDate < todatTimestamp) {
+      bigNewDate = addDays(bigNewDate, 1);
+    }
+    return bigNewDate;
+  }
   return newDate;
 };
 export const getDayRange = (dateOne, dateTwo) => {
