@@ -605,12 +605,15 @@ export default {
       // 開始時間不能小於今天
       // 開始至結束，時間不能超過一個月
       // 最長不能超過三個月
+      const maxSearchLimit = 90;
+      const searchDateRangeLimit = 30;
+      const moreSearchDays = 7;
       const { startTime, endTime } = this.selectedDateRange;
-      const params = {
-        startTime: this.subtractDays(startTime, 7, false),
-        endTime: this.addDays(endTime, 7),
-      };
-      if (this.getDayRange(endTime, startTime) + 1 >= 30) {
+      const selectDateRangeDays = this.getDayRange(endTime, startTime) + 1;
+      let searchStartTime = null;
+      let searchEndTime = null;
+      console.log('選', selectDateRangeDays);
+      if (selectDateRangeDays > searchDateRangeLimit) {
         this.notifySetting = {
           ...this.notifySetting,
           open: true,
@@ -619,6 +622,25 @@ export default {
         };
         return false;
       }
+      const overSearchRangeDays = (selectDateRangeDays + moreSearchDays * 2) - searchDateRangeLimit;
+      if (selectDateRangeDays === searchDateRangeLimit) {
+        searchStartTime = this.getDate(startTime, 'timestamp');
+        searchEndTime = this.getDate(endTime, 'timestamp');
+      } else if (overSearchRangeDays > 0) {
+        const cutDays = (searchDateRangeLimit - selectDateRangeDays) / 2;
+        const startTimeCutDays = Math.floor(cutDays);
+        const endTimeCutDays = Math.ceil(cutDays);
+        searchStartTime = this.subtractDays(startTime, startTimeCutDays, false);
+        searchEndTime = this.addDays(endTime, endTimeCutDays, maxSearchLimit);
+      } else {
+        searchStartTime = this.subtractDays(startTime, moreSearchDays, false);
+        searchEndTime = this.addDays(endTime, moreSearchDays, maxSearchLimit);
+      }
+
+      const params = {
+        startTime: searchStartTime,
+        endTime: searchEndTime,
+      };
       return params;
     },
     // 查詢某段時間可以入住的房間

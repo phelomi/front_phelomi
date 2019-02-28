@@ -2,7 +2,7 @@ export const getDate = (timeType, type = 'fullDate') => {
   const dayList = ['日', '一', '二', '三', '四', '五', '六'];
   let timestamp = Date.now();
   if (typeof timeType === 'string' || typeof timeType === 'number') {
-    const numberTime = new Date(timeType).valueOf();
+    const numberTime = new Date(timeType).setHours(0, 0, 0, 0);
     if (Number.isNaN(numberTime)) return '--';
     timestamp = numberTime;
   }
@@ -21,26 +21,35 @@ export const getDate = (timeType, type = 'fullDate') => {
   return '--';
 };
 
-export const addDays = (timeType, days) => {
+export const addDays = (timeType, days, overLimit = false) => {
   let timestamp = null;
   if (typeof timeType === 'string' || typeof timeType === 'number') {
-    const numberTime = new Date(timeType).valueOf();
+    const numberTime = new Date(timeType).setHours(0, 0, 0, 0);
     if (Number.isNaN(numberTime)) return '--';
     timestamp = numberTime;
   }
   const newDate = timestamp + days * 24 * 60 * 60 * 1000;
+  if (overLimit && typeof overLimit === 'number') {
+    const limitTimestamp = new Date().setHours(0, 0, 0, 0) + overLimit * 24 * 60 * 60 * 1000;
+    let smallNewDate = newDate;
+    while (smallNewDate > limitTimestamp) {
+      smallNewDate = subtractDays(smallNewDate, 1);
+    }
+    return smallNewDate;
+  }
   return newDate;
 };
+
 export const subtractDays = (timeType, days, past = true) => {
-  const todatTimestamp = new Date().setHours(0, 0, 0, 0);
   let timestamp = null;
   if (typeof timeType === 'string' || typeof timeType === 'number') {
-    const numberTime = new Date(timeType).valueOf();
+    const numberTime = new Date(timeType).setHours(0, 0, 0, 0);
     if (Number.isNaN(numberTime)) return '--';
     timestamp = numberTime;
   }
   const newDate = timestamp - days * 24 * 60 * 60 * 1000;
   if (!past) {
+    const todatTimestamp = new Date().setHours(0, 0, 0, 0);
     let bigNewDate = newDate;
     while (bigNewDate < todatTimestamp) {
       bigNewDate = addDays(bigNewDate, 1);
@@ -49,9 +58,10 @@ export const subtractDays = (timeType, days, past = true) => {
   }
   return newDate;
 };
+
 export const getDayRange = (dateOne, dateTwo) => {
-  const dateOneTime = new Date(dateOne).valueOf();
-  const dateTwoTime = new Date(dateTwo).valueOf();
+  const dateOneTime = new Date(dateOne).setHours(0, 0, 0, 0);
+  const dateTwoTime = new Date(dateTwo).setHours(0, 0, 0, 0);
   const days = Math.abs((dateOneTime - dateTwoTime) / (24 * 60 * 60 * 1000));
   return days - 1;
 };
