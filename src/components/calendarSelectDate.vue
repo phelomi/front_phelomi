@@ -9,13 +9,13 @@
     </div>
     <div class="calendar-select-date__content">
       <div
-        :class="['calendar-date__row', `tool-tip__color-${colorList[idx]}`]"
+        :class="['calendar-date__row', `tool-tip__color-${constVar.colorList[idx]}`]"
         v-for="(item, idx) in roomsKeys"
         :key="`roomsKeys${idx}`"
         :data-room-name="roomTypeInfo[item].name"
       >
         <div class="calendar-date__room-available">
-          <p :class="`${colorList[idx]}--text`" >
+          <p :class="`${constVar.colorList[idx]}--text`" >
             <span class="calendar-date__dot">●</span>{{methodShowRoomType(item)}}</p>
         </div>
         <div class="calendar-select-date__button-group">
@@ -38,16 +38,15 @@
 <script>
 import { getDate } from '@/utils/dateMethod';
 import { currencies } from '@/utils/calculation';
+import constVar from '@/utils/constVar';
 
 export default {
   name: 'calendarDate',
   props: ['date', 'rooms', 'offset', 'roomTypeInfo'],
-
   data() {
     return {
-      kk: null,
+      constVar,
       orderRoom: {},
-      colorList: ['info', 'success', 'error', 'warning'],
     };
   },
   watch: {

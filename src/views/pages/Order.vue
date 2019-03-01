@@ -51,11 +51,26 @@
             </v-layout>
           <!-- </v-form> -->
           <v-divider class="my-5"></v-divider>
+          <!-- <v-layout row>
+            <v-flex sm12 md2>
+            </v-flex>
+          </v-layout> -->
           <v-layout row wrap v-if="calendarByYear.length > 0">
             <v-flex sm12 md3>
               <h3 class="primary--text">請選擇房間</h3>
             </v-flex>
-            <v-flex sm12 md9 class="text-align-end">
+            <v-flex
+              sm12
+              md6
+              class="room-type-icon-group"
+            >
+              <span
+                v-for="(item, idx) in roomTypeIcon"
+                :key="`roomTypeIcon${idx}`"
+                :class="`${constVar.colorList[idx]}--text headline pr-3`"
+              >● {{item}}</span>
+            </v-flex>
+            <v-flex sm12 md3 class="text-align-end">
               <v-btn
                 flat
                 @click="methodFormResetRoom"
@@ -495,6 +510,7 @@ export default {
       emptyRoomType: {},
       roomTypeInfo: {},
       emptyOccList: {},
+      roomTypeIcon: [],
     };
   },
   mounted() {
@@ -687,9 +703,13 @@ export default {
     methodGetEmptyRoom(roomInfo) {
       this.emptyRoomType = {};
       this.roomTypeInfo = {};
+      this.roomTypeIcon.splice(0);
+      console.log('TCL: methodGetEmptyRoom -> roomInfo', roomInfo);
       Object.keys(roomInfo).forEach((roomType) => {
+        console.log('TCL: methodGetEmptyRoom -> roomType', roomType);
         this.emptyRoomType[roomType] = 0;
         const { name, price } = roomInfo[roomType];
+        this.roomTypeIcon.push(name);
         this.roomTypeInfo[roomType] = { name, price };
       });
     },

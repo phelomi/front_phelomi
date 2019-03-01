@@ -4,5 +4,6 @@ const constVar = {
     offset: -20,
     easing: 'easeInOutCubic',
   },
+  colorList: ['info', 'success', 'error', 'warning'],
 };
 export default constVar;
