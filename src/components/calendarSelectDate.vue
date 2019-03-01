@@ -9,9 +9,10 @@
     </div>
     <div class="calendar-select-date__content">
       <div
-        class="calendar-date__row"
+        :class="['calendar-date__row', `tool-tip__color-${colorList[idx]}`]"
         v-for="(item, idx) in roomsKeys"
         :key="`roomsKeys${idx}`"
+        :data-room-name="roomTypeInfo[item].name"
       >
         <div class="calendar-date__room-available">
           <p :class="`${colorList[idx]}--text`" >
@@ -44,6 +45,7 @@ export default {
 
   data() {
     return {
+      kk: null,
       orderRoom: {},
       colorList: ['info', 'success', 'error', 'warning'],
     };
