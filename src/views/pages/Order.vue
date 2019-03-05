@@ -656,38 +656,38 @@ export default {
       return Number(stringDate.replace(/\/|-*/g, ''));
     },
     getOrderPersonInfoOri() {
-      return {
-        name: '王小明',
-        gender: '男',
-        phone: '09435987',
-        email: 'sdf@cid.com',
-        nationalityOption: 2,
-        nationalityText: 'dd',
-        breakfast: '不食用',
-        numberAdult: '3',
-        numberChild: '2',
-        arriveTime: '14:14',
-        demandOption: ['租機車', 2],
-        demandText: 'gfg',
-        note: 'sdfgdsfgsdfg',
-        agreeNotice: true,
-      };
       // return {
-      //   name: null,
-      //   gender: null,
-      //   phone: null,
-      //   email: null,
-      //   nationalityOption: null,
-      //   nationalityText: null,
-      //   breakfast: null,
-      //   numberAdult: 0,
-      //   numberChild: 0,
-      //   arriveTime: null,
-      //   demandOption: [],
-      //   demandText: null,
-      //   note: null,
-      //   agreeNotice: false,
+      //   name: '王小明',
+      //   gender: '男',
+      //   phone: '09435987',
+      //   email: 'sdf@cid.com',
+      //   nationalityOption: 2,
+      //   nationalityText: 'dd',
+      //   breakfast: '不食用',
+      //   numberAdult: '3',
+      //   numberChild: '2',
+      //   arriveTime: '14:14',
+      //   demandOption: ['租機車', 2],
+      //   demandText: 'gfg',
+      //   note: 'sdfgdsfgsdfg',
+      //   agreeNotice: true,
       // };
+      return {
+        name: null,
+        gender: null,
+        phone: null,
+        email: null,
+        nationalityOption: null,
+        nationalityText: null,
+        breakfast: null,
+        numberAdult: 0,
+        numberChild: 0,
+        arriveTime: null,
+        demandOption: [],
+        demandText: null,
+        note: null,
+        agreeNotice: false,
+      };
     },
     getDatePickerRangeOri() {
       return {
@@ -978,27 +978,27 @@ export default {
           roomInfo: this.orderSelectedRoom(),
         };
         this.waitResponse = true;
-        // const res = await httpMethod({
-        //   url: '/v1/api/front/order/new',
-        //   method: 'POST',
-        //   data: this.orderInfoParams,
-        // });
-        // if (res && !res.code) {
-        //   this.notifySetting = {
-        //     ...this.notifySetting,
-        //     open: true,
-        //     text: `${res.msg}`,
-        //     color: 'success',
-        //   };
-        this.toStep(3);
-        // } else {
-        //   this.notifySetting = {
-        //     ...this.notifySetting,
-        //     open: true,
-        //     text: res.msg || '新增失敗，請重新再弒，或聯絡客服人員',
-        //     color: 'error',
-        //   };
-        // }
+        const res = await httpMethod({
+          url: '/v1/api/front/order/new',
+          method: 'POST',
+          data: this.orderInfoParams,
+        });
+        if (res && !res.code) {
+          this.notifySetting = {
+            ...this.notifySetting,
+            open: true,
+            text: `${res.msg}`,
+            color: 'success',
+          };
+          this.toStep(3);
+        } else {
+          this.notifySetting = {
+            ...this.notifySetting,
+            open: true,
+            text: res.msg || '新增失敗，請重新再弒，或聯絡客服人員',
+            color: 'error',
+          };
+        }
         this.waitResponse = false;
       }
     },
