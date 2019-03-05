@@ -92,6 +92,7 @@
                 @addSelectedRoom="addSelectedRoom"
                 :clearSelected.sync="clearSelected"
                 :roomTypeInfo="roomTypeInfo"
+                :selectedDateRange="selectedDateRangeSearched"
                 />
             </v-flex>
             <v-flex xs12 class="page-order__footer mt-5">
@@ -121,6 +122,7 @@
             </v-flex>
             <v-flex sm12 md8 offset-md2 pt-3>
               <orderRooms
+                ref="orderRooms"
                 :orderRoomList="selectedRoom"
                 :roomTypeInfo="roomTypeInfo"
               />
@@ -307,8 +309,28 @@
             <v-flex sm12 md3>
               <h3 class="primary--text">訂單已完成，請核對以下資訊</h3>
             </v-flex>
-            <v-flex sm12 md6>
-              <v-flex
+            <v-flex sm12 md10 offset-md1 py-3 v-if="orderInfoParams">
+              <v-layout row wrap class="page-order__order-info">
+                <v-flex
+                  sm12 md4 py-1
+                  v-for="(item, idx) in checkOrderInfo"
+                  :key="`checkOrderInfo${idx}`"
+                >
+                  <span>{{item.label}}：</span>
+                  <span>{{orderInfoParams[item.key] && orderInfoParams[item.key].toString() || ''}}</span>
+                </v-flex>
+              </v-layout>
+            </v-flex>
+            <v-flex sm12 md3>
+              <h3 class="primary--text">訂房資訊</h3>
+            </v-flex>
+            <v-flex sm12 md10 offset-md1 pt-3>
+              <orderRooms
+                :orderRoomList="selectedRoom"
+                :roomTypeInfo="roomTypeInfo"
+              />
+            </v-flex>
+              <!-- <v-flex
                 sm12
                 v-for="(item, idx) in orderPersonInfoList"
                 :key="`orderPersonInfoList${idx}`"
@@ -321,9 +343,8 @@
                   :required="item.required"
                   disabled
                 ></v-text-field>
-              </v-flex>
-            </v-flex>
-            <v-flex sm12>
+              </v-flex> -->
+            <!-- <v-flex sm12> -->
               <!-- <calendar-list
                 v-for="(item, idx) in calendarByYearCheck"
                 :key="`calendarByYearCheck${idx}`"
@@ -333,15 +354,14 @@
                 @addSelectedRoom="addSelectedRoom"
                 :roomTypeInfo="roomTypeInfo"
                 /> -->
-            </v-flex>
-          <v-layout row wrap>
           </v-layout>
           <v-divider class="my-5"></v-divider>
+          <v-layout row wrap>
             <v-flex sm12 md3>
               <h3 class="primary--text">匯款資訊如下</h3>
             </v-flex>
           </v-layout>
-            <!-- <v-flex xs12 class="page-order__footer mt-5">
+            <v-flex xs12 class="page-order__footer mt-5">
               <v-btn
                 color="info"
                 class="page-order__button-primary"
@@ -350,7 +370,7 @@
               >
                 新增訂單
               </v-btn>
-            </v-flex> -->
+            </v-flex>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -590,11 +610,26 @@ export default {
         color: '',
       },
       selectedDateRange: null,
+      selectedDateRangeSearched: null,
       emptyRoomType: {},
       roomTypeInfo: {},
       emptyOccList: {},
       roomTypeIcon: [],
-      noticeContent: '我們共有三館.因地點不同各具獨自的特色及風格，距離機場約5~10分鐘.\n距離馬公市約10~15分鐘 3間民宿週邊有7-11及沙灘約3~10分鐘。\n\n希臘邊境位於山水沙灘衝浪勝地旁.民宿有提供免費衝浪版.SPA池及三溫暖烤箱，\n進房下午5點退房下午2點希臘式早餐供應至退房。\n\n北非花園位於興仁水庫旁有漂亮的興仁夕陽.民宿提供免費看夕陽喝下午茶.還有華麗的摩洛哥空間及早餐，進房下午3點退房中午11點下午茶3~5點提供.摩洛哥早餐供應至退房。人魚之丘位於澎南海邊離海只有25公尺.民宿提供360度泳池及夜照設備.還有婚禮場地，進房下午4點退房下午1點西班牙式早餐供應至退房。\n\n月橘villa 是藝人納豆與我們一起合作的民宿。以澎湖傳統建築工法，再次獨特打造私人villa。室內傢俱、用品橫跨明、清、日據等三個年代，邀請旅人們，在歲月的風華中，感受島嶼的愜意。\n進房下午3點  退房中午12點  中式早餐供應至退房。'
+      noticeContent: '我們共有三館.因地點不同各具獨自的特色及風格，距離機場約5~10分鐘.\n距離馬公市約10~15分鐘 3間民宿週邊有7-11及沙灘約3~10分鐘。\n\n希臘邊境位於山水沙灘衝浪勝地旁.民宿有提供免費衝浪版.SPA池及三溫暖烤箱，\n進房下午5點退房下午2點希臘式早餐供應至退房。\n\n北非花園位於興仁水庫旁有漂亮的興仁夕陽.民宿提供免費看夕陽喝下午茶.還有華麗的摩洛哥空間及早餐，進房下午3點退房中午11點下午茶3~5點提供.摩洛哥早餐供應至退房。人魚之丘位於澎南海邊離海只有25公尺.民宿提供360度泳池及夜照設備.還有婚禮場地，進房下午4點退房下午1點西班牙式早餐供應至退房。\n\n月橘villa 是藝人納豆與我們一起合作的民宿。以澎湖傳統建築工法，再次獨特打造私人villa。室內傢俱、用品橫跨明、清、日據等三個年代，邀請旅人們，在歲月的風華中，感受島嶼的愜意。\n進房下午3點  退房中午12點  中式早餐供應至退房。',
+      checkOrderInfo: [
+        { label: '聯絡姓名', key: 'name' },
+        { label: '客戶性別', key: 'gender' },
+        { label: '聯絡電話', key: 'phone' },
+        { label: '電子郵件', key: 'email' },
+        { label: '國籍', key: 'nationality' },
+        { label: '早餐', key: 'breakfast' },
+        { label: '成人人數', key: 'numberAdult' },
+        { label: '小孩人數', key: 'numberChild' },
+        { label: '預計抵達時間', key: 'arriveTime' },
+        { label: '其他需求', key: 'demand' },
+        { label: '備註', key: 'note' },
+      ],
+      orderInfoParams: null,
     };
   },
   mounted() {
@@ -622,21 +657,37 @@ export default {
     },
     getOrderPersonInfoOri() {
       return {
-        name: null,
-        gender: null,
-        phone: null,
-        email: null,
-        nationalityOption: null,
-        nationalityText: null,
-        breakfast: null,
-        numberAdult: 0,
-        numberChild: 0,
-        arriveTime: null,
-        demandOption: [],
-        demandText: null,
-        note: null,
-        agreeNotice: false,
+        name: '王小明',
+        gender: '男',
+        phone: '09435987',
+        email: 'sdf@cid.com',
+        nationalityOption: 2,
+        nationalityText: 'dd',
+        breakfast: '不食用',
+        numberAdult: '3',
+        numberChild: '2',
+        arriveTime: '14:14',
+        demandOption: ['租機車', 2],
+        demandText: 'gfg',
+        note: 'sdfgdsfgsdfg',
+        agreeNotice: true,
       };
+      // return {
+      //   name: null,
+      //   gender: null,
+      //   phone: null,
+      //   email: null,
+      //   nationalityOption: null,
+      //   nationalityText: null,
+      //   breakfast: null,
+      //   numberAdult: 0,
+      //   numberChild: 0,
+      //   arriveTime: null,
+      //   demandOption: [],
+      //   demandText: null,
+      //   note: null,
+      //   agreeNotice: false,
+      // };
     },
     getDatePickerRangeOri() {
       return {
@@ -753,6 +804,7 @@ export default {
 
       const params = this.formatDateSearchRange();
       if (!params) return;
+      this.selectedDateRangeSearched = this.selectedDateRange;
       this.methodFormatOccList(params);
       this.waitResponse = true;
       const res = await httpMethod({
@@ -819,6 +871,7 @@ export default {
     },
     methodClearSelectedRoom() {
       this.clearSelected = true;
+      this.selectedRoom.clear();
       // this.checkOrderRoomList = {};
     },
     toStep(step) {
@@ -892,6 +945,7 @@ export default {
     },
     async methodProcessPersonInfoParams() {
       if (this.$refs.form.validate()) {
+        this.orderInfoParams = {};
         const {
           name,
           gender,
@@ -902,12 +956,12 @@ export default {
           breakfast,
           numberAdult,
           numberChild,
+          arriveTime,
           demandOption,
           demandText,
           note,
-          agreeNotice,
         } = this.orderPersonInfo;
-        const params = {
+        this.orderInfoParams = {
           name,
           gender,
           phone,
@@ -916,6 +970,7 @@ export default {
           breakfast,
           numberAdult,
           numberChild,
+          arriveTime,
           demand: demandOption.find(i => i === 2)
             ? [...demandOption.filter(i => i !== 2), demandText]
             : demandOption,
@@ -923,27 +978,27 @@ export default {
           roomInfo: this.orderSelectedRoom(),
         };
         this.waitResponse = true;
-        const res = await httpMethod({
-          url: '/v1/api/front/order/new',
-          method: 'POST',
-          data: params,
-        });
-        if (res && !res.code) {
-          this.notifySetting = {
-            ...this.notifySetting,
-            open: true,
-            text: `${res.msg}`,
-            color: 'success',
-          };
-          this.toStep(3);
-        } else {
-          this.notifySetting = {
-            ...this.notifySetting,
-            open: true,
-            text: res.msg || '新增失敗，請重新再弒，或聯絡客服人員',
-            color: 'error',
-          };
-        }
+        // const res = await httpMethod({
+        //   url: '/v1/api/front/order/new',
+        //   method: 'POST',
+        //   data: this.orderInfoParams,
+        // });
+        // if (res && !res.code) {
+        //   this.notifySetting = {
+        //     ...this.notifySetting,
+        //     open: true,
+        //     text: `${res.msg}`,
+        //     color: 'success',
+        //   };
+        this.toStep(3);
+        // } else {
+        //   this.notifySetting = {
+        //     ...this.notifySetting,
+        //     open: true,
+        //     text: res.msg || '新增失敗，請重新再弒，或聯絡客服人員',
+        //     color: 'error',
+        //   };
+        // }
         this.waitResponse = false;
       }
     },
@@ -951,16 +1006,19 @@ export default {
       this.selectedDateRange = val;
     },
     methodNewOrder() {
-      this.methodFormPersonInfoReset();
-      // this.calendarByYearCheck = [];
+      this.orderInfoParams = {};
       this.availableRoomList = {};
-      // this.availableRoomListCheck = {};
+      this.emptyOccList = {};
+      this.emptyRoomType = {};
+      this.roomTypeInfo = {};
+      this.$refs.orderRooms.methodClearRoom();
       this.methodFormResetRoom();
       this.methodClearSelectedRoom();
+      this.methodFormPersonInfoReset();
+
+      // // this.calendarByYearCheck = [];
+      // // this.availableRoomListCheck = {};
       this.toStep(1);
-    },
-    methodOpenNoticePop() {
-      console.log('TCL: methodOpenNoticePop -> methodOpenNoticePop');
     },
   },
 };

@@ -14,6 +14,7 @@
         :offset="getOffset(idx)"
         @selectRoom="selectRoom($event, item.date)"
         :roomTypeInfo="roomTypeInfo"
+        :class="methodClassActive(item.date)"
       />
     </div>
   </div>
@@ -21,7 +22,7 @@
 <script>
 import calendarSelectDate from '@/components/calendarSelectDate.vue';
 import calendarShowDate from '@/components/calendarShowDate.vue';
-import { getDate, getDayRange } from '@/utils/dateMethod';
+import { getDate, getDayRange, addDays } from '@/utils/dateMethod';
 
 export default {
   name: 'calendarList',
@@ -29,7 +30,7 @@ export default {
     calendarSelectDate,
     calendarShowDate,
   },
-  props: ['year', 'dateList', 'type', 'clearSelected', 'roomTypeInfo'],
+  props: ['year', 'dateList', 'type', 'clearSelected', 'roomTypeInfo', 'selectedDateRange'],
   data() {
     return {
     };
@@ -38,14 +39,27 @@ export default {
     currentComponent() {
       return this.type === 'edit' ? calendarSelectDate : calendarShowDate;
     },
+    selectedDateRangeString() {
+      const res = [];
+      const { startTime, endTime } = this.selectedDateRange;
+      let start = this.getDate(startTime, 'timestamp');
+      const end = this.getDate(endTime, 'timestamp');
+      while (start <= end) {
+        res.push(this.getDate(start, 'fullDateFormat'));
+        start = this.addDays(start, 1);
+      }
+      return res;
+    },
   },
   watch: {
     clearSelected: {
       handler(val) {
         if (val) {
-          this.$refs.calendaredit.forEach((component) => {
-            component.methodCleadSelectedRoom();
-          });
+          if (Object.keys(this.$refs).length > 0) {
+            this.$refs.calendaredit.forEach((component) => {
+              component.methodCleadSelectedRoom();
+            });
+          }
           this.$emit('update:clearSelected', false);
         }
       },
@@ -57,6 +71,7 @@ export default {
   methods: {
     getDate,
     getDayRange,
+    addDays,
     selectRoom(selected, date) {
       this.$emit('addSelectedRoom', date, selected);
     },
@@ -85,6 +100,11 @@ export default {
       }
 
       return { left, right };
+    },
+    methodClassActive(date) {
+      return this.selectedDateRangeString.filter(item => item === date).length > 0
+        ? 'calendar-select-date--active'
+        : '';
     },
   },
 };

@@ -37,36 +37,35 @@ import { currencies } from '@/utils/calculation';
 export default {
   name: 'orderRooms',
   props: ['orderRoomList', 'roomTypeInfo'],
-  mounted() {
-  },
   watch: {
-    orderRoomList(val) {
-      this.orderList.splice(0);
-      this.sumTotal = 0;
-      val.forEach((value, key) => {
-        let countDateRoomType = 0;
-        Object.keys(value).forEach((roomType) => {
-          if (value[roomType]) {
-            countDateRoomType += 1;
-            const list = {};
-            list.haveDate = countDateRoomType === 1 ? key : null;
-            list.roomName = this.roomTypeInfo[roomType].name;
-            list.roomPrice = this.currencies(this.roomTypeInfo[roomType].price);
-            list.roomCount = value[roomType];
-            list.subTotal = this.currencies(this.calcSubTotal(
-              this.roomTypeInfo[roomType].price,
-              value[roomType],
-            ));
-            this.orderList.push(list);
-          }
+    orderRoomList: {
+      handler(val) {
+        this.orderList.splice(0);
+        this.sumTotal = 0;
+        val.forEach((value, key) => {
+          let countDateRoomType = 0;
+          Object.keys(value).forEach((roomType) => {
+            if (value[roomType]) {
+              countDateRoomType += 1;
+              const list = {};
+              list.haveDate = countDateRoomType === 1 ? key : null;
+              list.roomName = this.roomTypeInfo[roomType].name;
+              list.roomPrice = this.currencies(this.roomTypeInfo[roomType].price);
+              list.roomCount = value[roomType];
+              list.subTotal = this.currencies(this.calcSubTotal(
+                this.roomTypeInfo[roomType].price,
+                value[roomType],
+              ));
+              this.orderList.push(list);
+            }
+          });
+          Object.keys(this.dateRows).forEach((dateKey) => {
+            if (Number(dateKey) === key) this.dateRows[dateKey].rowspan = countDateRoomType;
+          });
         });
-        Object.keys(this.dateRows).forEach((dateKey) => {
-          if (Number(dateKey) === key) this.dateRows[dateKey].rowspan = countDateRoomType;
-        });
-      });
+      },
+      immediate: true,
     },
-    // roomTypeInfo(val) {
-    // },
   },
   data() {
     return {
@@ -101,6 +100,10 @@ export default {
       const subTotal = price * unit;
       this.sumTotal += subTotal;
       return subTotal;
+    },
+    methodClearRoom() {
+      this.orderList.splice(0);
+      this.sumTotal = 0;
     },
   },
 };
