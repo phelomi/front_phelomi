@@ -317,7 +317,9 @@
                   :key="`checkOrderInfo${idx}`"
                 >
                   <span>{{item.label}}：</span>
-                  <span>{{orderInfoParams[item.key] && orderInfoParams[item.key].toString() || ''}}</span>
+                  <span>{{orderInfoParams[item.key]
+                          && orderInfoParams[item.key].toString()
+                          || ''}}</span>
                 </v-flex>
               </v-layout>
             </v-flex>

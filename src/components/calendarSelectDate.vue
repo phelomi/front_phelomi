@@ -71,7 +71,6 @@ export default {
     },
   },
   mounted() {
-	console.log('TCL: activeClass', this.activeClass);
   },
   methods: {
     getDate,
