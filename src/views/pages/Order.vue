@@ -161,12 +161,14 @@
                     clearable
                     :rules="ruleList[item.rules]"
                     :required="item.required"
+                    :class="item.required ? 'require-start': ''"
                   ></v-text-field>
                   <v-radio-group
                     v-if="item.type === 'radio'"
                     v-model="orderPersonInfo[item.model]"
                     :rules="ruleList[item.rules]"
                     :required="item.required"
+                    :class="item.required ? 'require-start': ''"
                     row
                   >
                     <p class="form__label">{{item.label}}</p>
@@ -183,6 +185,7 @@
                     v-model="orderPersonInfo[item.model]"
                     :rules="ruleList[item.rules]"
                     :required="item.required"
+                    :class="item.required ? 'require-start': ''"
                     row
                     class="form__radio-other-group"
                   >
@@ -243,6 +246,7 @@
                         v-model="orderPersonInfo[item.model]"
                         :label="item.label"
                         prepend-icon="mdi-clock-outline"
+                        clearable
                         readonly
                         v-on="on"
                       ></v-text-field>
@@ -257,15 +261,15 @@
                     ></v-time-picker>
                   </v-menu>
                 </v-flex>
-                <v-flex sm12 md2>
+                <v-flex sm12 md2 mt-4>
                   <p class="primary--text page-order__notice-title">訂房須知</p>
                 </v-flex>
-                <v-flex sm12 md10>
+                <v-flex sm12 md10 mt-4>
                   <p class="textBlack--text page-order__notice-content">{{noticeContent}}</p>
                 </v-flex>
                 <v-flex sm12 md12 >
                   <v-checkbox
-                    class="page-order__notice-checkbox"
+                    class="page-order__notice-checkbox require-start"
                     v-model="orderPersonInfo.agreeNotice"
                     label="我已閱讀過完整的訂房須知，同意並接受所有規定事項"
                     color="primary"
