@@ -12,11 +12,10 @@
         :class="['calendar-date__row', `tool-tip__color-${constVar.colorList[idx]}`]"
         v-for="(item, idx) in roomsKeys"
         :key="`roomsKeys${idx}`"
-        :data-room-name="roomTypeInfo[item].name"
       >
         <div class="calendar-date__room-available">
-          <p :class="`${constVar.colorList[idx]}--text`" >
-            <span class="calendar-date__dot">●</span>{{methodShowRoomType(item)}}</p>
+          <p :class="`${constVar.colorList[idx]}--text`" >{{roomTypeInfo[item].name}}</p>
+          <p :class="`${constVar.colorList[idx]}--text`" >{{methodShowRoomType(item)}}</p>
         </div>
         <div class="calendar-select-date__button-group">
           <v-btn
@@ -88,7 +87,7 @@ export default {
       }
     },
     methodShowRoomType(item) {
-      return ` ${this.currencies(this.roomTypeInfo[item].price) || '--'}元 剩 ${this.remainingRoom(item)}`;
+      return ` ${this.currencies(this.roomTypeInfo[item].price) || '--'}元 剩${this.remainingRoom(item)}間`;
     },
     methodCleadSelectedRoom() {
       Object.keys(this.orderRoom).forEach((item) => { this.$set(this.orderRoom, item, 0); });

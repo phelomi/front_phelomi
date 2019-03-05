@@ -23,38 +23,8 @@ $marginBase = 14.28
     font-size $font-size-p
     align-items center
     justify-content center
-    position relative
-    &:before
-      content ''
-      opacity 0
-      bottom 0
-      transition opacity 0.4s, bottom 0.2s
-    &:hover
-      &:before
-        content attr(data-room-name)
-        opacity 1
-        position absolute
-        left 0
-        bottom 100%
-        background-color #ccc
-        border-radius 10px
-        padding .1vw .4vw
-        font-size 1.3vw
-        letter-spacing .4vw
-        white-space nowrap
-        z-index 1
-    &.tool-tip__color-info
-      &:hover:before
-        background-color #41BBD6
-    &.tool-tip__color-success
-      &:hover:before
-        background-color #94BF80
-    &.tool-tip__color-error
-      &:hover:before
-        background-color #E96143
-    &.tool-tip__color-warning
-      &:hover:before
-        background-color #FFC107
+    padding .2vw 0
+    border-bottom 1px dotted #eee
   &__title
     text-align center
     p
@@ -63,6 +33,7 @@ $marginBase = 14.28
     p
       margin 0
       font-size 1.2vw
+      text-align right
   &__dot
     font-size .8vw
     vertical-align middle

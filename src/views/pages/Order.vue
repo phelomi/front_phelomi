@@ -51,10 +51,6 @@
             </v-layout>
           <!-- </v-form> -->
           <v-divider class="my-5"></v-divider>
-          <!-- <v-layout row>
-            <v-flex sm12 md2>
-            </v-flex>
-          </v-layout> -->
           <v-layout row wrap v-if="calendarByYear.length > 0">
             <v-flex sm12 md3>
               <h3 class="primary--text">請選擇房間</h3>
@@ -93,7 +89,7 @@
                 type="edit"
                 :year="item"
                 :dateList="availableRoomList[item]"
-                @getSelectedRoom="getSelectedRoom"
+                @addSelectedRoom="addSelectedRoom"
                 :clearSelected.sync="clearSelected"
                 :roomTypeInfo="roomTypeInfo"
                 />
@@ -119,28 +115,32 @@
               indeterminate
             ></v-progress-circular>
           </div>
-          <v-layout row wrap v-if="calendarByYear.length > 0">
-            <v-flex sm12 md3 offset-md-9>
+          <v-layout row wrap>
+            <v-flex sm12 md3>
               <h3 class="primary--text">確認訂房資訊</h3>
             </v-flex>
-            <v-flex sm12>
-              <calendar-list
+            <v-flex sm12 md8 offset-md2 pt-3>
+              <orderRooms
+                :orderRoomList="selectedRoom"
+                :roomTypeInfo="roomTypeInfo"
+              />
+              <!-- <calendar-list
                 v-for="(item, idx) in calendarByYearCheck"
                 :key="`calendarByYearCheck${idx}`"
                 type="show"
                 :year="item"
                 :dateList="availableRoomListCheck[item]"
-                @getSelectedRoom="getSelectedRoom"
+                @addSelectedRoom="addSelectedRoom"
                 :roomTypeInfo="roomTypeInfo"
-                />
+                /> -->
             </v-flex>
           </v-layout>
           <v-divider class="my-5"></v-divider>
-          <v-layout row wrap v-if="calendarByYear.length > 0">
+          <v-layout row wrap>
             <v-flex sm12 md3>
               <h3 class="primary--text">填寫個人資料</h3>
             </v-flex>
-            <v-flex sm12 md7>
+            <v-flex sm12 md10 offset-md1>
               <v-form
                 v-model="valid"
                 ref="form"
@@ -225,6 +225,53 @@
                       clearable
                     ></v-text-field>
                   </div>
+                  <v-menu
+                    v-if="item.type === 'timepicker'"
+                    ref="menu"
+                    v-model="item.menuModel"
+                    :close-on-content-click="false"
+                    :return-value.sync="orderPersonInfo[item.model]"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{on}">
+                      <v-text-field
+                        v-model="orderPersonInfo[item.model]"
+                        :label="item.label"
+                        prepend-icon="mdi-clock-outline"
+                        readonly
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      v-if="item.menuModel"
+                      v-model="orderPersonInfo[item.model]"
+                      full-width
+                      @click:minute="$refs.menu[0].save(orderPersonInfo[item.model])"
+                      color="primary"
+                      format="24hr"
+                    ></v-time-picker>
+                  </v-menu>
+                </v-flex>
+                <v-flex sm12 md2>
+                  <p class="primary--text page-order__notice-title">訂房須知</p>
+                </v-flex>
+                <v-flex sm12 md10>
+                  <p class="textBlack--text page-order__notice-content">{{noticeContent}}</p>
+                </v-flex>
+                <v-flex sm12 md12 >
+                  <v-checkbox
+                    class="page-order__notice-checkbox"
+                    v-model="orderPersonInfo.agreeNotice"
+                    label="我已閱讀過完整的訂房須知，同意並接受所有規定事項"
+                    color="primary"
+                    :rules="ruleList.require"
+                    :required="true"
+                  ></v-checkbox>
                 </v-flex>
               </v-form>
             </v-flex>
@@ -253,7 +300,7 @@
 
         <v-stepper-content step="3">
           <v-layout row wrap>
-            <v-flex sm12 md3 offset-md-9>
+            <v-flex sm12 md3>
               <h3 class="primary--text">訂單已完成，請核對以下資訊</h3>
             </v-flex>
             <v-flex sm12 md6>
@@ -273,20 +320,20 @@
               </v-flex>
             </v-flex>
             <v-flex sm12>
-              <calendar-list
+              <!-- <calendar-list
                 v-for="(item, idx) in calendarByYearCheck"
                 :key="`calendarByYearCheck${idx}`"
                 type="show"
                 :year="item"
                 :dateList="availableRoomListCheck[item]"
-                @getSelectedRoom="getSelectedRoom"
+                @addSelectedRoom="addSelectedRoom"
                 :roomTypeInfo="roomTypeInfo"
-                />
+                /> -->
             </v-flex>
           <v-layout row wrap>
           </v-layout>
           <v-divider class="my-5"></v-divider>
-            <v-flex sm12 md3 offset-md-9>
+            <v-flex sm12 md3>
               <h3 class="primary--text">匯款資訊如下</h3>
             </v-flex>
           </v-layout>
@@ -324,6 +371,7 @@ import httpMethod from '@/utils/httpMethod';
 import titleBoat from '@/components/titleBoat.vue';
 import dateRange from '@/components/dateRange.vue';
 import calendarList from '@/components/calendarList.vue';
+import orderRooms from '@/components/orderRooms.vue';
 import constVar from '@/utils/constVar';
 import {
   getDate, addDays, subtractDays, getDayRange,
@@ -335,6 +383,7 @@ export default {
     titleBoat,
     dateRange,
     calendarList,
+    orderRooms,
   },
   data() {
     return {
@@ -378,13 +427,26 @@ export default {
       calendarByYear: [],
       availableRoomList: {},
       selectedRoom: new Map(),
-      checkOrderRoomList: {},
-      calendarByYearCheck: [],
-      availableRoomListCheck: {},
+      // checkOrderRoomList: {},
+      // calendarByYearCheck: [],
+      // availableRoomListCheck: {},
       valid: false,
       ruleList: {
         require: [
           v => !!v || '此欄位為必填',
+        ],
+        requireNumber: [
+          (v) => {
+            if (!v) return '此欄位為必填';
+            const reg = /^(\d+\.\d\d|\d+)$/;
+            return reg.test(v) || '請輸入正確數字';
+          },
+        ],
+        number: [
+          (v) => {
+            const reg = /^(\d+\.\d\d|\d+)$/;
+            return reg.test(v) || '請輸入正確數字';
+          },
         ],
         phone: [
           (v) => {
@@ -467,11 +529,28 @@ export default {
         },
         {
           type: 'input',
-          model: 'number',
-          label: '人數',
+          model: 'numberAdult',
+          label: '成人人數',
           required: true,
-          rules: 'require',
-          class: 'md4',
+          rules: 'requireNumber',
+          class: 'md2',
+        },
+        {
+          type: 'input',
+          model: 'numberChild',
+          label: '小孩人數',
+          required: false,
+          rules: 'number',
+          class: 'md2',
+        },
+        {
+          type: 'timepicker',
+          model: 'arriveTime',
+          menuModel: false,
+          label: '預計抵達時間',
+          required: false,
+          rules: 'none',
+          class: 'md6 offset-md2',
         },
         {
           type: 'checkboxOther',
@@ -480,7 +559,7 @@ export default {
           label: '其他需求',
           required: false,
           rules: 'none',
-          class: 'md8',
+          class: 'md10',
           options: [
             { label: '無', value: '無' },
             { label: '租機車', value: '租機車' },
@@ -511,6 +590,7 @@ export default {
       roomTypeInfo: {},
       emptyOccList: {},
       roomTypeIcon: [],
+      noticeContent: '我們共有三館.因地點不同各具獨自的特色及風格，距離機場約5~10分鐘.\n距離馬公市約10~15分鐘 3間民宿週邊有7-11及沙灘約3~10分鐘。\n\n希臘邊境位於山水沙灘衝浪勝地旁.民宿有提供免費衝浪版.SPA池及三溫暖烤箱，\n進房下午5點退房下午2點希臘式早餐供應至退房。\n\n北非花園位於興仁水庫旁有漂亮的興仁夕陽.民宿提供免費看夕陽喝下午茶.還有華麗的摩洛哥空間及早餐，進房下午3點退房中午11點下午茶3~5點提供.摩洛哥早餐供應至退房。人魚之丘位於澎南海邊離海只有25公尺.民宿提供360度泳池及夜照設備.還有婚禮場地，進房下午4點退房下午1點西班牙式早餐供應至退房。\n\n月橘villa 是藝人納豆與我們一起合作的民宿。以澎湖傳統建築工法，再次獨特打造私人villa。室內傢俱、用品橫跨明、清、日據等三個年代，邀請旅人們，在歲月的風華中，感受島嶼的愜意。\n進房下午3點  退房中午12點  中式早餐供應至退房。'
     };
   },
   mounted() {
@@ -545,10 +625,13 @@ export default {
         nationalityOption: null,
         nationalityText: null,
         breakfast: null,
-        number: null,
+        numberAdult: 0,
+        numberChild: 0,
+        arriveTime: null,
         demandOption: [],
         demandText: null,
         note: null,
+        agreeNotice: false,
       };
     },
     getDatePickerRangeOri() {
@@ -628,7 +711,6 @@ export default {
       const selectDateRangeDays = this.getDayRange(endTime, startTime) + 1;
       let searchStartTime = null;
       let searchEndTime = null;
-      console.log('選', selectDateRangeDays);
       if (selectDateRangeDays > searchDateRangeLimit) {
         this.notifySetting = {
           ...this.notifySetting,
@@ -663,7 +745,7 @@ export default {
     async methodSearchRommByTime() {
       this.calendarByYear.splice(0);
       this.availableRoomList = {};
-      this.checkOrderRoomList = {};
+      // this.checkOrderRoomList = {};
 
       const params = this.formatDateSearchRange();
       if (!params) return;
@@ -674,7 +756,6 @@ export default {
         method: 'GET',
         params,
       });
-      console.log(res);
       if (res && !res.code) {
         this.notifySetting = {
           ...this.notifySetting,
@@ -704,12 +785,12 @@ export default {
       this.emptyRoomType = {};
       this.roomTypeInfo = {};
       this.roomTypeIcon.splice(0);
-      console.log('TCL: methodGetEmptyRoom -> roomInfo', roomInfo);
       Object.keys(roomInfo).forEach((roomType) => {
-        console.log('TCL: methodGetEmptyRoom -> roomType', roomType);
         this.emptyRoomType[roomType] = 0;
         const { name, price } = roomInfo[roomType];
+        // 房型圖標列表
         this.roomTypeIcon.push(name);
+        // 房型資訊Object
         this.roomTypeInfo[roomType] = { name, price };
       });
     },
@@ -730,34 +811,49 @@ export default {
     },
     methodFormResetRoom() {
       this.calendarByYear.splice(0);
-      this.checkOrderRoomList = {};
+      // this.checkOrderRoomList = {};
     },
     methodClearSelectedRoom() {
       this.clearSelected = true;
-      this.checkOrderRoomList = {};
+      // this.checkOrderRoomList = {};
     },
     toStep(step) {
       this.e1 = step;
       this.scrollToTop();
     },
-    getSelectedRoom(date, selected) {
+    // STEP 1: 當有房型被選到，執行這個funciton
+    addSelectedRoom(date, selected) {
+      // 被選到的房型，用map組成
       this.selectedRoom.set(this.reverseFormatNumberDate(date), selected);
-      this.selectedRoom = new Map([...this.selectedRoom.entries()].sort());
-      this.checkOrderRoomList = {};
-      for (const [key, value] of this.selectedRoom.entries()) {
-        let allow = false;
-        Object.keys(value).forEach((valKey) => {
-          if (value[valKey]) allow = true;
-        });
-        if (allow) this.checkOrderRoomList[key] = value;
-      }
     },
     checkSelectedRoom() {
-      const { calendarByYear, availableRoomList } = this.formatOccList(this.checkOrderRoomList);
-      this.calendarByYearCheck = calendarByYear;
-      this.availableRoomListCheck = availableRoomList;
+      // 整理選到的房間
+      this.selectedRoom = new Map([...this.selectedRoom.entries()].sort());
 
-      if (this.calendarByYearCheck.length && Object.keys(this.availableRoomListCheck).length) {
+      // this.checkOrderRoomList = {};
+      // for (const [key, value] of this.selectedRoom.entries()) {
+      //   let allow = false;
+      //   Object.keys(value).forEach((valKey) => {
+      //     if (value[valKey]) allow = true;
+      //   });
+      //   if (allow) this.checkOrderRoomList[key] = value;
+      // }
+      // this.checkOrderRoomList
+      // 20190307: {
+      //   '5c73f6aaad26b8d3c2be3c4e': 0,
+      //   '5c73f6aaad26b8d3c2be3c4f': 1,
+      //   '5c73f6aaad26b8d3c2be3c50': 0,
+      // }
+
+      // 判斷是否能去下一步
+      let countSelectedRooms = 0;
+      this.selectedRoom.forEach((item) => {
+        Object.values(item).forEach((rooms) => {
+          countSelectedRooms += rooms;
+        });
+      });
+
+      if (countSelectedRooms) {
         this.toStep(2);
       } else {
         this.notifySetting = {
@@ -768,6 +864,7 @@ export default {
         };
       }
     },
+    // 將選到的房間，整理成藥送給後端的格式
     orderSelectedRoom() {
       const result = [];
       const selectedRoomKeyList = [...this.selectedRoom.keys()];
@@ -799,10 +896,12 @@ export default {
           nationalityOption,
           nationalityText,
           breakfast,
-          number,
+          numberAdult,
+          numberChild,
           demandOption,
           demandText,
           note,
+          agreeNotice,
         } = this.orderPersonInfo;
         const params = {
           name,
@@ -811,7 +910,8 @@ export default {
           email,
           nationality: nationalityOption === 1 ? '本國' : nationalityText,
           breakfast,
-          number,
+          numberAdult,
+          numberChild,
           demand: demandOption.find(i => i === 2)
             ? [...demandOption.filter(i => i !== 2), demandText]
             : demandOption,
@@ -848,12 +948,15 @@ export default {
     },
     methodNewOrder() {
       this.methodFormPersonInfoReset();
-      this.calendarByYearCheck = [];
+      // this.calendarByYearCheck = [];
       this.availableRoomList = {};
-      this.availableRoomListCheck = {};
+      // this.availableRoomListCheck = {};
       this.methodFormResetRoom();
       this.methodClearSelectedRoom();
       this.toStep(1);
+    },
+    methodOpenNoticePop() {
+      console.log('TCL: methodOpenNoticePop -> methodOpenNoticePop');
     },
   },
 };

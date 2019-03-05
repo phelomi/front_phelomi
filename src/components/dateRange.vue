@@ -14,7 +14,7 @@
           :events="highlightRange ? dateRange.dates : events"
           :event-color="highlightRange ? dateRange.colors : eventColor"
           v-model="startDate"
-          :min="options.minDate"
+          :min="minDate"
           :max="endDate"
           locale="zh-Hant"
           no-title
@@ -79,8 +79,9 @@ export default {
   },
   data() {
     return {
-      startDate: this.options.startDate,
-      endDate: this.options.endDate,
+      startDate: null,
+      endDate: null,
+      minDate: null,
       dateRange: {
         dates: [],
         colors: {},
@@ -108,6 +109,20 @@ export default {
     },
     endDate() {
       this.onDateRangeChange();
+    },
+    // options(val) {
+    //   console.log('TCL: option -> val', val);
+    // },
+    options: {
+      handler(val) {
+        const {
+          endDate, minDate, startDate,
+        } = val;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.minDate = minDate;
+      },
+      immediate: true,
     },
   },
   mounted() {

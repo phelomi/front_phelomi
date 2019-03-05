@@ -18,7 +18,7 @@ import constVar from '@/utils/constVar';
 
 export default {
   name: 'headerButton',
-  props: ['text', 'target'],
+  props: ['text', 'target', 'directToPage'],
   data() {
     return {
       buttonBodyFront,
@@ -36,8 +36,13 @@ export default {
   },
   methods: {
     methodGoTo() {
-      const targetClass = `.${this.target}`;
-      if (document.querySelectorAll(targetClass).length > 0) {
+      const targetClass = `.target-${this.target}`;
+      if (this.directToPage) {
+        this.$router.push(this.target);
+      } else if (
+        document.querySelectorAll(targetClass).length > 0
+        && this.$route.name !== this.target
+      ) {
         this.$vuetify.goTo(targetClass, constVar.scrollPagAni);
       } else {
         this.$router.push('/home');

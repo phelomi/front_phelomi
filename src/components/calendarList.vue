@@ -58,7 +58,7 @@ export default {
     getDate,
     getDayRange,
     selectRoom(selected, date) {
-      this.$emit('getSelectedRoom', date, selected);
+      this.$emit('addSelectedRoom', date, selected);
     },
     getOffset(currentIdx) {
       const currentDate = this.dateList[currentIdx].date;
