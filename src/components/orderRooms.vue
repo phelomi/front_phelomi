@@ -32,11 +32,15 @@
   </div>
 </template>
 <script>
+import { formatNumberDate, getDatePriceKey } from '@/utils/formatMethod';
 import { currencies } from '@/utils/calculation';
 
 export default {
   name: 'orderRooms',
   props: ['orderRoomList', 'roomTypeInfo'],
+  mounted() {
+    console.log('TCL: orderRoomList', this.orderRoomList);
+  },
   watch: {
     orderRoomList: {
       handler(val) {
@@ -46,14 +50,15 @@ export default {
           let countDateRoomType = 0;
           Object.keys(value).forEach((roomType) => {
             if (value[roomType]) {
+              const date = this.formatNumberDate(key);
               countDateRoomType += 1;
               const list = {};
               list.haveDate = countDateRoomType === 1 ? key : null;
               list.roomName = this.roomTypeInfo[roomType].name;
-              list.roomPrice = this.currencies(this.roomTypeInfo[roomType].price);
+              list.roomPrice = this.currencies(this.roomTypeInfo[roomType].price[this.getDatePriceKey(date)]);
               list.roomCount = value[roomType];
               list.subTotal = this.currencies(this.calcSubTotal(
-                this.roomTypeInfo[roomType].price,
+                this.roomTypeInfo[roomType].price[this.getDatePriceKey(date)],
                 value[roomType],
               ));
               this.orderList.push(list);
@@ -88,14 +93,8 @@ export default {
   },
   methods: {
     currencies,
-    formatNumberDate(numberDate) {
-      const stringDate = numberDate.toString();
-      const year = stringDate.slice(0, 4);
-      const month = stringDate.slice(4, 6);
-      const date = stringDate.slice(6, 8);
-
-      return `${year}/${month}/${date}`;
-    },
+    formatNumberDate,
+    getDatePriceKey,
     calcSubTotal(price, unit) {
       const subTotal = price * unit;
       this.sumTotal += subTotal;

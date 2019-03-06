@@ -35,6 +35,7 @@
   </div>
 </template>
 <script>
+import { getDatePriceKey } from '@/utils/formatMethod';
 import { getDate } from '@/utils/dateMethod';
 import { currencies } from '@/utils/calculation';
 import constVar from '@/utils/constVar';
@@ -75,6 +76,7 @@ export default {
   methods: {
     getDate,
     currencies,
+    getDatePriceKey,
     remainingRoom(item) {
       return this.rooms[item] - this.orderRoom[item];
     },
@@ -87,7 +89,7 @@ export default {
       }
     },
     methodShowRoomType(item) {
-      return ` ${this.currencies(this.roomTypeInfo[item].price) || '--'}元 剩${this.remainingRoom(item)}間`;
+      return ` ${this.currencies(this.roomTypeInfo[item].price[this.getDatePriceKey(this.date)]) || '--'}元 剩${this.remainingRoom(item)}間`;
     },
     methodCleadSelectedRoom() {
       Object.keys(this.orderRoom).forEach((item) => { this.$set(this.orderRoom, item, 0); });
