@@ -16,53 +16,25 @@
   &__button
     display flex
     text-decoration none
-    margin-right .5vw
-    &__head
-      background-image url('../assets/button/button_header_head.svg')
-      background-repeat no-repeat
-      width 3.8vw
-      height 100%
+    min-width 9.8vw
+    min-height 4.50vw
+    background-image url('../assets/button/button_header.png')
+    background-position -1.5vw -0.9vw
+    background-size 123%
+    &:nth-of-type(4)
+      & .header__button--text
+        padding-left 3.75vw
     &:hover
-      .header__button__head
-        background-image url('../assets/button/button_header_head_active.svg')
-        background-repeat no-repeat
-        display flex
-        justify-content center
-        align-items center
-        &:after
-          content ''
-          box-shadow 0px 0px 50px 20px #F7F3F2
-          width 1px
-          height 1px
-          z-index -1
-          margin-right -8%
-          margin-bottom -33%
-    &__body
-      color #fff
+      background-image url('../assets/button/button_header_active.png')
+    &--text
+      white-space nowrap
+      height 100%
+      line-height 4.49vw
+      font-size 1vw
+      padding-left 4vw
+      padding-right 1vw
+      letter-spacing $letter-spacing-2
       font-weight bold
-      font-size 0.93vw
-      padding-top 1.1vw
-      display flex
-      flex-wrap nowrap
-      justify-content center
-      align-items center
-      z-index -2
-      &__front
-      &__end
-        height 100%
-        width auto
-      &__front
-        margin-left -1.3vw
-      &__text
-        white-space nowrap
-        display flex
-        height 100%
-        justify-content center
-        align-items center
-        background-color #142952
-        margin-left -1.5px
-        margin-right -1px
-        letter-spacing $letter-spacing-2
   &__social
     width 12.37vw
     height 2.45vw
