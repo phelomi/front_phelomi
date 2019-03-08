@@ -12,6 +12,7 @@
           v-for="(item, idx) in newsListGroup"
           :key="`newsListGroup${idx}`"
           :img="item.img"
+          :theme="item.theme"
           :title="item.title"
           :intro="item.intro"
         />
@@ -35,27 +36,29 @@ export default {
         [
           {
             img: news001,
+            theme: 'start',
             title: '歡慶飛樂米星空號起航',
             intro: '即日起至5/5，歡慶飛樂米星空號起航，優惠活動開跑囉',
           },
           {
             img: news002,
             title: '澎湖花火節',
+            theme: 'fireworks',
             intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜，...',
           },
         ],
-        [
-          {
-            img: news001,
-            title: '歡慶飛樂米星空號起航',
-            intro: '即日起至5/5，歡慶飛樂米星空號起航，優惠活動開跑囉',
-          },
-          {
-            img: news002,
-            title: '澎湖花火節',
-            intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜，...',
-          },
-        ],
+        // [
+        //   {
+        //     img: news001,
+        //     title: '歡慶飛樂米星空號起航',
+        //     intro: '即日起至5/5，歡慶飛樂米星空號起航，優惠活動開跑囉',
+        //   },
+        //   {
+        //     img: news002,
+        //     title: '澎湖花火節',
+        //     intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜，...',
+        //   },
+        // ],
       ],
     };
   },

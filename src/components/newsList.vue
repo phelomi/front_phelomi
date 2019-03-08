@@ -13,7 +13,10 @@
             <p class="textBlack--text">{{intro}}</p>
           </v-flex>
           <v-flex xs4 class="news-list__more">
-            <v-btn class="news-list__more-btn primary" @click="$router.push('news')">MORE</v-btn>
+            <v-btn
+              class="news-list__more-btn primary"
+              @click="$router.push({path:'news',query: { theme }})"
+            >MORE</v-btn>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -23,7 +26,7 @@
 <script>
 export default {
   name: 'newsList',
-  props: ['img', 'title', 'intro'],
+  props: ['img', 'title', 'intro', 'theme'],
   data() {
     return {
 
