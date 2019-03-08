@@ -1,6 +1,12 @@
 <template>
   <div class="index-news">
-    <v-carousel class="index-topic__carousels" height="36.22vw" hide-delimiters :interval="15000">
+    <v-carousel
+      class="index-topic__carousels"
+      height="36.22vw"
+      hide-delimiters
+      :interval="15000"
+      :hide-controls="newsList.length <= 1"
+    >
       <v-carousel-item
         v-for="(newsListGroup, idx) in newsList"
         :key="`newsList${idx}`"
