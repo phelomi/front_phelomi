@@ -10,6 +10,7 @@
         :text="item.text"
         :target="item.target"
         :directToPage="item.directToPage"
+        :class="item.regex.test(currentUrl) ? 'active' :''"
       />
     </v-toolbar-items>
     <div class="header__social">
@@ -32,13 +33,27 @@ export default {
     return {
       imgPathLogoHorizon,
       menuList: [
-        { text: '最新消息', target: 'news', directToPage: false },
-        { text: '房型介紹', target: 'rooms', directToPage: false },
-        { text: '交通位置', target: 'location', directToPage: true },
-        { text: '澎湖找樂子', target: 'fun', directToPage: false },
-        { text: '跟我醬玩', target: 'follow', directToPage: false },
-        { text: '線上訂房', target: 'order', directToPage: true },
-        { text: '聯絡我們', target: 'contact', directToPage: false },
+        {
+          text: '最新消息', target: 'news', directToPage: false, regex: /^\/news/,
+        },
+        {
+          text: '房型介紹', target: 'rooms', directToPage: false, regex: /^\/rooms/,
+        },
+        {
+          text: '交通位置', target: 'location', directToPage: true, regex: /^\/location/,
+        },
+        {
+          text: '澎湖找樂子', target: 'fun', directToPage: false, regex: /^\/fun/,
+        },
+        {
+          text: '跟我醬玩', target: 'follow', directToPage: false, regex: /^\/follow/,
+        },
+        {
+          text: '線上訂房', target: 'order', directToPage: true, regex: /^\/order/,
+        },
+        {
+          text: '聯絡我們', target: 'contact', directToPage: false, regex: /^\/contact/,
+        },
       ],
     };
   },
@@ -48,6 +63,10 @@ export default {
       const deviceWidth = this.$vuetify.breakpoint.width;
 
       return deviceWidth / 1920 * 323.633;
+    },
+    currentUrl() {
+      // this.$route
+      return this.$route.path;
     },
     // mdScale() {
     //   // this.$vuetify.breakpoint
