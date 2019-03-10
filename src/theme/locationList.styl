@@ -29,12 +29,24 @@
       font-size 2.54vw
       margin-bottom 1.64vw
     &-list
+      position relative
+      &:hover
+        .location-list__traffic-list--more-info
+          display block
       &--row
         margin-bottom 1vw
         div
           display inline-block
           white-space nowrap
           text-align center
+      &--more-info
+        display none
+        position absolute
+        bottom 100%
+        left 13vw
+        padding .3vw 1vw
+        border-radius 10px
+        white-space nowrap
       &--describe
       &--unit
         font-size 1.88vw

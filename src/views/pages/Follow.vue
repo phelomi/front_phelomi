@@ -9,22 +9,35 @@
         />
       </v-flex>
     </v-layout>
-    <div class="primary-img">
-      <img src="../../assets/follow/ad001.jpg" alt="">
-    </div>
     <div class="primary-content">
-      <h2 class="page-follow__theme secondary--text text-under-line">{{theme}}</h2>
-      <v-layout row v-for="(item, idx) in info" :key="`info${idx}`" class="page-follow__content">
-        <v-flex xs4>
-          <div class="page-follow__content--img">
-            <img :src="item.img" alt="">
-          </div>
-        </v-flex>
-        <v-flex xs8 class="page-follow__content--info">
-          <h4 class="page-follow__content--title textBlack--text">・{{item.title}}</h4>
-          <p class="page-follow__content--text textBlack--text">{{item.text}}</p>
-        </v-flex>
-      </v-layout>
+      <h2 class="page-follow__theme secondary--text text-under-line">{{theme[themeType] || ''}}</h2>
+      <div v-if="themeType === 'necessary'">
+        <v-layout
+          row
+          v-for="(item, idx) in info[themeType]"
+          :key="`info${themeType}${idx}`"
+          class="page-follow__content"
+        >
+          <v-flex xs4>
+            <div class="page-follow__content--img">
+              <img :src="item.img" alt="">
+            </div>
+          </v-flex>
+          <v-flex xs8 class="page-follow__content--info">
+            <h4 class="page-follow__content--title textBlack--text">・{{item.title}}</h4>
+            <p class="page-follow__content--text textBlack--text">{{item.text}}</p>
+          </v-flex>
+        </v-layout>
+      </div>
+      <div v-if="themeType === 'phelomi'">
+        <p
+          v-for="(item, idx) in info[themeType]"
+          :key="`info${themeType}${idx}`"
+        >{{item}}</p>
+      </div>
+      <div class="primary-img" v-if="primaryImg[themeType]">
+        <img :src="primaryImg[themeType]" alt="">
+      </div>
     </div>
     <show-rooms />
   </div>
@@ -32,6 +45,7 @@
 <script>
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
+import primaryImg001 from '../../assets/follow/ad001.jpg';
 import adSm001 from '../../assets/follow/ad_sm001.jpg';
 import adSm002 from '../../assets/follow/ad_sm002.jpg';
 import adSm003 from '../../assets/follow/ad_sm003.jpg';
@@ -46,6 +60,12 @@ export default {
   mounted() {
     this.$vuetify.goTo(0, constVar.scrollPagAni);
   },
+  computed: {
+    themeType() {
+      console.log('TCL: themeType -> this.$route.query.theme', this.$route.query.theme);
+      return this.$route.query.theme;
+    },
+  },
   data() {
     return {
       constVar,
@@ -54,24 +74,43 @@ export default {
         textDown: '澎湖行程建議',
         targetClass: 'target-follow',
       },
-      theme: '2019花火節',
-      info: [
-        {
-          img: adSm001,
-          title: 'DAY1：璀璨花火X玄武岩祕境',
-          text: '6:50 台北松山機場登機 → 7：50 馬公機場→通樑古榕(吃仙人掌冰/花枝丸)  → 跨海大橋拍跳躍照 → 祕境(玄武岩) → 二崁古厝(吃烤小管/杏仁茶/仙人掌汁)→午餐(40年老店魚麵)→摩西分海之奎壁山→下午茶(超浪漫的白灣沙灘海景)  →祕境(天仁湖)→晚餐(馬路益燒肉飯)→觀音亭澎湖花火節  →夜宿彼得潘民宿',
-        },
-        {
-          img: adSm002,
-          title: 'DAY2：山水沙灘X人間美景吉貝沙尾海灘',
-          text: '08：30 起床吃飽飽 →龍門紀念碑 →山水沙灘 →菊島居民家中吃點心→午餐(金鎖港飲食店)→13：30 北海遊客中心赤崁碼頭搭船 → 吉貝石滬與綠石槽→   吉貝沙尾八合一水上活動 → 16：00 搭船回本島→ 拍照(落跑吧愛情!拍攝地) →下午茶(回家澎湖狗蝦炸粿/玉冠仙草冰)→ 逛中央老街(四眼井/天后宮)→晚餐(老媽媽道地海產)  → 夜宿彼得潘民宿',
-        },
-        {
-          img: adSm003,
-          title: 'DAY3：浮潛X潮間帶巡禮',
-          text: '08：30 民宿早餐 → 10：00 搭船白坑→白灣坑休閒一日遊（巡航東海大、小雞善嶼、錠鉤嶼，奎壁山踏浪、體驗浮潛、潮間帶巡禮、抱墩圍網捕魚抓螃蟹、觸摸海星/海參/寄居蟹等各種海底生物）→龜壁港社彩繪村→不給拍肉圓→採買媽宮伴手禮→20:00回溫暖的家。',
-        },
-      ],
+      theme: {
+        necessary: '必遊行程',
+        phelomi: '飛樂米私房行程',
+        fireworks: '2019花火節',
+      },
+      primaryImg: {
+        necessary: '',
+        phelomi: '',
+        fireworks: primaryImg001,
+      },
+      info: {
+        necessary: [
+          {
+            img: adSm001,
+            title: 'DAY1：蛇頭山遊憩區－風櫃聽濤－山水沙灘－鎖港鎮風塔－專業海上浮潛＆立式劃漿',
+            text: '機場登機→馬公機場→在機場辦理民宿貼心贈送摩托車登記領車→行李由民宿帶回→騎車自由行。【蛇頭山遊憩區】是遠眺馬公港和側天島及四角嶼等澎湖內灣最佳景點。→【風櫃聽濤】因為海潮灌入柱狀節理玄武岩底下的海蝕溝槽，發出有如風箱鼓風的巨大聲響，聽其濤聲、實乃視覺與聽覺之饗宴！→【山水沙灘】貝殼沙灘潔淨漂亮，海水澄澈透藍→【鎖港鎮風塔】澎湖最大的石敢當！→下午參加民宿精心安排海上浮潛&立式劃漿體驗，穿著精緻浮潛裝備在專業教練的帶領下一睹全臺灣最美的世界級海底景觀，未經破壞的珊瑚礁群、七彩繽紛的熱帶魚群，絕對讓您嘆為觀止！→觀音亭夜賞炫麗煙火或陸上的鐵達尼號–菊島之星、海產小吃街，享受澎湖風情→夜宿飛樂米星空號民宿享受觀星寧靜夜晚。',
+          },
+          {
+            img: adSm002,
+            title: 'DAY2：南海七美嶼&西吉藍洞新航線一日遊',
+            text: '品嚐健康美味活力早餐→前往馬公南海觀光碼頭搭乘快艇→前往南海巡航之旅囉！【西吉嶼-巡航藍洞】西吉嶼的「灶籠」是澎湖絕無僅有的透天海蝕洞，保留了完整的天然景觀→【七美嶼】如世外桃源的祕密花園、讓人讚嘆！體會大自然的感動；→感人肺腑的望夫石傳說；→鬼斧神工的巨獅→龍埕美景．寸草不生的月世界洪荒→心心相印的雙心石滬美景→返回飛樂米星空號民宿享受觀星寧靜夜晚。',
+          },
+          {
+            img: adSm003,
+            title: 'DAY3：跨海大橋→玄武岩祕境→二崁古厝→摩西分海→機場',
+            text: '品嚐健康美味活力早餐→環島之旅啟程→通樑古榕(吃仙人掌冰/花枝丸)→跨海大橋拍跳躍照→祕境(玄武岩)→二崁古厝(吃烤小管/杏仁茶/仙人掌汁)→午餐(40年老店魚麵)→摩西分海之奎壁山→祕境(天仁湖)→晚餐(馬路益燒肉飯)→機場→帶著充電滿滿的心情回到溫馨幸福的家。',
+          },
+        ],
+        phelomi: [
+          '★ 澎湖馬公山水30高地公園：遠眺山水黃金貝殼沙灘美麗海岸線，猶如置身黃金海岸，令人讚嘆不已！',
+          '★ 龍門港：海水藍綠交疊清澈透底，落日余暉光芒光耀眼，令人高度舒壓留連忘返！',
+          '★ 菜園3D彩繪情人灣：走上長長的橋通往幸福的愛情、親情之路，幸福百分百，3D彩繪讓人身歷其境，驚奇不斷！',
+          '★ 飛樂米星空號觀星台：看著滿天的星星，猜猜星座，無比的寧靜適合發呆天馬行空的夢想，就在銀河中得到實現，找回赤子真心！遨翔在廣闊星際中，度過美麗的夜晚！',
+          '★ 飛樂米星空號植栽体驗：看著飽滿的多肉植物，發揮設計想像力，構出屬於自已的獨創巧思盆栽，用心呵護享受成長的樂趣！',
+        ],
+      }
+      ,
     };
   },
 };

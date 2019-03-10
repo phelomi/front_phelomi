@@ -9,7 +9,7 @@
         class="index-follow__outer"
       >
       <a
-        @click="$router.push(item.url)"
+        @click="$router.push({path:item.url,query: { theme: item.theme }})"
         :class="`index-follow__button index-follow__button--${item.color}`"
       >
         <p
@@ -26,9 +26,15 @@ export default {
   data() {
     return {
       followList: [
-        { text: '飛樂米\n私房行程', url: '/follow', color: 'info' },
-        { text: '必遊行程', url: '/follow', color: 'warning' },
-        { text: '2019花火節', url: '/follow', color: 'error' },
+        {
+          text: '必遊行程', url: '/follow', color: 'warning', theme: 'necessary',
+        },
+        {
+          text: '飛樂米\n私房行程', url: '/follow', color: 'info', theme: 'phelomi',
+        },
+        {
+          text: '2019花火節', url: '/follow', color: 'error', theme: 'fireworks',
+        },
       ],
     };
   },

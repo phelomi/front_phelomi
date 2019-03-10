@@ -63,16 +63,16 @@ export default {
           trafficTitle: '民宿距離',
           trafficList: [
             {
-              target: '馬公機場', describe: '車程約', number: '15～30', unit: '分鐘',
+              target: '馬公機場', describe: '車程約', number: '15', unit: '分鐘（6.5km）',
             },
             {
-              target: '馬公港口', describe: '車程約', number: '30', unit: '分鐘',
+              target: '馬公港口', describe: '車程約', number: '30', unit: '分鐘（8.9km）',
             },
             {
-              target: '馬公市區', describe: '車程約', number: '20', unit: '分鐘',
+              target: '馬公市區', describe: '車程約', number: '20', unit: '分鐘（9.2km）',
             },
             {
-              target: '山水沙灘', describe: '車程約', number: '10', unit: '分鐘',
+              target: '山水沙灘', describe: '車程約', number: '10', unit: '分鐘（1.9km）',
             },
           ],
           imageSrc: mapPosition,
@@ -96,6 +96,9 @@ export default {
             {
               target: '凱旋六號', describe: '航程約', number: '85', unit: '分鐘',
             },
+            {
+              target: '百麗客輪', describe: '航程約', number: '60', unit: '分鐘',
+            },
           ],
           imageSrc: mapShip,
         },
@@ -107,16 +110,28 @@ export default {
           trafficTitle: '班機資訊',
           trafficList: [
             {
-              target: '立榮航空', describe: '航程約', number: '30～50', unit: '分鐘',
+              target: '立榮航空',
+              describe: '航程約',
+              number: '30～50',
+              unit: '分鐘',
+              moreInfo: '華信航空 06-999888',
+              targetUrl: 'https://www.mandarin-airlines.com/',
             },
             {
-              target: '華信航空', describe: '航程約', number: '30～50', unit: '分鐘',
+              target: '華信航空',
+              describe: '航程約',
+              number: '30～50',
+              unit: '分鐘',
+              moreInfo: '立榮航空 06-999888',
+              targetUrl: 'https://www.uniair.com.tw/uniweb/index.aspx',
             },
             {
-              target: '德安航空', describe: '航程約', number: '30～50', unit: '分鐘',
-            },
-            {
-              target: '遠東航空', describe: '航程約', number: '30～50', unit: '分鐘',
+              target: '遠東航空',
+              describe: '航程約',
+              number: '30～50',
+              unit: '分鐘',
+              moreInfo: '遠東航空 06-999888',
+              targetUrl: 'http://www.fat.com.tw/',
             },
           ],
           imageSrc: mapAirplane,
