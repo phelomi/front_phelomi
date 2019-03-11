@@ -3,6 +3,45 @@
   height 100%
   &__link
     display flex
+    position relative
+    transition all 1s
+    &:hover
+      .social-button__qrcode
+        display block
   &__img
     width 100%
     height auto
+  &__qrcode
+    display none
+    position absolute
+    bottom calc(100% + 2vw)
+    left 50%
+    transform translateX(-50%)
+    padding .5vw 1vw
+    text-align center
+    border-radius 10px
+    &.down
+      bottom auto
+      top calc(100% + 2vw)
+      &:after
+        top auto
+        bottom 98%
+        border-color transparent transparent #F5F5F5 transparent
+    &:after
+      content ''
+      width 0
+      height 0
+      border 2vw solid
+      border-color #F5F5F5 transparent transparent transparent
+      border-radius 10px
+      position absolute
+      top 98%
+      left 50%
+      transform translateX(-50%)
+    img
+      width auto
+      height 15vw
+    p
+      font-size 1.3vw
+      white-space nowrap
+      margin 0

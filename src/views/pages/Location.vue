@@ -18,6 +18,7 @@
         :targetTitle = item.targetTitle
         :targetAddress = item.targetAddress
         :trafficTitle = item.trafficTitle
+        :trafficTitleTip = item.trafficTitleTip
         :trafficList = item.trafficList
         :image = item.imageSrc
       />
@@ -63,16 +64,36 @@ export default {
           trafficTitle: '民宿距離',
           trafficList: [
             {
-              target: '馬公機場', describe: '車程約', number: '15', unit: '分鐘（6.5km）',
+              target: '馬公機場',
+              describe: '車程約',
+              number: '15',
+              unit: '分鐘（6.5km）',
+              moreInfo: '',
+              targetUrl: '',
             },
             {
-              target: '馬公港口', describe: '車程約', number: '30', unit: '分鐘（8.9km）',
+              target: '馬公港口',
+              describe: '車程約',
+              number: '30',
+              unit: '分鐘（8.9km）',
+              moreInfo: '',
+              targetUrl: '',
             },
             {
-              target: '馬公市區', describe: '車程約', number: '20', unit: '分鐘（9.2km）',
+              target: '馬公市區',
+              describe: '車程約',
+              number: '20',
+              unit: '分鐘（9.2km）',
+              moreInfo: '',
+              targetUrl: '',
             },
             {
-              target: '山水沙灘', describe: '車程約', number: '10', unit: '分鐘（1.9km）',
+              target: '山水沙灘',
+              describe: '車程約',
+              number: '10',
+              unit: '分鐘（1.9km）',
+              moreInfo: '',
+              targetUrl: '',
             },
           ],
           imageSrc: mapPosition,
@@ -83,21 +104,47 @@ export default {
           targetTitle: '馬公碼頭位於',
           targetAddress: '澎湖縣馬公市新營路25號',
           trafficTitle: '船班資訊',
+          trafficTitleTip: '(游標移至下方顯示更多)',
           trafficList: [
             {
-              target: '台華輪', describe: '航程約', number: '80', unit: '分鐘',
+              target: '滿天星號',
+              describe: '航程約',
+              number: '80',
+              unit: '分鐘',
+              moreInfo: '滿天星航運：馬公 06-9269721、布袋 05-3470948',
+              targetUrl: 'http://www.aaaaa.com.tw/',
             },
             {
-              target: '滿天星號', describe: '航程約', number: '80', unit: '分鐘',
+              target: '凱旋三號',
+              describe: '航程約',
+              number: '85',
+              unit: '分鐘',
+              moreInfo: '凱旋航運：馬公 06-9277995、布袋 05-3471886',
+              targetUrl: 'http://www.no3-farnlin.com.tw/',
             },
             {
-              target: '凱旋三號', describe: '航程約', number: '85', unit: '分鐘',
+              target: '凱旋六號',
+              describe: '航程約',
+              number: '85',
+              unit: '分鐘',
+              moreInfo: '凱旋航運：馬公 06-9277995、布袋 05-3471886',
+              targetUrl: 'http://www.no3-farnlin.com.tw/',
             },
             {
-              target: '凱旋六號', describe: '航程約', number: '85', unit: '分鐘',
+              target: '百麗客輪',
+              describe: '航程約',
+              number: '60',
+              unit: '分鐘',
+              moreInfo: '百麗客輪: 馬公 06-9268199 布袋 05-3472366',
+              targetUrl: 'https://www.pescadoresferry.com.tw',
             },
             {
-              target: '百麗客輪', describe: '航程約', number: '60', unit: '分鐘',
+              target: '台華輪(高雄)',
+              describe: '航程約',
+              number: '270',
+              unit: '分鐘',
+              moreInfo: '台華輪：馬公 06-9264087',
+              targetUrl: 'http://www.tnc-kao.com.tw/about.aspx',
             },
           ],
           imageSrc: mapShip,
@@ -108,13 +155,14 @@ export default {
           targetTitle: '澎湖機場位於',
           targetAddress: '澎湖縣湖西鄉隘門村126-5號',
           trafficTitle: '班機資訊',
+          trafficTitleTip: '(點擊航空名稱前往該航空官網)',
           trafficList: [
             {
               target: '立榮航空',
               describe: '航程約',
               number: '30～50',
               unit: '分鐘',
-              moreInfo: '華信航空 06-999888',
+              moreInfo: '',
               targetUrl: 'https://www.mandarin-airlines.com/',
             },
             {
@@ -122,7 +170,7 @@ export default {
               describe: '航程約',
               number: '30～50',
               unit: '分鐘',
-              moreInfo: '立榮航空 06-999888',
+              moreInfo: '',
               targetUrl: 'https://www.uniair.com.tw/uniweb/index.aspx',
             },
             {
@@ -130,7 +178,7 @@ export default {
               describe: '航程約',
               number: '30～50',
               unit: '分鐘',
-              moreInfo: '遠東航空 06-999888',
+              moreInfo: '',
               targetUrl: 'http://www.fat.com.tw/',
             },
           ],

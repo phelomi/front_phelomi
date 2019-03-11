@@ -693,8 +693,8 @@ export default {
     },
     getDatePickerRangeOri() {
       return {
-        startDate: null,
-        endDate: null,
+        startDate: this.getDate(),
+        endDate: this.getDate(this.addDays(Date.now(), 2)),
         minDate: this.getDate(),
         maxDate: this.getDate(this.addDays(Date.now(), 90)),
       };

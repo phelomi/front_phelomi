@@ -14,7 +14,7 @@
       />
     </v-toolbar-items>
     <div class="header__social">
-      <socialButton />
+      <social-button :directionTop="false"/>
     </div>
   </v-toolbar>
 </template>

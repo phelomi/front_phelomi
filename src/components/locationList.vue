@@ -13,7 +13,10 @@
           <h3 class="error--text">{{targetAddress}}</h3>
         </div>
         <div class="location-list__traffic">
-          <h3 class="primary--text location-list__traffic--title">{{trafficTitle}}</h3>
+          <h3 class="primary--text location-list__traffic--title">
+            {{trafficTitle}}
+            <span v-if="trafficTitleTip">{{trafficTitleTip}}</span>
+          </h3>
           <div
             v-for="(item, idx) in trafficList"
             :key="`trafficList${idx}`"
@@ -23,7 +26,7 @@
               <div
                 :class="[
                   'location-list__traffic-list--target',
-                  item.targetUrl ? 'cursor-pointer':''
+                  item.targetUrl ? 'location-list__traffic-list--target-click cursor-pointer':''
                 ]"
                 @click="methodToOutsidePage(item.targetUrl)"
               >{{item.target}}</div>
@@ -60,16 +63,16 @@ export default {
     'targetTitle',
     'targetAddress',
     'trafficTitle',
+    'trafficTitleTip',
     'trafficList',
     'image',
   ],
   data() {
     return {
       methodToOutsidePage(href) {
-        // this.$router.push(href);
-        // const routeData = this.$router.resolve({ path: href, target: '_blank' });
-        // window.open(routeData.href);
-        window.open(href);
+        if (/^http:/.test(href) || /^https:/.test(href)) {
+          window.open(href);
+        }
       },
     };
   },

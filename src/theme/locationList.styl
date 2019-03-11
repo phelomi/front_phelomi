@@ -28,6 +28,8 @@
     &--title
       font-size 2.54vw
       margin-bottom 1.64vw
+      span
+        font-size 1.3vw
     &-list
       position relative
       &:hover
@@ -43,10 +45,11 @@
         display none
         position absolute
         bottom 100%
-        left 13vw
+        left 1vw
         padding .3vw 1vw
         border-radius 10px
         white-space nowrap
+        font-size 1.3vw
       &--describe
       &--unit
         font-size 1.88vw
@@ -59,8 +62,15 @@
       &--target
         min-width 11.86vw
         height 4.08vw
-        border .2vw solid var(--v-secondary-base)
+        border .2vw solid var(--v-primary-base)
         border-radius 1.3vw
+        padding 0 .5vw
+        &-click
+          transition all .15s
+          background-color transparent
+          &:hover
+            color white
+            background-color var(--v-primary-base)
       &--number
         min-width 4.66vw
         height 4.66vw
