@@ -9,6 +9,7 @@
           class="date-range__pickers-input"
           prepend-icon="mdi-calendar"
           readonly
+          disabled
         />
         <v-date-picker
           :events="highlightRange ? dateRange.dates : events"
@@ -29,6 +30,7 @@
           class="date-range__pickers-input"
           prepend-icon="mdi-calendar"
           readonly
+          disabled
         />
         <v-date-picker
           :min="minDate"
