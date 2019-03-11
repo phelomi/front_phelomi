@@ -15,7 +15,7 @@
           :event-color="highlightRange ? dateRange.colors : eventColor"
           v-model="startDate"
           :min="minDate"
-          :max="endDate"
+          :max="maxDate"
           locale="zh-Hant"
           no-title
           @change="onDateRangeChange"
@@ -31,7 +31,7 @@
           readonly
         />
         <v-date-picker
-          :min="startDate"
+          :min="minDate"
           :max="maxDate"
           :events="highlightRange ? dateRange.dates : events"
           :event-color="highlightRange ? dateRange.colors : eventColor"
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { getDate, addDays } from '@/utils/dateMethod';
+import { getDate, addDays, getDayRange } from '@/utils/dateMethod';
 
 export default {
   name: 'daterange',
@@ -104,15 +104,18 @@ export default {
     },
   },
   watch: {
-    startDate() {
+    startDate(val) {
+      const startDate = this.getDate(val, 'timestamp');
+      const endDate = this.getDate(this.endDate, 'timestamp');
+      if (endDate - startDate < 0) this.endDate = '';
       this.onDateRangeChange();
     },
-    endDate() {
+    endDate(val) {
+      const endDate = this.getDate(val, 'timestamp');
+      const startDate = this.getDate(this.startDate, 'timestamp');
+      if (endDate - startDate < 0) this.startDate = '';
       this.onDateRangeChange();
     },
-    // options(val) {
-    //   console.log('TCL: option -> val', val);
-    // },
     options: {
       handler(val) {
         const {
@@ -132,6 +135,7 @@ export default {
   methods: {
     getDate,
     addDays,
+    getDayRange,
     onDateRangeChange() {
       if (this.highlightRange) this.setInRangeData();
       this.$emit('getSelectedDate', {

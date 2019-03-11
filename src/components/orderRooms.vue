@@ -39,7 +39,6 @@ export default {
   name: 'orderRooms',
   props: ['orderRoomList', 'roomTypeInfo'],
   mounted() {
-    console.log('TCL: orderRoomList', this.orderRoomList);
   },
   watch: {
     orderRoomList: {

@@ -693,8 +693,8 @@ export default {
     },
     getDatePickerRangeOri() {
       return {
-        startDate: this.getDate(),
-        endDate: this.getDate(this.addDays(Date.now(), 2)),
+        startDate: '',
+        endDate: '',
         minDate: this.getDate(),
         maxDate: this.getDate(this.addDays(Date.now(), 90)),
       };
@@ -800,6 +800,16 @@ export default {
     },
     // 查詢某段時間可以入住的房間
     async methodSearchRommByTime() {
+      const { endTime, startTime } = this.selectedDateRange;
+      if (!endTime || !startTime) {
+        this.notifySetting = {
+          ...this.notifySetting,
+          open: true,
+          text: '請選擇入住與退房時間',
+          color: 'error',
+        };
+        return;
+      }
       this.calendarByYear.splice(0);
       this.availableRoomList = {};
       // this.checkOrderRoomList = {};
