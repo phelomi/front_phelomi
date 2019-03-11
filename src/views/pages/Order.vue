@@ -696,7 +696,7 @@ export default {
         startDate: '',
         endDate: '',
         minDate: this.getDate(),
-        maxDate: this.getDate(this.addDays(Date.now(), 90)),
+        maxDate: this.getDate(this.addDays(Date.now(), 180)),
       };
     },
     // getParamsOriginStepOne() {
@@ -760,8 +760,8 @@ export default {
     formatDateSearchRange() {
       // 開始時間不能小於今天
       // 開始至結束，時間不能超過一個月
-      // 最長不能超過三個月
-      const maxSearchLimit = 90;
+      // 最長不能超過六個月
+      const maxSearchLimit = 180;
       const searchDateRangeLimit = 30;
       const moreSearchDays = 7;
       const { startTime, endTime } = this.selectedDateRange;
