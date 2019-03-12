@@ -25,4 +25,7 @@ module.exports = {
     config
       .devServer.port(8080);
   },
+  pwa: {
+    themeColor: '#2F599C',
+  },
 };
