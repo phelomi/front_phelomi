@@ -20,7 +20,6 @@
 
       <v-stepper-items>
         <v-stepper-content step="1">
-          <!-- <v-form v-model="validStepOne" ref="formStepOne" lazy-validation> -->
             <v-layout row wrap>
               <v-flex sm12 md3>
                 <h3 class="primary--text">請依入住期間，查詢房間狀況</h3>
@@ -126,15 +125,6 @@
                 :orderRoomList="selectedRoom"
                 :roomTypeInfo="roomTypeInfo"
               />
-              <!-- <calendar-list
-                v-for="(item, idx) in calendarByYearCheck"
-                :key="`calendarByYearCheck${idx}`"
-                type="show"
-                :year="item"
-                :dateList="availableRoomListCheck[item]"
-                @addSelectedRoom="addSelectedRoom"
-                :roomTypeInfo="roomTypeInfo"
-                /> -->
             </v-flex>
           </v-layout>
           <v-divider class="my-5"></v-divider>
@@ -332,30 +322,6 @@
                 :roomTypeInfo="roomTypeInfo"
               />
             </v-flex>
-              <!-- <v-flex
-                sm12
-                v-for="(item, idx) in orderPersonInfoList"
-                :key="`orderPersonInfoList${idx}`"
-                :class="item.class"
-              >
-                <v-text-field
-                  v-model="orderPersonInfo[item.model]"
-                  :label="item.label"
-                  :rules="ruleList[item.rules]"
-                  :required="item.required"
-                  disabled
-                ></v-text-field>
-              </v-flex> -->
-            <!-- <v-flex sm12> -->
-              <!-- <calendar-list
-                v-for="(item, idx) in calendarByYearCheck"
-                :key="`calendarByYearCheck${idx}`"
-                type="show"
-                :year="item"
-                :dateList="availableRoomListCheck[item]"
-                @addSelectedRoom="addSelectedRoom"
-                :roomTypeInfo="roomTypeInfo"
-                /> -->
           </v-layout>
           <v-divider class="my-5"></v-divider>
           <v-layout row wrap>
@@ -424,7 +390,6 @@ export default {
       validStepOne: false,
       validStepTwo: false,
       validStepThree: false,
-      // orderParamsStepOne: this.getParamsOriginStepOne(),
       datePickerRange: this.getDatePickerRangeOri(),
       roomOccList: {
         occ: {
@@ -453,9 +418,6 @@ export default {
       calendarByYear: [],
       availableRoomList: {},
       selectedRoom: new Map(),
-      // checkOrderRoomList: {},
-      // calendarByYearCheck: [],
-      // availableRoomListCheck: {},
       valid: false,
       ruleList: {
         require: [
@@ -812,7 +774,6 @@ export default {
       }
       this.calendarByYear.splice(0);
       this.availableRoomList = {};
-      // this.checkOrderRoomList = {};
 
       const params = this.formatDateSearchRange();
       if (!params) return;
@@ -874,17 +835,13 @@ export default {
     },
     methodFormResetStepOne() {
       this.datePickerRange = this.getDatePickerRangeOri();
-      // this.orderParamsStepOne = this.getParamsOriginStepOne();
-      // this.$refs.formStepOne.resetValidation();
     },
     methodFormResetRoom() {
       this.calendarByYear.splice(0);
-      // this.checkOrderRoomList = {};
     },
     methodClearSelectedRoom() {
       this.clearSelected = true;
       this.selectedRoom.clear();
-      // this.checkOrderRoomList = {};
     },
     toStep(step) {
       this.e1 = step;
@@ -899,15 +856,6 @@ export default {
       // 整理選到的房間
       this.selectedRoom = new Map([...this.selectedRoom.entries()].sort());
 
-      // this.checkOrderRoomList = {};
-      // for (const [key, value] of this.selectedRoom.entries()) {
-      //   let allow = false;
-      //   Object.keys(value).forEach((valKey) => {
-      //     if (value[valKey]) allow = true;
-      //   });
-      //   if (allow) this.checkOrderRoomList[key] = value;
-      // }
-      // this.checkOrderRoomList
       // 20190307: {
       //   '5c73f6aaad26b8d3c2be3c4e': 0,
       //   '5c73f6aaad26b8d3c2be3c4f': 1,
@@ -1028,8 +976,6 @@ export default {
       this.methodClearSelectedRoom();
       this.methodFormPersonInfoReset();
 
-      // // this.calendarByYearCheck = [];
-      // // this.availableRoomListCheck = {};
       this.toStep(1);
     },
   },
