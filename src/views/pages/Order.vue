@@ -120,10 +120,9 @@
               <h3 class="primary--text">確認訂房資訊</h3>
             </v-flex>
             <v-flex sm12 md8 offset-md2 pt-3>
-              <orderRooms
+              <order-rooms
                 ref="orderRooms"
-                :orderRoomList="selectedRoom"
-                :roomTypeInfo="roomTypeInfo"
+                :orderRoomList="orderRoomsList"
               />
             </v-flex>
           </v-layout>
@@ -317,9 +316,8 @@
               <h3 class="primary--text">訂房資訊</h3>
             </v-flex>
             <v-flex sm12 md10 offset-md1 pt-3>
-              <orderRooms
-                :orderRoomList="selectedRoom"
-                :roomTypeInfo="roomTypeInfo"
+              <order-rooms
+                :orderRoomList="orderRoomsList"
               />
             </v-flex>
           </v-layout>
@@ -594,6 +592,7 @@ export default {
         { label: '備註', key: 'note' },
       ],
       orderInfoParams: null,
+      orderRoomsList: {},
     };
   },
   mounted() {
@@ -852,7 +851,8 @@ export default {
       // 被選到的房型，用map組成
       this.selectedRoom.set(this.reverseFormatNumberDate(date), selected);
     },
-    checkSelectedRoom() {
+    async checkSelectedRoom() {
+      this.waitResponse = true;
       // 整理選到的房間
       this.selectedRoom = new Map([...this.selectedRoom.entries()].sort());
 
@@ -871,7 +871,23 @@ export default {
       });
 
       if (countSelectedRooms) {
-        this.toStep(2);
+        this.orderRoomsList = {};
+        const res = await httpMethod({
+          url: '/v1/api/front/check/order',
+          method: 'POST',
+          data: { roomInfo: this.orderSelectedRoom() },
+        });
+        if (res && !res.code && Object.keys(res.data).length > 0) {
+          this.orderRoomsList = res.data;
+          this.toStep(2);
+        } else {
+          this.notifySetting = {
+            ...this.notifySetting,
+            open: true,
+            text: res.msg || '處理錯誤，請重新再弒，或聯絡客服人員',
+            color: 'error',
+          };
+        }
       } else {
         this.notifySetting = {
           ...this.notifySetting,
@@ -880,6 +896,7 @@ export default {
           color: 'warning',
         };
       }
+      this.waitResponse = false;
     },
     // 將選到的房間，整理成藥送給後端的格式
     orderSelectedRoom() {
