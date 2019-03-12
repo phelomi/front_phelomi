@@ -4,9 +4,8 @@
       <h2 class="primary--text">{{year}}</h2>
     </div>
     <div class="calendar-list__date-list">
-      <component
-        :is="currentComponent"
-        :ref="`calendar${type}`"
+      <calendar-select-date
+        ref="calendarSelectDate"
         v-for="(item, idx) in dateList"
         :key="`dateList${idx}`"
         :date="item.date"
@@ -21,24 +20,19 @@
 </template>
 <script>
 import calendarSelectDate from '@/components/calendarSelectDate.vue';
-import calendarShowDate from '@/components/calendarShowDate.vue';
 import { getDate, getDayRange, addDays } from '@/utils/dateMethod';
 
 export default {
   name: 'calendarList',
   components: {
     calendarSelectDate,
-    calendarShowDate,
   },
-  props: ['year', 'dateList', 'type', 'clearSelected', 'roomTypeInfo', 'selectedDateRange'],
+  props: ['year', 'dateList', 'clearSelected', 'roomTypeInfo', 'selectedDateRange'],
   data() {
     return {
     };
   },
   computed: {
-    currentComponent() {
-      return this.type === 'edit' ? calendarSelectDate : calendarShowDate;
-    },
     selectedDateRangeString() {
       const res = [];
       const { startTime, endTime } = this.selectedDateRange;
@@ -56,7 +50,7 @@ export default {
       handler(val) {
         if (val) {
           if (Object.keys(this.$refs).length > 0) {
-            this.$refs.calendaredit.forEach((component) => {
+            this.$refs.calendarSelectDate.forEach((component) => {
               component.methodCleadSelectedRoom();
             });
           }

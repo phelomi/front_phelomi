@@ -85,7 +85,6 @@
               <calendar-list
                 v-for="(item, idx) in calendarByYear"
                 :key="`calendarByYear${idx}`"
-                type="edit"
                 :year="item"
                 :dateList="availableRoomList[item]"
                 @addSelectedRoom="addSelectedRoom"
