@@ -11,18 +11,21 @@
     align-items center
     border-radius 3vw
     border 1vw solid
+    transition all .15s
+    background-color transparent
     &--info
       border-color var(--v-info-base)
+      &:hover
+        background-color var(--v-info-base)
     &--warning
       border-color var(--v-warning-base)
+      &:hover
+        background-color var(--v-warning-base)
     &--error
       border-color var(--v-error-base)
+      &:hover
+        background-color var(--v-error-base)
     &:hover
-      background-image url('../assets/button/button_bg_follow.jpg')
-      background-repeat no-repeat
-      background-size 36.45vw 23.95vw
-      background-position -7.27vw -3.63vw
-      border-width .5vw
       p
         color white !important
   &__text

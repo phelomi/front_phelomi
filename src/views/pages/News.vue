@@ -26,8 +26,9 @@
   </div>
 </template>
 <script>
-import ad001ImgUrl from '../../assets/news/ad001.jpg';
-import fireworksImgUrl from '../../assets/news/penghu-fireworks-tiny.jpg';
+import startImgUrl from '../../assets/news/open-img.jpg';
+import newShipImgUrl from '../../assets/news/new-ship.jpg';
+import fireworksImgUrl from '../../assets/news/fireworks-list.jpg';
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
 import constVar from '@/utils/constVar';
@@ -60,9 +61,9 @@ export default {
         newship: '全新百麗快速客輪開航',
       },
       img: {
-        start: ad001ImgUrl,
+        start: startImgUrl,
         fireworks: fireworksImgUrl,
-        newship: '',
+        newship: newShipImgUrl,
       },
       info: {
         start: '即日起至5/5，歡慶飛樂米星空號起航優惠活動開跑囉，優惠限時開跑，凡訂房及贈送精美紀念品。',

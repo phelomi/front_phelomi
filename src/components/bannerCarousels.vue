@@ -12,6 +12,9 @@
 </template>
 <script>
 import bannerImg001 from '../assets/banner/banner001.jpg';
+import bannerImg002 from '../assets/banner/banner002.jpg';
+import bannerImg003 from '../assets/banner/banner003.jpg';
+import bannerImg004 from '../assets/banner/banner004.jpg';
 
 export default {
   name: 'bannerCarousels',
@@ -20,19 +23,19 @@ export default {
       bannerList: [
         {
           src: bannerImg001,
-          text: '搭上飛樂米星空號，\n在澎湖的星海裡漫溯———',
+          text: '',
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          text: '搭上飛樂米星空號，\n在澎湖的星海裡漫溯———',
+          src: bannerImg002,
+          text: '',
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          text: '搭上飛樂米星空號，\n在澎湖的星海裡漫溯———',
+          src: bannerImg003,
+          text: '',
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          text: '搭上飛樂米星空號，\n在澎湖的星海裡漫溯———',
+          src: bannerImg004,
+          text: '',
         },
       ],
     };
