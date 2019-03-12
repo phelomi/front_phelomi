@@ -9,7 +9,11 @@
         />
       </v-flex>
     </v-layout>
-    <div class="primary-img page-news__img" :style="{backgroundImage:`url(${img[themeType]})`}">
+    <div
+      v-if="img[themeType]"
+      class="primary-img page-news__img"
+      :style="{backgroundImage:`url(${img[themeType]})`}"
+    >
       <!-- <img :src="img[themeType]" alt=""> -->
     </div>
     <div class="primary-content page-news__content">
@@ -35,7 +39,6 @@ export default {
     showRooms,
   },
   mounted() {
-    console.log('TCL: mounted -> this.$oute', this.themeType);
     this.$vuetify.goTo(0, constVar.scrollPagAni);
   },
   computed: {
@@ -54,14 +57,17 @@ export default {
       theme: {
         start: '歡慶飛樂米星空號起航',
         fireworks: '澎湖花火節',
+        newship: '全新百麗快速客輪開航',
       },
       img: {
         start: ad001ImgUrl,
         fireworks: fireworksImgUrl,
+        newship: '',
       },
       info: {
         start: '即日起至5/5，歡慶飛樂米星空號起航優惠活動開跑囉，優惠限時開跑，凡訂房及贈送精美紀念品。',
         fireworks: '澎湖花火節：比跨年煙火還美麗，絕對不能錯過的精彩~~\n\n    2019澎湖花火節，2019澎湖國際海上花火節將於4月18日至6月27日華麗登場，每週一、四晚上在馬公市觀音亭施放，並增加5月12日（母親節）節慶加場活動，共計22場次。邀請大家一起參與澎湖觀光年度盛事，感受繽紛璀璨的花火饗宴、精彩節目及「世界最美麗海灣–澎湖灣」澎湃的活力。\n',
+        newship: '全世界最快高速客輪！百麗新船3月開航　嘉義到澎湖竟然只要1H，高雄到馬公2小時、台中到馬公2小時10分鐘，蘇澳到花蓮1小時左右，暢遊藍色公路安全快速還「不會暈船」，享受海上風光！\n\n另外，百麗航運補充，百麗航運也將規劃五月的的第二艘船拓展台灣東部蘇澳至花蓮往返航線，以便利民眾更多元的交通選擇\n',
       },
       tmp: [
         '地點：馬公市觀音亭\n節目活動時間：晚上8點開始（開幕19:30開始）\n花火施放時間：晚上9點 施放15分鐘（開幕20分鐘）',
