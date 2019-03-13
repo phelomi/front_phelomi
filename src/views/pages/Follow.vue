@@ -49,7 +49,7 @@
 <script>
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
-import primaryImg001 from '../../assets/follow/ad001.jpg';
+import primaryImg001 from '../../assets/news/fireworks-list.jpg';
 import adSm001 from '../../assets/follow/ad_sm001.jpg';
 import adSm002 from '../../assets/follow/ad_sm002.jpg';
 import adSm003 from '../../assets/follow/ad_sm003.jpg';
