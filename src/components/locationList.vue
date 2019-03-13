@@ -48,7 +48,7 @@
       </v-flex>
       <v-flex xs4 class="location-list__right">
         <div class="location-list__img">
-          <img class="lg" :src="image" alt="">
+          <img :class="image ? '' : 'lg'" :src="image" alt="">
         </div>
       </v-flex>
     </v-layout>
