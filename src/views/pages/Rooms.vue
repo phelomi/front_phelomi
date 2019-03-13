@@ -105,8 +105,6 @@
 <script>
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
-// import servicesIcon from '@/components/servicesIcon.vue';
-// import ad001 from '../../assets/rooms/ad001.jpg';
 import constVar from '@/utils/constVar';
 import { roomList, roomType } from '@/utils/constRooms';
 
@@ -132,6 +130,7 @@ export default {
   computed: {
     roomKey() {
       if (this.$route.query && this.$route.query.t) {
+        this.$vuetify.goTo(0, constVar.scrollPagAni);
         return this.$route.query.t;
       }
       return null;
@@ -192,6 +191,7 @@ export default {
   methods: {
     methodOrder() {
       console.log('Order');
+      this.$router.push('/order');
     },
   },
 };
