@@ -180,10 +180,11 @@ export default {
       servicesIconList: ['wifi', 'tv', 'shower', 'tea'],
       orderBtnText: '立即\n訂房',
       iconList: [
-        { text: '房間描述', key: 'device' },
-        { text: '房間設備', key: 'kitchen' },
-        { text: '廚房設備', key: 'bathroom' },
-        { text: '衛浴設備', key: 'allService' },
+        { text: '房間描述', key: 'description' },
+        { text: '房間設備', key: 'device' },
+        { text: '廚房設備', key: 'kitchen' },
+        { text: '衛浴設備', key: 'bathroom' },
+        { text: '服務與設施', key: 'allService' },
         { text: '安全設施', key: 'allDevice' },
       ],
     };
