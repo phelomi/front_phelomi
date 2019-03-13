@@ -40,7 +40,7 @@ export default {
           targetClass: 'target-news',
         },
         {
-          textUp: '房型介紹',
+          textUp: '房間介紹',
           textDown: 'ROOMS',
           introText: '藍藍的海水、星光點點的夜空，與所愛的家人、\n朋友、伴侶來一趟難忘的澎湖之旅吧！',
           contentPath: 'components/index/rooms.vue',

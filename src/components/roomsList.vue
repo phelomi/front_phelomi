@@ -1,9 +1,12 @@
 <template>
   <div class="rooms-list">
-    <a @click="$router.push(url)" class="rooms-list__link">
+    <a
+      @click="$router.push({path:url,query: info})"
+      class="rooms-list__link"
+    >
       <v-layout column>
         <v-flex xs8 class="rooms-list__img">
-          <img :src="img" alt="">
+          <img class="sm" :src="img" alt="">
         </v-flex>
         <v-flex xs4 class="rooms-list__content">
           <v-layout column>
@@ -27,7 +30,7 @@
 <script>
 export default {
   name: 'roomsList',
-  props: ['img', 'title', 'intro', 'url'],
+  props: ['img', 'title', 'intro', 'url', 'info'],
   data() {
     return {
 

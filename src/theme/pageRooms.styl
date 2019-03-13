@@ -35,10 +35,22 @@
     display flex
     flex-direction row
     margin-top 1.7vw
+    flex-wrap wrap
+  &__icon-list
+    flex 100%
+    padding-left 1vw
+    &--icon
+      font-size 1.3vw
+      line-height 2vw
+      padding .15vw 0
+      i
+        font-size $font-size-p
+      span
+        padding-left 0.4vw
   ul
     padding-left 2vw
   &__text
-    white-space pre-line
+    white-space pre-wrap
     font-size 1.56vw
     line-height 3vw
   &__order-btn
@@ -52,15 +64,15 @@
     .v-btn__content
       white-space pre-line
       line-height 5.8vw
-  &__summary
-    margin-top 6.45vw
-    border .3vw solid var(--v-error-base)
-    width 23.63vw
-    border-radius 1vw
-    padding 1.32vw
-    p
-      white-space pre-line
-      font-size 1.86vw
-      letter-spacing 0.2vw
-      margin 0
-      line-height 3vw
+  // &__summary
+  //   margin-top 6.45vw
+  //   border .3vw solid var(--v-error-base)
+  //   width 23.63vw
+  //   border-radius 1vw
+  //   padding 1.32vw
+  //   p
+  //     white-space pre-line
+  //     font-size 1.86vw
+  //     letter-spacing 0.2vw
+  //     margin 0
+  //     line-height 3vw

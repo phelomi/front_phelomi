@@ -37,7 +37,7 @@ export default {
           text: '最新消息', target: 'news', directToPage: false, regex: /^\/news/,
         },
         {
-          text: '房型介紹', target: 'rooms', directToPage: false, regex: /^\/rooms/,
+          text: '房間介紹', target: 'rooms', directToPage: false, regex: /^\/rooms/,
         },
         {
           text: '交通位置', target: 'location', directToPage: true, regex: /^\/location/,

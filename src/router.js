@@ -46,7 +46,7 @@ export default new Router({
           name: 'rooms',
           component: () => import('@/views/pages/Rooms.vue'),
           meta: {
-            title: '房型介紹',
+            title: '房間介紹',
           },
         },
         {
