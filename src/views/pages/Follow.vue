@@ -11,12 +11,13 @@
     </v-layout>
     <div class="primary-content">
       <h2 class="page-follow__theme secondary--text text-under-line">{{theme[themeType] || ''}}</h2>
-      <div v-if="themeType === 'necessary'">
+      <div>
+        <!-- v-if="themeType === 'necessary'" -->
         <v-layout
           row
           v-for="(item, idx) in info[themeType]"
           :key="`info${themeType}${idx}`"
-          class="page-follow__content"
+          class="page-follow__content mb-5"
         >
           <v-flex xs4>
             <div class="page-follow__content--img">
@@ -24,17 +25,20 @@
             </div>
           </v-flex>
           <v-flex xs8 class="page-follow__content--info">
-            <h4 class="page-follow__content--title textBlack--text">・{{item.title}}</h4>
+            <h4
+              v-if="item.title"
+              class="page-follow__content--title textBlack--text"
+            >・{{item.title}}</h4>
             <p class="page-follow__content--text textBlack--text">{{item.text}}</p>
           </v-flex>
         </v-layout>
       </div>
-      <div v-if="themeType === 'phelomi'">
+      <!-- <div v-if="themeType === 'phelomi'">
         <p
           v-for="(item, idx) in info[themeType]"
           :key="`info${themeType}${idx}`"
         >{{item}}</p>
-      </div>
+      </div> -->
       <div class="primary-img" v-if="primaryImg[themeType]">
         <img class="lg" :src="primaryImg[themeType]" alt="">
       </div>
@@ -49,6 +53,11 @@ import primaryImg001 from '../../assets/follow/ad001.jpg';
 import adSm001 from '../../assets/follow/ad_sm001.jpg';
 import adSm002 from '../../assets/follow/ad_sm002.jpg';
 import adSm003 from '../../assets/follow/ad_sm003.jpg';
+import adPh01 from '../../assets/follow/follow-phelomi01.jpg';
+import adPh02 from '../../assets/follow/follow-phelomi02.jpg';
+import adPh03 from '../../assets/follow/follow-phelomi03.jpg';
+import adPh04 from '../../assets/follow/follow-phelomi04.jpg';
+import adPh05 from '../../assets/follow/follow-phelomi05.jpg';
 import constVar from '@/utils/constVar';
 
 export default {
@@ -62,7 +71,6 @@ export default {
   },
   computed: {
     themeType() {
-      console.log('TCL: themeType -> this.$route.query.theme', this.$route.query.theme);
       return this.$route.query.theme;
     },
   },
@@ -88,8 +96,8 @@ export default {
         necessary: [
           {
             img: adSm003,
-            title: 'DAY1：蛇頭山遊憩區－風櫃聽濤－山水沙灘－鎖港鎮風塔－專業海上浮潛＆立式划漿',
-            text: '機場登機→馬公機場→在機場辦理民宿貼心贈送摩托車登記領車→行李由民宿帶回→騎車自由行。【蛇頭山遊憩區】是遠眺馬公港和側天島及四角嶼等澎湖內灣最佳景點。→【風櫃聽濤】因為海潮灌入柱狀節理玄武岩底下的海蝕溝槽，發出有如風箱鼓風的巨大聲響，聽其濤聲、實乃視覺與聽覺之饗宴！→【山水沙灘】貝殼沙灘潔淨漂亮，海水澄澈透藍→【鎖港鎮風塔】澎湖最大的石敢當！→下午參加民宿精心安排海上浮潛&立式划漿體驗，穿著精緻浮潛裝備在專業教練的帶領下一睹全臺灣最美的世界級海底景觀，未經破壞的珊瑚礁群、七彩繽紛的熱帶魚群，絕對讓您嘆為觀止！→觀音亭夜賞炫麗煙火或陸上的鐵達尼號–菊島之星、海產小吃街，享受澎湖風情→夜宿飛樂米星空號民宿享受觀星寧靜夜晚。',
+            title: 'DAY1：蛇頭山遊憩區－風櫃聽濤－山水沙灘－專業海上浮潛＆立式划漿',
+            text: '機場登機→馬公機場→在機場辦理民宿貼心贈送摩托車登記領車→行李由民宿帶回→騎車自由行。【蛇頭山遊憩區】是遠眺馬公港和側天島及四角嶼等澎湖內灣最佳景點。→【風櫃聽濤】海潮灌入玄武岩底下的海蝕溝槽，發出有如風箱鼓風的巨大聲響，實乃視覺與聽覺之饗宴！→【山水沙灘】貝殼沙灘潔淨漂亮，海水澄澈透藍→下午參加民宿精心安排海上浮潛&立式划漿體驗，穿著浮潛裝備在專業教練的帶領下一睹最美的世界級海底景觀，七彩繽紛的熱帶魚群，讓您嘆為觀止！→觀音亭夜賞炫麗煙火或陸上的鐵達尼號–菊島之星、海產小吃街，享受澎湖風情→夜宿飛樂米星空號民宿享受觀星寧靜夜晚。',
           },
           {
             img: adSm002,
@@ -103,11 +111,31 @@ export default {
           },
         ],
         phelomi: [
-          '★ 澎湖馬公山水30高地公園：遠眺山水黃金貝殼沙灘美麗海岸線，猶如置身黃金海岸，令人讚嘆不已！',
-          '★ 龍門港：海水藍綠交疊清澈透底，落日余暉光芒光耀眼，令人高度舒壓留連忘返！',
-          '★ 菜園3D彩繪情人灣：走上長長的橋通往幸福的愛情、親情之路，幸福百分百，3D彩繪讓人身歷其境，驚奇不斷！',
-          '★ 飛樂米星空號觀星台：看著滿天的星星，猜猜星座，無比的寧靜適合發呆天馬行空的夢想，就在銀河中得到實現，找回赤子真心！遨翔在廣闊星際中，度過美麗的夜晚！',
-          '★ 飛樂米星空號植栽体驗：看著飽滿的多肉植物，發揮設計想像力，構出屬於自已的獨創巧思盆栽，用心呵護享受成長的樂趣！',
+          {
+            img: adPh01,
+            title: '澎湖馬公山水30高地公園',
+            text: '遠眺山水黃金貝殼沙灘美麗海岸線，猶如置身黃金海岸，令人讚嘆不已！',
+          },
+          {
+            img: adPh02,
+            title: '龍門港',
+            text: '海水藍綠交疊清澈透底，落日余暉光芒光耀眼，令人高度舒壓留連忘返！',
+          },
+          {
+            img: adPh03,
+            title: '菜園3D彩繪情人灣',
+            text: '走上長長的橋通往幸福的愛情、親情之路，幸福百分百，3D彩繪讓人身歷其境，驚奇不斷！',
+          },
+          {
+            img: adPh04,
+            title: '飛樂米星空號觀星台',
+            text: '看著滿天的星星，猜猜星座，無比的寧靜適合發呆天馬行空的夢想，就在銀河中得到實現，找回赤子真心！遨翔在廣闊星際中，度過美麗的夜晚！',
+          },
+          {
+            img: adPh05,
+            title: '飛樂米星空號植栽体驗',
+            text: '看著飽滿的多肉植物，發揮設計想像力，構出屬於自已的獨創巧思盆栽，用心呵護享受成長的樂趣！',
+          },
         ],
       }
       ,

@@ -153,7 +153,7 @@ export default {
           },
           {
             img: rooms014,
-            title: '彩虹堡可可粽四人房',
+            title: '彩虹堡可可棕四人房',
             type: 'bfc',
             intro: '缺描述',
             url: '/rooms',

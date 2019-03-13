@@ -28,6 +28,14 @@
         <td colspan="4"></td>
         <td>{{currencies(sumTotal)}}</td>
       </tr>
+      <tr class="sumtotal-row">
+        <th colspan="4"></th>
+        <th>定金</th>
+      </tr>
+      <tr>
+        <td colspan="4"></td>
+        <td>{{currencies(Math.round(sumTotal * .3))}}</td>
+      </tr>
     </table>
   </div>
 </template>

@@ -44,12 +44,12 @@
                   @click="methodFormResetStepOne"
                   :disabled="waitResponse"
                 >
-                  重置
+                  重新查詢
                 </v-btn>
               </v-flex>
             </v-layout>
           <!-- </v-form> -->
-          <v-divider class="my-5"></v-divider>
+          <v-divider id="hash-select-room" class="my-5"></v-divider>
           <v-layout row wrap v-if="calendarByYear.length > 0">
             <v-flex sm12 md3>
               <h3 class="primary--text">請選擇房間</h3>
@@ -71,14 +71,14 @@
                 @click="methodFormResetRoom"
                 :disabled="waitResponse"
               >
-                重置搜尋結果
+                重新查詢
               </v-btn>
               <v-btn
                 flat
                 @click="methodClearSelectedRoom"
                 :disabled="waitResponse"
               >
-                重置已選房型
+                清除已選房型
               </v-btn>
             </v-flex>
             <v-flex sm12>
@@ -256,6 +256,21 @@
                 </v-flex>
                 <v-flex sm12 md10 mt-4>
                   <p class="textBlack--text page-order__notice-content">{{noticeContent}}</p>
+                  <ul>
+                    <li
+                      v-for="(item, idx) in noticeContent2"
+                      :key="`liveRule${idx}`"
+                      class="textBlack--text page-order__notice-content"
+                    >{{item}}</li>
+                  </ul>
+                  <p class="textBlack--text page-order__notice-content">{{noticeContent3}}</p>
+                  <ul>
+                    <li
+                      v-for="(item, idx) in noticeContent4"
+                      :key="`liveRule${idx}`"
+                      class="textBlack--text page-order__notice-content"
+                    >{{item}}</li>
+                  </ul>
                 </v-flex>
                 <v-flex sm12 md12 >
                   <v-checkbox
@@ -324,6 +339,10 @@
           <v-layout row wrap>
             <v-flex sm12 md3>
               <h3 class="primary--text">匯款資訊如下</h3>
+            </v-flex>
+            <v-flex sm12 md7>
+              <p class="textBlack--text page-order__notice-content">{{orderSuccessText}}</p>
+              <p class="textBlack--text page-order__notice-content">{{bankInfo}}</p>
             </v-flex>
           </v-layout>
             <v-flex xs12 class="page-order__footer mt-5">
@@ -576,7 +595,27 @@ export default {
       roomTypeInfo: {},
       emptyOccList: {},
       roomTypeIcon: [],
-      noticeContent: '我們共有三館.因地點不同各具獨自的特色及風格，距離機場約5~10分鐘.\n距離馬公市約10~15分鐘 3間民宿週邊有7-11及沙灘約3~10分鐘。\n\n希臘邊境位於山水沙灘衝浪勝地旁.民宿有提供免費衝浪版.SPA池及三溫暖烤箱，\n進房下午5點退房下午2點希臘式早餐供應至退房。\n\n北非花園位於興仁水庫旁有漂亮的興仁夕陽.民宿提供免費看夕陽喝下午茶.還有華麗的摩洛哥空間及早餐，進房下午3點退房中午11點下午茶3~5點提供.摩洛哥早餐供應至退房。人魚之丘位於澎南海邊離海只有25公尺.民宿提供360度泳池及夜照設備.還有婚禮場地，進房下午4點退房下午1點西班牙式早餐供應至退房。\n\n月橘villa 是藝人納豆與我們一起合作的民宿。以澎湖傳統建築工法，再次獨特打造私人villa。室內傢俱、用品橫跨明、清、日據等三個年代，邀請旅人們，在歲月的風華中，感受島嶼的愜意。\n進房下午3點  退房中午12點  中式早餐供應至退房。',
+      noticeContent: '（一）入住資訊：\n歡迎您來到飛樂米星空號民宿，為維護住宿的品質及安全，特訂住宿規則，請共同遵守。\n  入住時間:15:00\n  退房時間:10:00\n  專人/櫃檯服務時間:07:00 - 22:00\n  早餐時間7:00~9:00\n賠償金額參考\n  攜帶式 Wi-Fi 分享器遺失賠償費用: TWD 300\n  遙控器:電視、冷氣、智能電視盒: TWD 300\n  多頻道智能電視盒遺失賠償費用: TWD  2500\n發票/收據\n  如有需要，旅宿主人現場將提供收據。\n住房守則',
+      noticeContent2: [
+        '大廳為共同使用空間，使用後請保持清潔，書報雜誌等物品閱畢請歸回原處，私人物品勿留置大廳內，大廳設有飲水機，請多加利用。',
+        '為維護庭園清潔，請勿於庭園內烤肉及烹煮食物。',
+        '戶外庭園燈將於晚上11:00關閉。',
+        '請勿任意移動室內擺設(如床舖)',
+        '離開房間時，請隨手將房門鎖上，貴重的物品請自行小心保管，退房時，請務必繳回房門的鑰匙及節電卡。',
+        '為維護住房品質，本場所室內禁止吸煙、酗酒、嚼檳楖、賭博、大聲喧嘩，打麻將、攜帶寵物入內、若於房內抽煙，衛生局將依規定罰款2千~1萬',
+        '為維護其他客人權益，請勿攜帶寵物，如不遵守之房客，店家有權利拒絕房客入住並沒收訂金',
+        '房客退房後如房間內之設施有損壞或遺失，店家將會要求賠償或報警處理，入住房客請自重。',
+        '請依房型人數住宿，超出人數，加床以加床墊為主，每人並加收500元（清潔費）',
+        '如需接送機，請預先告知，班機或船抵達時間，以便安排，只住宿一天可選擇接機或送機(二選一)，搭機旅客 僅限於民宿＜-->機場，搭船旅客僅限於民宿＜--＞馬公港  (或龍門港)之間的接送，其餘地點均無法提供接送服務，敬請旅客配合！',
+        '住宿尾款的部份，只接受現金或國民旅遊卡，行程及其他費用只接受現金，無刷卡付費服務，敬請見諒。',
+        '假日定義(週五．六．日)平日定義(週一~週四)',
+      ],
+      noticeContent3: '\n希望您將民宿當成溫馨的家，更是在地的好朋友，\n     謝謝您的合作，祝旅遊愉快! 平安順心!\n\n（二）取消政策：',
+      noticeContent4: [
+        '旅客於入住日前14日(含)取消訂房者，得請求旅宿主人退還100%已付總房費。',
+        '旅客於入住日前7–13日(含)取消訂房者，得請求旅宿主人退還50%已付總房費。',
+        '旅客於入住日前1-6日(含)取消訂房與入住當天未入住(No-show)者，旅宿主人得收取100%已付總房費。\n例:旅客預訂4/20入住。但旅客於4/623:59(UTC+8:00)前取消訂單，旅宿主人不收取任何房費。',
+      ],
       checkOrderInfo: [
         { label: '聯絡姓名', key: 'name' },
         { label: '客戶性別', key: 'gender' },
@@ -592,6 +631,9 @@ export default {
       ],
       orderInfoParams: null,
       orderRoomsList: {},
+      bankInfo: '匯款銀行：中國信託商業銀行 文心分行（代號822）\n匯款帳號：4735-4049-3788\n匯款戶名：許秋燕\n\n匯款後，請務必以Mail、簡訊或電話告知，註明匯款人姓名、電話、住宿日期、住宿房型、人數以及帳號後五碼，以便完成訂房手續 。',
+      orderSuccessText: '恭喜您訂房成功！\n提醒您：記得在2天內完成匯款，若未完成匯款即視同放棄訂單。',
+      // depositText: '本次交易的預付定金為',
     };
   },
   mounted() {
@@ -798,6 +840,7 @@ export default {
         );
         this.calendarByYear = calendarByYear;
         this.availableRoomList = availableRoomList;
+        this.$vuetify.goTo('#hash-select-room', constVar.scrollPagAni);
       } else {
         this.notifySetting = {
           ...this.notifySetting,
@@ -836,6 +879,9 @@ export default {
     },
     methodFormResetRoom() {
       this.calendarByYear.splice(0);
+      setTimeout(() => {
+        this.scrollToTop();
+      });
     },
     methodClearSelectedRoom() {
       this.clearSelected = true;
