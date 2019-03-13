@@ -20,10 +20,10 @@
         <div class="primary-img">
           <img
             class="lg"
-            :src="null"
+            :src="item ? `/img/rooms${item}` : null"
             alt=""
-            :style="item ? {backgroundImage: `url(/img/rooms${item})`} : null"
           >
+            <!-- :style="item ? {backgroundImage: `url(/img/rooms${item})`} : null" -->
         </div>
       </v-carousel-item>
     </v-carousel>
