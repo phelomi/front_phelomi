@@ -4,7 +4,7 @@
       <v-flex xs6 class="layout-footer__content">
         <v-layout row>
           <v-flex xs5 class="layout-footer__logo">
-            <img :src="imgPathLogoVertical" alt="">
+            <img v-lazy="imgPathLogoVertical" alt="">
           </v-flex>
           <v-flex xs7 class="layout-footer__contact">
             <v-layout>
@@ -17,7 +17,7 @@
                 <a :href="item.url ? item.url : null" target="_blank">
                   <v-layout row>
                     <v-flex xs4 class="layout-footer__contact--list-icon">
-                      <img :src="item.icon" alt="">
+                      <img v-lazy="item.icon" alt="">
                     </v-flex>
                     <v-flex xs8 class="layout-footer__contact--list-text">
                       <p class="secondary--text">{{item.text}}</p>
@@ -37,7 +37,7 @@
                       color="#40A637"
                       class="white--text"
                     >
-                      <img :src="item.icon" alt="">
+                      <img v-lazy="item.icon" alt="">
                       <p class="white--text">{{item.text}}</p>
                     </v-btn>
                   </v-flex>

@@ -4,7 +4,7 @@
       <v-flex xs8 class="location-list__left">
         <div class="location-list__title text-under-line">
           <div class="location-list__title--img">
-            <img :src="titleIcon" alt="">
+            <img v-lazy="titleIcon" alt="">
           </div>
           <h2 class="primary--text">{{title}}</h2>
         </div>
@@ -48,7 +48,7 @@
       </v-flex>
       <v-flex xs4 class="location-list__right">
         <div class="location-list__img">
-          <img :class="image ? '' : 'lg'" :src="image" alt="">
+          <img :class="image ? '' : 'lg'" v-lazy="image" alt="">
         </div>
       </v-flex>
     </v-layout>

@@ -3,9 +3,9 @@
     <v-carousel-item
       v-for="(item, idx) in bannerList"
       :key="`bannerList${idx}`"
-      :src="item.src"
       class="banner-carousels__content"
     >
+      <img class="lg" v-lazy="item.src" alt="">
       <p class="banner-carousels__text">{{item.text}}</p>
     </v-carousel-item>
   </v-carousel>

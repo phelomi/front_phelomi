@@ -8,14 +8,14 @@
       target="_blank"
       class="social-button__link"
     >
-      <img :src="item.imgPath" alt="" class="social-button__img">
+      <img v-lazy="item.imgPath" alt="" class="social-button__img">
       <div
         v-if="item.qrcodeImg"
         :class="['social-button__qrcode grey lighten-4', directionTop ? '' : 'down']"
       >
         <p>掃描QR code立即加入好友，</p>
         <p>或點擊icon複製{{item.target}}</p>
-        <img :src="item.qrcodeImg" alt="">
+        <img v-lazy="item.qrcodeImg" alt="">
         <p>{{item.target}}：{{item.id}}</p>
       </div>
     </a>

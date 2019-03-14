@@ -12,9 +12,9 @@
     <div
       v-if="img[themeType]"
       class="primary-img page-news__img"
-      :style="{backgroundImage:`url(${img[themeType]}), url(${placeholder})`}"
+      v-lazy:background-image="img[themeType]"
     >
-      <!-- <img :src="img[themeType]" alt=""> -->
+      <img class="lg" v-lazy="img[themeType]" alt="">
     </div>
     <div class="primary-content page-news__content">
       <h2 class="page-news__theme secondary--text text-under-line">{{theme[themeType] || ''}}</h2>

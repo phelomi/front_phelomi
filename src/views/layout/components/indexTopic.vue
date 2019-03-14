@@ -6,7 +6,7 @@
       outerCssClass,
       withoutTitleChangeSetOuter
     ]"
-    :style="backgroundImageStyle"
+    v-lazy:background-image="backgroundImageStyle"
   >
     <v-layout row>
       <v-flex v-if="textUp" xs6 class="index-topic__title">
@@ -59,7 +59,7 @@ export default {
       return () => import(`@/${path}`);
     },
     backgroundImageStyle() {
-      return { backgroundImage: `url(${this.publicPath}${this.backgroundImage})` };
+      return `${this.publicPath}${this.backgroundImage}`;
     },
     withoutTitleChangeSetOuter() {
       return !this.textUp && this.targetClass ? this.targetClass : null;

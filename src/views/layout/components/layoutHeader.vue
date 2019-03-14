@@ -1,7 +1,7 @@
 <template>
   <v-toolbar class="header" :height="headerHeight">
     <v-toolbar-title class="header__logo" @click="$router.push('/home')">
-      <img class="" :src="imgPathLogoHorizon" alt="">
+      <img class="" v-lazy="imgPathLogoHorizon" alt="">
     </v-toolbar-title>
     <v-toolbar-items class="header__menu">
       <headerButton
