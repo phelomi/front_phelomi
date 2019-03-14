@@ -2,7 +2,7 @@
   <div class="news-list">
     <v-layout row>
       <v-flex xs5 class="news-list__img">
-        <img class="sm" :src="img" alt="">
+        <img class="sm" v-lazy="img" alt="">
       </v-flex>
       <v-flex xs7 class="news-list__content">
         <v-layout column>
