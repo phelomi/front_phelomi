@@ -3,8 +3,8 @@
     <a
       v-for="(item, idx) in socialButtonList"
       :key="`socialButtonList${idx}`"
-      :href="item.url ? item.url : 'javascript:;'"
-      @click="methodCopyText(item.target, item.id)"
+      :href="item.url ? item.url : null"
+      @click.stop="methodCopyText(item.target, item.id)"
       target="_blank"
       class="social-button__link"
     >
@@ -61,7 +61,7 @@ export default {
         {
           url: '', imgPath: imgPathWechat, target: '微信ID', id: 'f0967229968', qrcodeImg: qrcodeWechat,
         },
-        { url: 'https://www.instagram.com/familystarrysky/', imgPath: imgPathInstagram },
+        { url: 'https://www.instagram.com/familystarrysky/?hl=zh-tw', imgPath: imgPathInstagram },
       ],
       notifySetting: {
         open: false,

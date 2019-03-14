@@ -51,8 +51,8 @@ import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
 import primaryImg001 from '../../assets/news/fireworks-list.jpg';
 import adSm001 from '../../assets/follow/ad_sm001.jpg';
-import adSm002 from '../../assets/follow/ad_sm002.jpg';
-import adSm003 from '../../assets/follow/ad_sm003.jpg';
+// import adSm002 from '../../assets/follow/ad_sm002.jpg';
+// import adSm003 from '../../assets/follow/ad_sm003.jpg';
 import adPh01 from '../../assets/follow/follow-phelomi01.jpg';
 import adPh02 from '../../assets/follow/follow-phelomi02.jpg';
 import adPh03 from '../../assets/follow/follow-phelomi03.jpg';
@@ -95,12 +95,12 @@ export default {
       info: {
         necessary: [
           {
-            img: adSm003,
+            img: null,
             title: 'DAY1：蛇頭山遊憩區－風櫃聽濤－山水沙灘－專業海上浮潛＆立式划漿',
             text: '機場登機→馬公機場→在機場辦理民宿貼心贈送摩托車登記領車→行李由民宿帶回→騎車自由行。【蛇頭山遊憩區】是遠眺馬公港和側天島及四角嶼等澎湖內灣最佳景點。→【風櫃聽濤】海潮灌入玄武岩底下的海蝕溝槽，發出有如風箱鼓風的巨大聲響，實乃視覺與聽覺之饗宴！→【山水沙灘】貝殼沙灘潔淨漂亮，海水澄澈透藍→下午參加民宿精心安排海上浮潛&立式划漿體驗，穿著浮潛裝備在專業教練的帶領下一睹最美的世界級海底景觀，七彩繽紛的熱帶魚群，讓您嘆為觀止！→觀音亭夜賞炫麗煙火或陸上的鐵達尼號–菊島之星、海產小吃街，享受澎湖風情→夜宿飛樂米星空號民宿享受觀星寧靜夜晚。',
           },
           {
-            img: adSm002,
+            img: null,
             title: 'DAY2：南海七美嶼&西吉藍洞新航線一日遊',
             text: '品嚐健康美味活力早餐→前往馬公南海觀光碼頭搭乘快艇→前往南海巡航之旅囉！【西吉嶼-巡航藍洞】西吉嶼的「灶籠」是澎湖絕無僅有的透天海蝕洞，保留了完整的天然景觀→【七美嶼】如世外桃源的祕密花園、讓人讚嘆！體會大自然的感動；→感人肺腑的望夫石傳說；→鬼斧神工的巨獅→龍埕美景．寸草不生的月世界洪荒→心心相印的雙心石滬美景→返回飛樂米星空號民宿享受觀星寧靜夜晚。',
           },

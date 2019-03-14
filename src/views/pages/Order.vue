@@ -9,13 +9,21 @@
         />
       </v-flex>
     </v-layout>
-    <v-stepper v-model="e1">
+    <v-stepper v-model="e1" class="page-order__stepper">
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1">選擇房型</v-stepper-step>
+        <v-stepper-step
+          :complete="e1 > 1"
+          step="1"
+        >選擇房型</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step :complete="e1 > 2" step="2">填寫資料</v-stepper-step>
+        <v-stepper-step
+          :complete="e1 > 2"
+          step="2"
+        >填寫資料</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="3">完成訂房</v-stepper-step>
+        <v-stepper-step
+          step="3"
+        >完成訂房</v-stepper-step>
       </v-stepper-header>
 
       <v-stepper-items>

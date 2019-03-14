@@ -12,7 +12,7 @@
     <div
       v-if="img[themeType]"
       class="primary-img page-news__img"
-      :style="{backgroundImage:`url(${img[themeType]})`}"
+      :style="{backgroundImage:`url(${img[themeType]}), url(${placeholder})`}"
     >
       <!-- <img :src="img[themeType]" alt=""> -->
     </div>
@@ -32,6 +32,7 @@ import fireworksImgUrl from '../../assets/news/fireworks-list.jpg';
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
 import constVar from '@/utils/constVar';
+import placeholder from '../../assets/bg_image/bg_placeholder.jpg';
 
 export default {
   name: 'pageNews',
@@ -50,6 +51,7 @@ export default {
   data() {
     return {
       constVar,
+      placeholder,
       title: {
         textUp: '最新消息',
         textDown: 'GOOD NEWS',
