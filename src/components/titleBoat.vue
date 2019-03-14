@@ -5,7 +5,7 @@
         <h2 class="primary--text">{{this.textUp}}</h2>
       </v-flex>
       <v-flex xs3 class="title-boat__img">
-        <img :src="titleImg" alt="">
+        <img v-lazy="titleImg" alt="">
       </v-flex>
     </v-layout>
     <v-layout row class="title-boat__down">

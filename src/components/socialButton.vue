@@ -8,7 +8,7 @@
       target="_blank"
       class="social-button__link"
     >
-      <img :src="item.imgPath" alt="" class="social-button__img">
+      <img v-lazy="item.imgPath" alt="" class="social-button__img">
       <div
         v-if="item.qrcodeImg"
         :class="['social-button__qrcode grey lighten-4', directionTop ? '' : 'down']"

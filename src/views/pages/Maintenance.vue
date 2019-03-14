@@ -1,7 +1,7 @@
 <template>
   <div class="page-maintenance">
     <div class="page-maintenance__img">
-      <img :src="bgMaintenance" alt="">
+      <img v-lazy="bgMaintenance" alt="">
     </div>
   </div>
 </template>

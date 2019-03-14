@@ -21,7 +21,7 @@
         >
           <v-flex xs4>
             <div class="page-follow__content--img">
-              <img class="sm" :src="item.img" alt="">
+              <img class="sm" v-lazy="item.img" alt="">
             </div>
           </v-flex>
           <v-flex xs8 class="page-follow__content--info">
@@ -40,7 +40,7 @@
         >{{item}}</p>
       </div> -->
       <div class="primary-img" v-if="primaryImg[themeType]">
-        <img class="lg" :src="primaryImg[themeType]" alt="">
+        <img class="lg" v-lazy="primaryImg[themeType]" alt="">
       </div>
     </div>
     <show-rooms />
