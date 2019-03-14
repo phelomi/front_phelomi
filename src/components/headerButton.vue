@@ -2,12 +2,14 @@
   <a
     class="header__button"
     @click="methodGoTo"
+    v-lazy:background-image="buttonHeader"
   >
     <div class="header__button--text white--text">{{this.text}}</div>
   </a>
 </template>
 <script>
 import constVar from '@/utils/constVar';
+import buttonHeader from '../assets/button/button_header.png';
 
 export default {
   name: 'headerButton',
@@ -15,6 +17,7 @@ export default {
   data() {
     return {
       localText: '',
+      buttonHeader,
     };
   },
   computed: {

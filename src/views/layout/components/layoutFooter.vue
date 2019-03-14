@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-footer target-contact">
+  <div class="layout-footer target-contact" v-lazy:background-image="bgFooter">
     <v-layout column class="layout-footer__outer">
       <v-flex xs6 class="layout-footer__content">
         <v-layout row>
@@ -80,6 +80,7 @@ import imgPathEmail from '../../../assets/contact/icon_email.svg';
 import imgPathAddress from '../../../assets/contact/icon-address.svg';
 import imgPathWechat from '../../../assets/contact/icon_white_wechat.svg';
 import imgPathLine from '../../../assets/contact/icon_white_line.svg';
+import bgFooter from '../../../assets/bg_image/bg_footer.png';
 
 export default {
   name: 'layoutFooter',
@@ -88,6 +89,7 @@ export default {
   },
   data() {
     return {
+      bgFooter,
       imgPathLogoVertical,
       copyrightText: '© 2019 Family Starry Sky Co., Ltd. All rights reserved. 飛樂米星空號有限公司 版權所有\nDesign by 方蘋果數位行銷設計有限公司',
       contactList: [

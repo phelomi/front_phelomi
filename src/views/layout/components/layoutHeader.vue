@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar class="header" :height="headerHeight">
+  <v-toolbar class="header" v-lazy:background-image="bgHeader" :height="headerHeight">
     <v-toolbar-title class="header__logo" @click="$router.push('/home')">
       <img class="" v-lazy="imgPathLogoHorizon" alt="">
     </v-toolbar-title>
@@ -22,6 +22,7 @@
 import socialButton from '@/components/socialButton.vue';
 import headerButton from '@/components/headerButton.vue';
 import imgPathLogoHorizon from '../../../assets/logo/logo_horizon.svg';
+import bgHeader from '../../../assets/bg_image/bg_header.jpg';
 
 export default {
   name: 'layoutHeader',
@@ -31,6 +32,7 @@ export default {
   },
   data() {
     return {
+      bgHeader,
       imgPathLogoHorizon,
       menuList: [
         {
