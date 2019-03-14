@@ -30,7 +30,7 @@
       </tr>
       <tr class="sumtotal-row">
         <th colspan="4"></th>
-        <th>定金</th>
+        <th>本次訂單應付定金</th>
       </tr>
       <tr>
         <td colspan="4"></td>

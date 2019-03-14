@@ -888,7 +888,9 @@ export default {
     },
     toStep(step) {
       this.e1 = step;
-      this.scrollToTop();
+      setTimeout(() => {
+        this.scrollToTop();
+      });
     },
     // STEP 1: 當有房型被選到，執行這個funciton
     addSelectedRoom(date, selected) {
