@@ -163,7 +163,7 @@ export default {
               number: '30～50',
               unit: '分鐘',
               moreInfo: '',
-              targetUrl: 'https://www.mandarin-airlines.com/',
+              targetUrl: 'https://www.uniair.com.tw/uniweb/index.aspx',
             },
             {
               target: '華信航空',
@@ -171,7 +171,7 @@ export default {
               number: '30～50',
               unit: '分鐘',
               moreInfo: '',
-              targetUrl: 'https://www.uniair.com.tw/uniweb/index.aspx',
+              targetUrl: 'https://www.mandarin-airlines.com/',
             },
             {
               target: '遠東航空',
