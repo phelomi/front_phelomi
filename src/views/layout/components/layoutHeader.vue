@@ -23,6 +23,9 @@ import socialButton from '@/components/socialButton.vue';
 import headerButton from '@/components/headerButton.vue';
 import imgPathLogoHorizon from '../../../assets/logo/logo_horizon.svg';
 import bgHeader from '../../../assets/bg_image/bg_header.jpg';
+import {
+  TweenMax, TimelineLite, Bounce, Power4,
+} from 'gsap';
 
 export default {
   name: 'layoutHeader',
@@ -84,6 +87,9 @@ export default {
 
     //   return scaleStyle;
     // },
+  },
+  mounted() {
+    console.log('TCL: mounted -> this.$TweenMax', TweenMax);
   },
   methods: {
 

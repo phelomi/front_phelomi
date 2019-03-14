@@ -10,6 +10,7 @@
   "dependencies": {
     "@mdi/font": "^2.6.95",
     "axios": "^0.18.0",
+    "gsap": "^2.1.2",
     "lodash": "^4.17.11",
     "register-service-worker": "^1.5.2",
     "roboto-fontface": "*",
