@@ -15,7 +15,7 @@
       >
         <p>掃描QR code立即加入好友，</p>
         <p>或點擊icon複製{{item.target}}</p>
-        <img v-lazy="item.qrcodeImg" alt="">
+        <img :src="item.qrcodeImg" alt="">
         <p>{{item.target}}：{{item.id}}</p>
       </div>
     </a>
