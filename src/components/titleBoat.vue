@@ -6,7 +6,10 @@
       </v-flex>
       <v-flex xs3 class="title-boat__img">
         <img v-lazy="titleImg" alt="">
-        <img id="titleBoatStar01" class="title-boat__star" :src="titleBoatStar" alt="">
+        <img class="title-boat__star title-boat-start-one" :src="titleBoatStar" alt="">
+        <img class="title-boat__star title-boat-start-two" :src="titleBoatStar" alt="">
+        <img class="title-boat__star title-boat-start-three" :src="titleBoatStar" alt="">
+        <img class="title-boat__star title-boat-start-four" :src="titleBoatStar" alt="">
       </v-flex>
     </v-layout>
     <v-layout row class="title-boat__down">
@@ -27,37 +30,136 @@ export default {
   name: 'titleBoat',
   props: ['targetClass', 'textUp', 'textDown'],
   mounted() {
-    const timeMax = new TimelineMax();
-    const titleBoatStar01 = document.getElementById('titleBoatStar01');
-    const star01One = timeMax.to(
-      titleBoatStar01,
+    const timeMaxOne = new TimelineMax();
+    const titleBoatStarItemOne = document.querySelectorAll('.title-boat-start-one');
+    const star01One = timeMaxOne.to(
+      titleBoatStarItemOne,
       1,
       {
-        top: '50%', left: '65%', scale: 1.2, rotation: '0', ease: Power0.easeNone,
+        top: '50%', right: '0', scale: 1.2, rotation: '0', ease: Power0.easeNone, autoAlpha: 0,
       },
     );
-    const star01Two = timeMax.to(
-      titleBoatStar01,
+    const star01Two = timeMaxOne.to(
+      titleBoatStarItemOne,
       1,
       {
-        top: '17%', left: '62%', scale: 1, rotation: '90', ease: Power0.easeNone,
+        top: '17%', right: '5%', scale: 1, rotation: '90', ease: Power0.easeNone, autoAlpha: 1,
       },
     );
-    const star01Three = timeMax.to(
-      titleBoatStar01,
+    const star01Three = timeMaxOne.to(
+      titleBoatStarItemOne,
       1,
       {
-        top: '-3%', left: '54%', scale: 0.55, rotation: '180', ease: Power0.easeNone,
+        top: '-3%', right: '16%', scale: 0.55, rotation: '180', ease: Power0.easeNone,
       },
     );
-    const star01Four = timeMax.to(
-      titleBoatStar01,
+    const star01Four = timeMaxOne.to(
+      titleBoatStarItemOne,
       1,
       {
-        top: '-8%', left: '47%', scale: 0, rotation: '360', ease: Power0.easeNone,
+        top: '-14%', right: '28%', scale: 0, rotation: '360', ease: Power0.easeNone,
       },
     );
-    timeMax.repeat(-1);
+    timeMaxOne.repeat(-1);
+
+    const titleBoatStarItemTwo = document.querySelectorAll('.title-boat-start-two');
+    const timeMaxTwo = new TimelineMax();
+    const star02One = timeMaxTwo.to(
+      titleBoatStarItemTwo,
+      1,
+      {
+        top: '50%', right: '0', scale: 1.2, rotation: '0', ease: Power0.easeNone, autoAlpha: 0,
+      },
+    );
+    const star02Two = timeMaxTwo.to(
+      titleBoatStarItemTwo,
+      1,
+      {
+        top: '17%', right: '5%', scale: 1, rotation: '90', ease: Power0.easeNone, autoAlpha: 1,
+      },
+    );
+    const star02Three = timeMaxTwo.to(
+      titleBoatStarItemTwo,
+      1,
+      {
+        top: '-3%', right: '16%', scale: 0.55, rotation: '180', ease: Power0.easeNone,
+      },
+    );
+    const star02Four = timeMaxTwo.to(
+      titleBoatStarItemTwo,
+      1,
+      {
+        top: '-14%', right: '28%', scale: 0, rotation: '360', ease: Power0.easeNone,
+      },
+    );
+    timeMaxTwo.repeat(-1);
+    timeMaxTwo.delay(1);
+
+    const titleBoatStarItemThree = document.querySelectorAll('.title-boat-start-three');
+    const timeMaxThree = new TimelineMax();
+    const star03One = timeMaxThree.to(
+      titleBoatStarItemThree,
+      1,
+      {
+        top: '50%', right: '0', scale: 1.2, rotation: '0', ease: Power0.easeNone, autoAlpha: 0,
+      },
+    );
+    const star03Two = timeMaxThree.to(
+      titleBoatStarItemThree,
+      1,
+      {
+        top: '17%', right: '5%', scale: 1, rotation: '90', ease: Power0.easeNone, autoAlpha: 1,
+      },
+    );
+    const star03Three = timeMaxThree.to(
+      titleBoatStarItemThree,
+      1,
+      {
+        top: '-3%', right: '16%', scale: 0.55, rotation: '180', ease: Power0.easeNone,
+      },
+    );
+    const star03Four = timeMaxThree.to(
+      titleBoatStarItemThree,
+      1,
+      {
+        top: '-14%', right: '28%', scale: 0, rotation: '360', ease: Power0.easeNone,
+      },
+    );
+    timeMaxThree.repeat(-1);
+    timeMaxThree.delay(2);
+
+    const titleBoatStarItemFour = document.querySelectorAll('.title-boat-start-four');
+    const timeMaxFour = new TimelineMax();
+    const star04One = timeMaxFour.to(
+      titleBoatStarItemFour,
+      1,
+      {
+        top: '50%', right: '0', scale: 1.2, rotation: '0', ease: Power0.easeNone, autoAlpha: 0,
+      },
+    );
+    const star04Two = timeMaxFour.to(
+      titleBoatStarItemFour,
+      1,
+      {
+        top: '17%', right: '5%', scale: 1, rotation: '90', ease: Power0.easeNone, autoAlpha: 1,
+      },
+    );
+    const star04Three = timeMaxFour.to(
+      titleBoatStarItemFour,
+      1,
+      {
+        top: '-3%', right: '16%', scale: 0.55, rotation: '180', ease: Power0.easeNone,
+      },
+    );
+    const star04Four = timeMaxFour.to(
+      titleBoatStarItemFour,
+      1,
+      {
+        top: '-14%', right: '28%', scale: 0, rotation: '360', ease: Power0.easeNone,
+      },
+    );
+    timeMaxFour.repeat(-1);
+    timeMaxFour.delay(3);
   },
   data() {
     return {
