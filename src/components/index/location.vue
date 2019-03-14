@@ -16,7 +16,7 @@
               :class="['index-location__button', item.bgColor, `index-location__button--${idx}`]"
             >
               <img
-                :src="item.icon"
+                v-lazy="item.icon"
                 alt=""
                 class="index-location__button--icon"
               >

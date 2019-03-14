@@ -6,7 +6,7 @@
     >
       <v-layout column>
         <v-flex xs8 class="rooms-list__img">
-          <img class="sm" :src="img" alt="">
+          <img class="sm" v-lazy="img" alt="">
         </v-flex>
         <v-flex xs4 class="rooms-list__content">
           <v-layout column>
