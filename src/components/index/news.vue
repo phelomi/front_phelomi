@@ -45,7 +45,7 @@ export default {
             img: news001,
             theme: 'start',
             title: '歡慶飛樂米星空號起航',
-            intro: '即日起至5/5，歡慶飛樂米星空號起航，優惠活動開跑囉',
+            intro: '即日起至5/30，歡慶飛樂米星空號起航，優惠活動開跑囉',
           },
           {
             img: news002,
