@@ -969,7 +969,10 @@ export default {
         const res = await httpMethod({
           url: '/v1/api/front/check/order',
           method: 'POST',
-          data: { roomInfo: this.orderSelectedRoom() },
+          data: {
+            roomInfo: this.orderSelectedRoom(),
+            join: !!(this.joinActivity.val % 2),
+          },
         });
         if (res && !res.code && Object.keys(res.data).length > 0) {
           this.orderRoomsList = res.data;
