@@ -102,6 +102,24 @@
                 />
             </v-flex>
             <v-flex xs12 class="page-order__footer mt-5">
+              <v-form
+                v-model="joinValid"
+                ref="joinForm"
+                lazy-validation
+              >
+                <div class="page-order__join">
+                  <p class="textBlack--text require-start">{{joinActivity.text}}</p>
+                  <v-radio-group
+                    v-model="joinActivity.val"
+                    row
+                    :rules="ruleList.require"
+                    required
+                  >
+                    <v-radio color="primary" label="是" :value="1"></v-radio>
+                    <v-radio color="primary" label="否" :value="2"></v-radio>
+                  </v-radio-group>
+                </div>
+              </v-form>
               <v-btn
                 color="primary"
                 class="page-order__button-primary"
@@ -443,7 +461,12 @@ export default {
       calendarByYear: [],
       availableRoomList: {},
       selectedRoom: new Map(),
+      joinActivity: {
+        text: '',
+        val: null,
+      },
       valid: false,
+      joinValid: false,
       ruleList: {
         require: [
           v => !!v || '此欄位為必填',
@@ -848,6 +871,7 @@ export default {
         );
         this.calendarByYear = calendarByYear;
         this.availableRoomList = availableRoomList;
+        this.joinActivity.text = res.data.activity.label || '';
         this.$vuetify.goTo('#hash-select-room', constVar.scrollPagAni);
       } else {
         this.notifySetting = {
@@ -884,12 +908,18 @@ export default {
     },
     methodFormResetStepOne() {
       this.datePickerRange = this.getDatePickerRangeOri();
+      this.methodResetJoinParams();
     },
     methodFormResetRoom() {
       this.calendarByYear.splice(0);
+      this.methodResetJoinParams();
       setTimeout(() => {
         this.scrollToTop();
       });
+    },
+    methodResetJoinParams() {
+      this.joinActivity.val = null;
+      this.$refs.joinForm.resetValidation();
     },
     methodClearSelectedRoom() {
       this.clearSelected = true;
@@ -907,6 +937,15 @@ export default {
       this.selectedRoom.set(this.reverseFormatNumberDate(date), selected);
     },
     async checkSelectedRoom() {
+      if (!this.$refs.joinForm.validate()) {
+        this.notifySetting = {
+          ...this.notifySetting,
+          open: true,
+          text: '請選擇是否要參與活動',
+          color: 'error',
+        };
+        return;
+      }
       this.waitResponse = true;
       // 整理選到的房間
       this.selectedRoom = new Map([...this.selectedRoom.entries()].sort());
@@ -1043,6 +1082,7 @@ export default {
       this.emptyOccList = {};
       this.emptyRoomType = {};
       this.roomTypeInfo = {};
+      this.methodResetJoinParams();
       this.$refs.orderRooms.methodClearRoom();
       this.methodFormResetRoom();
       this.methodClearSelectedRoom();
