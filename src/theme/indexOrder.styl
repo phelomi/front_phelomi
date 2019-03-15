@@ -26,18 +26,22 @@
       background-size 16.13vw 15.7vw
       background-image url('../assets/button/text-order.png')
       background-repeat no-repeat
+    &:after
+      content ''
+      position absolute
+      background-image url('../assets/button/button_order_active.svg')
+      background-repeat no-repeat
+      background-size 16.40vw 15.78vw
+      width 16.40vw
+      height 15.78vw
+      top 0
+      right 0
+      transform translate(10%,-85%)
+      opacity 0
+      transition all .2s
     &:hover
       &:after
-        content ''
-        position absolute
-        background-image url('../assets/button/button_order_active.svg')
-        background-repeat no-repeat
-        background-size 16.40vw 15.78vw
-        width 16.40vw
-        height 15.78vw
-        top 0
-        right 0
-        transform translate(10%,-85%)
+        opacity 1
   &__text
     font-size 2vw
     letter-spacing $letter-spacing-p
