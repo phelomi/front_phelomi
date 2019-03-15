@@ -102,6 +102,24 @@
                 />
             </v-flex>
             <v-flex xs12 class="page-order__footer mt-5">
+              <v-form
+                v-model="joinValid"
+                ref="joinForm"
+                lazy-validation
+              >
+                <div class="page-order__join">
+                  <p class="textBlack--text require-start">{{joinActivity.text}}</p>
+                  <v-radio-group
+                    v-model="joinActivity.val"
+                    row
+                    :rules="ruleList.require"
+                    required
+                  >
+                    <v-radio color="primary" label="是" :value="1"></v-radio>
+                    <v-radio color="primary" label="否" :value="2"></v-radio>
+                  </v-radio-group>
+                </div>
+              </v-form>
               <v-btn
                 color="primary"
                 class="page-order__button-primary"
@@ -349,6 +367,7 @@
               <h3 class="primary--text">匯款資訊如下</h3>
             </v-flex>
             <v-flex sm12 md7>
+              <p class="secondary--text page-order__notice-content--title">恭喜您訂房成功！</p>
               <p class="textBlack--text page-order__notice-content">{{orderSuccessText}}</p>
               <p class="textBlack--text page-order__notice-content">{{bankInfo}}</p>
             </v-flex>
@@ -442,7 +461,12 @@ export default {
       calendarByYear: [],
       availableRoomList: {},
       selectedRoom: new Map(),
+      joinActivity: {
+        text: '',
+        val: null,
+      },
       valid: false,
+      joinValid: false,
       ruleList: {
         require: [
           v => !!v || '此欄位為必填',
@@ -639,8 +663,8 @@ export default {
       ],
       orderInfoParams: null,
       orderRoomsList: {},
-      bankInfo: '匯款銀行：中國信託商業銀行 文心分行（代號822）\n匯款帳號：4735-4049-3788\n匯款戶名：許秋燕\n\n匯款後，請務必以Mail、簡訊或電話告知，註明匯款人姓名、電話、住宿日期、住宿房型、人數以及帳號後五碼，以便完成訂房手續 。',
-      orderSuccessText: '恭喜您訂房成功！\n提醒您：記得在2天內完成匯款，若未完成匯款即視同放棄訂單。',
+      bankInfo: '匯款銀行：中國信託商業銀行 文心分行（代號822）\n匯款帳號：4735-4049-3788\n匯款戶名：許秋燕\n\n匯款後，請務必以Email、Line、微信、簡訊或電話告知，註明匯款人姓名、電話、住宿日期、住宿房型、人數以及帳號後五碼，以便完成訂房手續 。',
+      orderSuccessText: '提醒您：記得在2天內完成匯款，若未完成匯款即視同放棄訂單。',
     };
   },
   mounted() {
@@ -847,6 +871,7 @@ export default {
         );
         this.calendarByYear = calendarByYear;
         this.availableRoomList = availableRoomList;
+        this.joinActivity.text = res.data.activity.label || '';
         this.$vuetify.goTo('#hash-select-room', constVar.scrollPagAni);
       } else {
         this.notifySetting = {
@@ -883,12 +908,18 @@ export default {
     },
     methodFormResetStepOne() {
       this.datePickerRange = this.getDatePickerRangeOri();
+      this.methodResetJoinParams();
     },
     methodFormResetRoom() {
       this.calendarByYear.splice(0);
+      this.methodResetJoinParams();
       setTimeout(() => {
         this.scrollToTop();
       });
+    },
+    methodResetJoinParams() {
+      this.joinActivity.val = null;
+      this.$refs.joinForm.resetValidation();
     },
     methodClearSelectedRoom() {
       this.clearSelected = true;
@@ -906,6 +937,15 @@ export default {
       this.selectedRoom.set(this.reverseFormatNumberDate(date), selected);
     },
     async checkSelectedRoom() {
+      if (!this.$refs.joinForm.validate()) {
+        this.notifySetting = {
+          ...this.notifySetting,
+          open: true,
+          text: '請選擇是否要參與活動',
+          color: 'error',
+        };
+        return;
+      }
       this.waitResponse = true;
       // 整理選到的房間
       this.selectedRoom = new Map([...this.selectedRoom.entries()].sort());
@@ -929,7 +969,10 @@ export default {
         const res = await httpMethod({
           url: '/v1/api/front/check/order',
           method: 'POST',
-          data: { roomInfo: this.orderSelectedRoom() },
+          data: {
+            roomInfo: this.orderSelectedRoom(),
+            join: !!(this.joinActivity.val % 2),
+          },
         });
         if (res && !res.code && Object.keys(res.data).length > 0) {
           this.orderRoomsList = res.data;
@@ -1012,7 +1055,10 @@ export default {
         const res = await httpMethod({
           url: '/v1/api/front/order/new',
           method: 'POST',
-          data: this.orderInfoParams,
+          data: {
+            ...this.orderInfoParams,
+            join: !!(this.joinActivity.val % 2),
+          },
         });
         if (res && !res.code) {
           this.notifySetting = {
@@ -1042,6 +1088,7 @@ export default {
       this.emptyOccList = {};
       this.emptyRoomType = {};
       this.roomTypeInfo = {};
+      this.methodResetJoinParams();
       this.$refs.orderRooms.methodClearRoom();
       this.methodFormResetRoom();
       this.methodClearSelectedRoom();
