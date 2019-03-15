@@ -73,26 +73,28 @@ export default {
   },
   methods: {
     methodCopyText(target, id) {
-      const inputTag = document.createElement('input');
-      inputTag.setAttribute('value', id);
-      document.body.appendChild(inputTag);
-      inputTag.select();
-      const result = document.execCommand('copy');
-      document.body.removeChild(inputTag);
-      if (result) {
-        this.notifySetting = {
-          ...this.notifySetting,
-          open: true,
-          text: `已成功複製 ${target}`,
-          color: 'success',
-        };
-      } else {
-        this.notifySetting = {
-          ...this.notifySetting,
-          open: true,
-          text: `${target} 複製失敗`,
-          color: 'error',
-        };
+      if (id) {
+        const inputTag = document.createElement('input');
+        inputTag.setAttribute('value', id);
+        document.body.appendChild(inputTag);
+        inputTag.select();
+        const result = document.execCommand('copy');
+        document.body.removeChild(inputTag);
+        if (result) {
+          this.notifySetting = {
+            ...this.notifySetting,
+            open: true,
+            text: `已成功複製 ${target}`,
+            color: 'success',
+          };
+        } else {
+          this.notifySetting = {
+            ...this.notifySetting,
+            open: true,
+            text: `${target} 複製失敗`,
+            color: 'error',
+          };
+        }
       }
     },
   },
