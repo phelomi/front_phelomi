@@ -1055,7 +1055,10 @@ export default {
         const res = await httpMethod({
           url: '/v1/api/front/order/new',
           method: 'POST',
-          data: this.orderInfoParams,
+          data: {
+            ...this.orderInfoParams,
+            join: !!(this.joinActivity.val % 2),
+          },
         });
         if (res && !res.code) {
           this.notifySetting = {
