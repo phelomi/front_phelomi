@@ -191,7 +191,6 @@ export default {
   },
   methods: {
     methodOrder() {
-      console.log('Order');
       this.$router.push('/order');
     },
   },

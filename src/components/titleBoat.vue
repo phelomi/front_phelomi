@@ -42,7 +42,6 @@ export default {
   name: 'titleBoat',
   props: ['targetClass', 'textUp', 'textDown'],
   mounted() {
-    console.log('TCL: mounted -> mounted');
     const timeMaxOne = new TimelineMax();
     const titleBoatStarItemOne = document.querySelectorAll(`.title-boat-start-one-${this.textUp}`);
     const star01One = timeMaxOne.to(

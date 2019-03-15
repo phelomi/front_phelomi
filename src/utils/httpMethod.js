@@ -25,7 +25,7 @@ async function httpMethod({
       data,
     });
   } catch (error) {
-    console.log('error', error);
+    // console.log('error', error);
     res = null;
   }
   if (!res) {

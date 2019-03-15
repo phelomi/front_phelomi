@@ -134,9 +134,9 @@ export default {
     // },
   },
   methods: {
-    methodOnComplete(val) {
-      console.log('TCL: methodOnComplete -> val', val);
-    },
+    // methodOnComplete(val) {
+    //   console.log('TCL: methodOnComplete -> val', val);
+    // },
   },
 };
 </script>

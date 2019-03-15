@@ -10,7 +10,7 @@ export default {
     };
   },
   mounted() {
-
+    // document.querySelectorAll('.index-topic--fun')
   },
 };
 </script>
