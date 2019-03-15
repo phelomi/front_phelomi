@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import buttonBg from '../../assets/button/button_bg_order.jpg';
+import buttonBg from '../../assets/button/button_bg_order.png';
 
 export default {
   name: 'indexOrder',

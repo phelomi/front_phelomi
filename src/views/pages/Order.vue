@@ -349,6 +349,7 @@
               <h3 class="primary--text">匯款資訊如下</h3>
             </v-flex>
             <v-flex sm12 md7>
+              <p class="secondary--text page-order__notice-content--title">恭喜您訂房成功！</p>
               <p class="textBlack--text page-order__notice-content">{{orderSuccessText}}</p>
               <p class="textBlack--text page-order__notice-content">{{bankInfo}}</p>
             </v-flex>
@@ -639,8 +640,8 @@ export default {
       ],
       orderInfoParams: null,
       orderRoomsList: {},
-      bankInfo: '匯款銀行：中國信託商業銀行 文心分行（代號822）\n匯款帳號：4735-4049-3788\n匯款戶名：許秋燕\n\n匯款後，請務必以Mail、簡訊或電話告知，註明匯款人姓名、電話、住宿日期、住宿房型、人數以及帳號後五碼，以便完成訂房手續 。',
-      orderSuccessText: '恭喜您訂房成功！\n提醒您：記得在2天內完成匯款，若未完成匯款即視同放棄訂單。',
+      bankInfo: '匯款銀行：中國信託商業銀行 文心分行（代號822）\n匯款帳號：4735-4049-3788\n匯款戶名：許秋燕\n\n匯款後，請務必以Email、Line、微信、簡訊或電話告知，註明匯款人姓名、電話、住宿日期、住宿房型、人數以及帳號後五碼，以便完成訂房手續 。',
+      orderSuccessText: '提醒您：記得在2天內完成匯款，若未完成匯款即視同放棄訂單。',
     };
   },
   mounted() {
