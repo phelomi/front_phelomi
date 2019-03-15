@@ -63,3 +63,18 @@
         background-size 3.87vw 6.19vw
         width 3.87vw
         height 6.19vw
+      & ^[0]__title-text
+        &:before
+          animation star-rotate-before .5s
+        &:after
+          animation star-rotate-after .5s
+
+@keyframes star-rotate-before
+  for i in 0..3
+    {33.33% * i }
+      transform translate(-250%, -50%) rotate((i * 360)deg)
+
+@keyframes star-rotate-after
+  for i in 0..3
+    {33.33% * i }
+      transform translate(200%, -50%) rotate((i * 360)deg)

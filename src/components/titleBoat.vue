@@ -6,10 +6,22 @@
       </v-flex>
       <v-flex xs3 class="title-boat__img">
         <img v-lazy="titleImg" alt="">
-        <img class="title-boat__star title-boat-start-one" :src="titleBoatStar" alt="">
-        <img class="title-boat__star title-boat-start-two" :src="titleBoatStar" alt="">
-        <img class="title-boat__star title-boat-start-three" :src="titleBoatStar" alt="">
-        <img class="title-boat__star title-boat-start-four" :src="titleBoatStar" alt="">
+        <img
+          :class="[`title-boat__star title-boat-start-one-${textUp}`]"
+          :src="titleBoatStar" alt=""
+        >
+        <img
+          :class="[`title-boat__star title-boat-start-two-${textUp}`]"
+          :src="titleBoatStar" alt=""
+        >
+        <img
+          :class="[`title-boat__star title-boat-start-three-${textUp}`]"
+          :src="titleBoatStar" alt=""
+        >
+        <img
+          :class="[`title-boat__star title-boat-start-four-${textUp}`]"
+          :src="titleBoatStar" alt=""
+        >
       </v-flex>
     </v-layout>
     <v-layout row class="title-boat__down">
@@ -30,8 +42,9 @@ export default {
   name: 'titleBoat',
   props: ['targetClass', 'textUp', 'textDown'],
   mounted() {
+    console.log('TCL: mounted -> mounted');
     const timeMaxOne = new TimelineMax();
-    const titleBoatStarItemOne = document.querySelectorAll('.title-boat-start-one');
+    const titleBoatStarItemOne = document.querySelectorAll(`.title-boat-start-one-${this.textUp}`);
     const star01One = timeMaxOne.to(
       titleBoatStarItemOne,
       1,
@@ -62,7 +75,7 @@ export default {
     );
     timeMaxOne.repeat(-1);
 
-    const titleBoatStarItemTwo = document.querySelectorAll('.title-boat-start-two');
+    const titleBoatStarItemTwo = document.querySelectorAll(`.title-boat-start-two-${this.textUp}`);
     const timeMaxTwo = new TimelineMax();
     const star02One = timeMaxTwo.to(
       titleBoatStarItemTwo,
@@ -95,7 +108,8 @@ export default {
     timeMaxTwo.repeat(-1);
     timeMaxTwo.delay(1);
 
-    const titleBoatStarItemThree = document.querySelectorAll('.title-boat-start-three');
+    const titleBoatStarItemThree = document
+      .querySelectorAll(`.title-boat-start-three-${this.textUp}`);
     const timeMaxThree = new TimelineMax();
     const star03One = timeMaxThree.to(
       titleBoatStarItemThree,
@@ -128,7 +142,8 @@ export default {
     timeMaxThree.repeat(-1);
     timeMaxThree.delay(2);
 
-    const titleBoatStarItemFour = document.querySelectorAll('.title-boat-start-four');
+    const titleBoatStarItemFour = document
+      .querySelectorAll(`.title-boat-start-four-${this.textUp}`);
     const timeMaxFour = new TimelineMax();
     const star04One = timeMaxFour.to(
       titleBoatStarItemFour,

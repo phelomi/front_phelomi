@@ -13,7 +13,7 @@
             <v-flex xs6 class="rooms-list__title justify-center">
               <h2
                 :class="[
-                  'primary--text text-sm-center',
+                  'primary--text text-sm-center rooms-list__title-text',
                   title.length >= 10 ? 'letter-space-zero' : ''
                 ]"
               >{{title}}</h2>
