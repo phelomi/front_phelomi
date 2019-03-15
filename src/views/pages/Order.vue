@@ -32,13 +32,7 @@
               <v-flex sm12 md3>
                 <h3 class="primary--text">請依入住期間，查詢房間狀況</h3>
               </v-flex>
-              <v-flex sm12 md6>
-                <date-range
-                  :options="datePickerRange"
-                  @getSelectedDate="getSelectedDate"
-                />
-              </v-flex>
-              <v-flex sm12 md2 ml-5>
+              <v-flex sm12 md3 offset-md6>
                 <v-btn
                   @click="methodSearchRommByTime"
                   class="primary"
@@ -54,6 +48,12 @@
                 >
                   重新查詢
                 </v-btn>
+              </v-flex>
+              <v-flex sm12 :class=" $vuetify.breakpoint.lgAndUp ? 'page-order__date-range' : ''">
+                <date-range
+                  :options="datePickerRange"
+                  @getSelectedDate="getSelectedDate"
+                />
               </v-flex>
             </v-layout>
           <!-- </v-form> -->
