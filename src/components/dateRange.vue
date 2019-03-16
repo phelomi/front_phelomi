@@ -1,7 +1,10 @@
 <template>
   <div class="date-range">
     <v-layout row wrap class="date-range__pickers">
-      <v-flex sm12 md6 px-2 class="date-range__picker date-range__pickers--start">
+      <v-flex
+        sm12 md6 px-2
+        :class="['date-range__picker date-range__pickers--start', smAndDownPaddingTop]"
+      >
         <v-text-field
           v-model="formattedStartDate"
           :label="labels.start"
@@ -22,7 +25,10 @@
           @change="onDateRangeChange"
         />
       </v-flex>
-      <v-flex sm12 md6 px-2 class="date-range__picker date-range__picker--end">
+      <v-flex
+        sm12 md6 px-2
+        :class="['date-range__picker date-range__picker--end', smAndDownPaddingTop]"
+      >
         <v-text-field
           :label="labels.end"
           v-model="formattedEndDate"
@@ -103,6 +109,9 @@ export default {
     },
     maxDate() {
       return this.options.maxDate || this.today;
+    },
+    smAndDownPaddingTop() {
+      return this.$vuetify.breakpoint.smAndDown ? 'pt-3' : '';
     },
   },
   watch: {

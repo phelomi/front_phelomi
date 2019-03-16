@@ -41,7 +41,7 @@ export default {
     showRooms,
   },
   mounted() {
-    this.$vuetify.goTo(0, constVar.scrollPagAni);
+    this.scrollToTop();
   },
   computed: {
     themeType() {
@@ -77,6 +77,13 @@ export default {
         '（最新消息及異動以「澎湖縣政府旅遊處」公告為主）',
       ],
     };
+  },
+  methods: {
+    scrollToTop() {
+      setTimeout(() => {
+        this.$vuetify.goTo(-200, constVar.scrollPagAni);
+      });
+    },
   },
 };
 </script>

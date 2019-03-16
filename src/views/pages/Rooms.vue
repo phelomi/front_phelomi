@@ -116,8 +116,8 @@ export default {
     // servicesIcon,
   },
   mounted() {
-    this.$vuetify.goTo(0, constVar.scrollPagAni);
-    console.log('TCL: mounted -> this.$route', this.$route);
+    console.log('TCL: updated -> updated');
+    this.scrollToTop();
   },
   watch: {
     roomKey: {
@@ -130,7 +130,7 @@ export default {
   computed: {
     roomKey() {
       if (this.$route.query && this.$route.query.t) {
-        this.$vuetify.goTo(0, constVar.scrollPagAni);
+        this.$vuetify.goTo(-200, constVar.scrollPagAni);
         return this.$route.query.t;
       }
       return null;
@@ -192,6 +192,11 @@ export default {
   methods: {
     methodOrder() {
       this.$router.push('/order');
+    },
+    scrollToTop() {
+      setTimeout(() => {
+        this.$vuetify.goTo(-200, constVar.scrollPagAni);
+      });
     },
   },
 };

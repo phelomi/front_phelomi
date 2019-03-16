@@ -1,25 +1,23 @@
 // override
-.v-stepper
-  &__header
-    height auto
-  &__step
-    flex-wrap wrap
-    justify-content center
-    padding 1.3vw
-    span
-      margin 0 0 .2vw 0
-    ^[0]__label
-      align-items center
-      flex-basis 100%
-  // &__content
-  //   min-height 60vh
+// .v-stepper
+//   &__header
+//     height auto
+//   &__step
+//     flex-wrap wrap
+//     justify-content center
+//     padding 1.3vw
+//     span
+//       margin 0 0 .2vw 0
+//     ^[0]__label
+//       align-items center
+//       flex-basis 100%
 .v-picker__body
   min-width 100%
 .v-snack
   &__wrapper
     max-width none !important
   &__content
-    font-size 1.35vw
+    font-size 1rem
     letter-spacing $letter-spacing-2
     white-space nowrap
 
@@ -86,9 +84,9 @@ p
     color var(--v-error-base)
     padding-right .2vw
 
-.room-type-icon-group
-  span
-    font-size 1vw !important
+// .room-type-icon-group
+//   span
+//     font-size 1vw !important
 
 .form
   &__checkbox-other-group
@@ -99,6 +97,8 @@ p
       margin-right .5vw
     .form__label
       padding-top 1vw
+    &--other-input
+      min-width 150px
   &__radio-other-group
     .form__label
       padding-top 5px
@@ -136,3 +136,6 @@ img
     background-image url('../assets/bg_image/bg_placeholder.jpg')
   &.sm
     background-image url('../assets/img_sm/placeholder.jpg')
+
+.overflow-scroll-y
+  overflow-x scroll

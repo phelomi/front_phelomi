@@ -1,12 +1,14 @@
 .page-order
   &__stepper
     .v-stepper
-      &__step__step
-        width 2vw
-        height 2vw
-        font-size 1.2vw
-      &__label
-        font-size 1vw
+      &__header
+        min-height 6.25vw
+  //     &__step__step
+  //       width 2vw
+  //       height 2vw
+  //       font-size 1.2vw
+  //     &__label
+  //       font-size 1vw
   &__date-range
     padding 0 20vw
   h3
@@ -18,22 +20,25 @@
   &__footer
     display flex
     justify-content flex-end
-    button
-      font-size 1.4vw
-      letter-spacing $letter-spacing-2
-      height 3vw
+    // button
+    //   font-size 1.4vw
+    //   letter-spacing $letter-spacing-2
+    //   height 3vw
   &__join
     display flex
     padding-right 2vw
-    p
-    label
-      font-size 1.3vw
-      line-height 3.3vw
+    // p
+    // label
+    //   font-size 1.3vw
+    //   line-height 3.3vw
+    .v-input--radio-group
+      margin 0
+      padding 0
     p
       padding-right .8vw
   &__button-primary
     width 13vw
-    height 3vw
+    // height 3vw
     letter-spacing $letter-spacing-p
   &__notice
     &-title
@@ -57,3 +62,46 @@
         &:nth-of-type(1)
           min-width 8.5vw
           text-align right
+
+@media (max-width: 959px)
+  .page-order
+    .v-stepper__label
+      display block !important
+    .calendar-select-date
+      &__button-group
+        p
+          font-size 2rem
+        button
+          width 1.5rem
+          height 1.5rem
+          margin-left .2rem
+          margin-right .2rem
+          .v-btn__content
+            font-size 1.5rem
+            line-height  1.5rem
+@media (max-width: 1079px) and (min-width: 700px)
+  .page-order
+    .calendar-select-date
+        margin 5vw 0 0 !important
+        padding 0 !important
+        flex-basis 25% !important
+@media (max-width: 699px)
+  .page-order
+    .calendar-select-date
+      margin 5vw 0 0 !important
+      padding 0 !important
+      flex-basis 100% !important
+      p
+        font-size 1.5rem !important
+      &__button-group
+        button
+          width 2rem
+          height 2rem
+          margin-left 1rem
+          margin-right 1rem
+          .v-btn__content
+            font-size 2rem
+            line-height  2rem
+    &__footer
+      button
+        font-size inherit

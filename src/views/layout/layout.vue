@@ -8,7 +8,7 @@
     <v-icon
       class="scroll-to-top"
       color="secondary"
-      @click="$vuetify.goTo(0, constVar.scrollPagAni)"
+      @click="scrollToTop"
     >mdi-chevron-up-circle-outline</v-icon>
   </v-app>
 </template>
@@ -32,6 +32,11 @@ export default {
     };
   },
   methods: {
+    scrollToTop() {
+      setTimeout(() => {
+        this.$vuetify.goTo(-200, constVar.scrollPagAni);
+      });
+    },
   },
 };
 </script>

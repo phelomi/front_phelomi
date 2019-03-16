@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     methodGoTo() {
-      const targetClass = `.target-${this.target}`;
+      const targetClass = `.outer-${this.target}`;
       if (this.directToPage) {
         this.$router.push(this.target);
       } else if (

@@ -9,7 +9,7 @@
         />
       </v-flex>
     </v-layout>
-    <v-stepper v-model="e1" class="page-order__stepper">
+    <v-stepper v-model="e1" class="page-order__stepper" alt-labels>
       <v-stepper-header>
         <v-stepper-step
           :complete="e1 > 1"
@@ -27,12 +27,18 @@
       </v-stepper-header>
 
       <v-stepper-items>
-        <v-stepper-content step="1" :class="$vuetify.breakpoint.xsOnly ? 'pa-0 pt-3':''">
+        <v-stepper-content
+          step="1"
+          :class="[
+            $vuetify.breakpoint.xsOnly ? 'pa-0 pt-3':'',
+          ]"
+        >
+            <!-- $vuetify.breakpoint.mdAndDown ? 'px-0':'', -->
             <v-layout row wrap>
-              <v-flex sm12 md3>
+              <v-flex sm12 md6 lg3>
                 <h3 class="primary--text">請依入住期間，查詢房間狀況</h3>
               </v-flex>
-              <v-flex sm12 md3 offset-md6>
+              <v-flex v-if="$vuetify.breakpoint.mdAndUp" sm12 md6 lg3 offset-lg6 text-xs-center>
                 <v-btn
                   @click="methodSearchRommByTime"
                   class="primary"
@@ -55,25 +61,45 @@
                   @getSelectedDate="getSelectedDate"
                 />
               </v-flex>
+              <v-flex
+                v-if="$vuetify.breakpoint.smAndDown"
+                sm12 md6 lg3 pt-3 offset-lg6 text-xs-center
+              >
+                <v-btn
+                  @click="methodSearchRommByTime"
+                  class="primary"
+                  :disabled="waitResponse"
+                >
+                  <v-icon>mdi-magnify</v-icon>
+                  查詢房間
+                </v-btn>
+                <v-btn
+                  flat
+                  @click="methodFormResetStepOne"
+                  :disabled="waitResponse"
+                >
+                  重新查詢
+                </v-btn>
+              </v-flex>
             </v-layout>
           <!-- </v-form> -->
           <v-divider id="hash-select-room" class="my-5"></v-divider>
           <v-layout row wrap v-if="calendarByYear.length > 0">
-            <v-flex sm12 md3>
+            <v-flex sm12 md3 lg3>
               <h3 class="primary--text">請選擇房間</h3>
             </v-flex>
             <v-flex
-              sm12
-              md6
-              class="room-type-icon-group"
+              md12
+              lg6
+              class="room-type-icon-group text-md-right"
             >
               <span
                 v-for="(item, idx) in roomTypeIcon"
                 :key="`roomTypeIcon${idx}`"
-                :class="`${constVar.colorList[idx]}--text headline pr-3`"
+                :class="`${constVar.colorList[idx]}--text subheading pr-3`"
               >● {{item}}</span>
             </v-flex>
-            <v-flex sm12 md3 class="text-align-end">
+            <v-flex md12 lg3 class="text-align-end">
               <v-btn
                 flat
                 @click="methodFormResetRoom"
@@ -108,7 +134,7 @@
                 lazy-validation
               >
                 <div class="page-order__join">
-                  <p class="textBlack--text require-start">{{joinActivity.text}}</p>
+                  <p class="textBlack--text require-start subheading">{{joinActivity.text}}</p>
                   <v-radio-group
                     v-model="joinActivity.val"
                     row
@@ -120,6 +146,8 @@
                   </v-radio-group>
                 </div>
               </v-form>
+            </v-flex>
+            <v-flex xs12 class="page-order__footer">
               <v-btn
                 color="primary"
                 class="page-order__button-primary"
@@ -132,7 +160,13 @@
           </v-layout>
         </v-stepper-content>
 
-        <v-stepper-content step="2" :class="$vuetify.breakpoint.xsOnly ? 'pa-0 pt-3':''">
+        <v-stepper-content
+          step="2"
+          :class="[
+            $vuetify.breakpoint.xsOnly ? 'pa-0 pt-3':'',
+            $vuetify.breakpoint.mdAndDown ? 'px-1':'',
+          ]"
+        >
           <div class="loading-view" v-if="waitResponse">
             <v-progress-circular
               :size="50"
@@ -278,23 +312,27 @@
                   </v-menu>
                 </v-flex>
                 <v-flex sm12 md2 mt-4>
-                  <p class="primary--text page-order__notice-title">訂房須知</p>
+                  <p class="primary--text page-order__notice-title subheading">訂房須知</p>
                 </v-flex>
                 <v-flex sm12 md10 mt-4>
-                  <p class="textBlack--text page-order__notice-content">{{noticeContent}}</p>
+                  <p
+                    class="textBlack--text page-order__notice-content body-2"
+                  >{{noticeContent}}</p>
                   <ul>
                     <li
                       v-for="(item, idx) in noticeContent2"
                       :key="`liveRule${idx}`"
-                      class="textBlack--text page-order__notice-content"
+                      class="textBlack--text page-order__notice-content body-2"
                     >{{item}}</li>
                   </ul>
-                  <p class="textBlack--text page-order__notice-content">{{noticeContent3}}</p>
+                  <p
+                    class="textBlack--text page-order__notice-content body-2"
+                  >{{noticeContent3}}</p>
                   <ul>
                     <li
                       v-for="(item, idx) in noticeContent4"
                       :key="`liveRule${idx}`"
-                      class="textBlack--text page-order__notice-content"
+                      class="textBlack--text page-order__notice-content body-2"
                     >{{item}}</li>
                   </ul>
                 </v-flex>
@@ -345,8 +383,8 @@
                   v-for="(item, idx) in checkOrderInfo"
                   :key="`checkOrderInfo${idx}`"
                 >
-                  <span>{{item.label}}：</span>
-                  <span>{{orderInfoParams[item.key]
+                  <span class="body-2">{{item.label}}：</span>
+                  <span class="body-2">{{orderInfoParams[item.key]
                           && orderInfoParams[item.key].toString()
                           || ''}}</span>
                 </v-flex>
@@ -367,9 +405,11 @@
               <h3 class="primary--text">匯款資訊如下</h3>
             </v-flex>
             <v-flex sm12 md7>
-              <p class="secondary--text page-order__notice-content--title">恭喜您訂房成功！</p>
-              <p class="textBlack--text page-order__notice-content">{{orderSuccessText}}</p>
-              <p class="textBlack--text page-order__notice-content">{{bankInfo}}</p>
+              <p
+                class="secondary--text page-order__notice-content--title subheading"
+              >恭喜您訂房成功！</p>
+              <p class="textBlack--text page-order__notice-content body-2">{{orderSuccessText}}</p>
+              <p class="textBlack--text page-order__notice-content body-2">{{bankInfo}}</p>
             </v-flex>
           </v-layout>
             <v-flex xs12 class="page-order__footer mt-5">
@@ -560,7 +600,7 @@ export default {
           options: [
             { label: '正常', value: '正常' },
             { label: '素食', value: '素食' },
-            { label: '不食用（不用不退費請知悉）', value: '不食用' },
+            { label: '不食用（不用不退費）', value: '不食用' },
           ],
         },
         {
@@ -569,7 +609,7 @@ export default {
           label: '成人人數',
           required: true,
           rules: 'requireNumber',
-          class: 'md2',
+          class: 'md3',
         },
         {
           type: 'input',
@@ -577,7 +617,7 @@ export default {
           label: '小孩人數',
           required: false,
           rules: 'number',
-          class: 'md2',
+          class: 'md3',
         },
         {
           type: 'timepicker',
@@ -586,7 +626,7 @@ export default {
           label: '預計抵達時間',
           required: false,
           rules: 'none',
-          class: 'md6 offset-md2',
+          class: 'md6',
         },
         {
           type: 'checkboxOther',
@@ -595,7 +635,7 @@ export default {
           label: '其他需求',
           required: false,
           rules: 'none',
-          class: 'md10',
+          class: 'md10 overflow-scroll-y',
           options: [
             { label: '無', value: '無' },
             { label: '租機車', value: '租機車' },
@@ -617,7 +657,7 @@ export default {
       clearSelected: false,
       notifySetting: {
         open: false,
-        timeout: 5000,
+        timeout: 500000,
         text: '',
         color: '',
       },
@@ -676,7 +716,9 @@ export default {
     subtractDays,
     getDayRange,
     scrollToTop() {
-      this.$vuetify.goTo(0, constVar.scrollPagAni);
+      setTimeout(() => {
+        this.$vuetify.goTo(-200, constVar.scrollPagAni);
+      });
     },
     formatNumberDate(numberDate) {
       const stringDate = numberDate.toString();

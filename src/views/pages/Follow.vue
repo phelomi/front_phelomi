@@ -67,7 +67,7 @@ export default {
     showRooms,
   },
   mounted() {
-    this.$vuetify.goTo(0, constVar.scrollPagAni);
+    this.scrollToTop();
   },
   computed: {
     themeType() {
@@ -140,6 +140,13 @@ export default {
       }
       ,
     };
+  },
+  methods: {
+    scrollToTop() {
+      setTimeout(() => {
+        this.$vuetify.goTo(-200, constVar.scrollPagAni);
+      });
+    },
   },
 };
 </script>

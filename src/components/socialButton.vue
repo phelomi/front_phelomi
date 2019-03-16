@@ -4,7 +4,6 @@
       v-for="(item, idx) in socialButtonList"
       :key="`socialButtonList${idx}`"
       :href="item.url ? item.url : null"
-      @click.stop="methodCopyText(item.target, item.id)"
       target="_blank"
       class="social-button__link"
     >
@@ -13,10 +12,15 @@
         v-if="item.qrcodeImg"
         :class="['social-button__qrcode grey lighten-4', directionTop ? '' : 'down']"
       >
+      <div
+        @click.stop="methodCopyText(item.target, item.id)"
+      >
         <p>掃描QR code立即加入好友，</p>
-        <p>或點擊icon複製{{item.target}}</p>
+        <p>或點擊文字複製{{item.target}}</p>
         <img :src="item.qrcodeImg" alt="">
         <p>{{item.target}}：{{item.id}}</p>
+
+      </div>
       </div>
     </a>
     <v-snackbar
@@ -73,6 +77,7 @@ export default {
   },
   methods: {
     methodCopyText(target, id) {
+      console.log('TCL: methodCopyText -> id', id);
       if (id) {
         const inputTag = document.createElement('input');
         inputTag.setAttribute('value', id);

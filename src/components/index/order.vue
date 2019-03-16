@@ -4,7 +4,10 @@
       <v-flex xs6  offset-xs6 class="index-order__outer">
         <a
           @click="$router.push('/order')"
-          class="index-order__button"
+          :class="[
+            'index-order__button',
+            $vuetify.breakpoint.mdAndDown ? 'index-order__button--mobile':''
+          ]"
           v-lazy:background-image="buttonBg"
         >
           <p class="index-order__text white--text">{{text}}</p>

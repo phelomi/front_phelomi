@@ -45,7 +45,7 @@ export default {
     locationList,
   },
   mounted() {
-    this.$vuetify.goTo(0, constVar.scrollPagAni);
+    this.scrollToTop();
   },
   data() {
     return {
@@ -188,6 +188,11 @@ export default {
     };
   },
   methods: {
+    scrollToTop() {
+      setTimeout(() => {
+        this.$vuetify.goTo(-200, constVar.scrollPagAni);
+      });
+    },
   },
 };
 </script>

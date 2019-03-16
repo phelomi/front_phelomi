@@ -1,7 +1,7 @@
 <template>
   <div class="calendar-list">
     <div class="calendar-list__year">
-      <h2 class="primary--text">{{year}}</h2>
+      <h2 class="primary--text display-1">{{year}}</h2>
     </div>
     <div class="calendar-list__date-list">
       <calendar-select-date

@@ -36,7 +36,7 @@ export default {
           contentPath: 'components/index/news.vue',
           backgroundColor: '',
           backgroundImage: '',
-          outerCssClass: '',
+          outerCssClass: 'outer-news',
           targetClass: 'target-news',
         },
         {
@@ -46,7 +46,7 @@ export default {
           contentPath: 'components/index/rooms.vue',
           backgroundColor: 'accent',
           backgroundImage: '',
-          outerCssClass: '',
+          outerCssClass: 'outer-rooms',
           targetClass: 'target-rooms',
         },
         {
@@ -56,7 +56,7 @@ export default {
           contentPath: 'components/index/location.vue',
           backgroundColor: '',
           backgroundImage: '',
-          outerCssClass: '',
+          outerCssClass: 'outer-location',
           targetClass: 'target-location',
         },
         {
@@ -68,7 +68,7 @@ export default {
           // backgroundImage: '',
           // outerCssClass: '',
           backgroundImage: 'img/bg_image/bg_haveFun.jpg',
-          outerCssClass: 'index-topic--fun',
+          outerCssClass: 'index-topic--fun outer-fun',
           targetClass: 'target-fun',
         },
         {
@@ -78,7 +78,7 @@ export default {
           contentPath: 'components/index/follow.vue',
           backgroundColor: '',
           backgroundImage: '',
-          outerCssClass: '',
+          outerCssClass: 'outer-follow',
           targetClass: 'target-follow',
         },
         {
@@ -88,7 +88,7 @@ export default {
           contentPath: 'components/index/order.vue',
           backgroundColor: '',
           backgroundImage: 'img/bg_image/bg_order.png',
-          outerCssClass: 'index-topic--order',
+          outerCssClass: 'index-topic--order outer-order',
           targetClass: 'target-order',
         },
       ],

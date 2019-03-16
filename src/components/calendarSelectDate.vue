@@ -5,7 +5,7 @@
     offset && offset.right ? `calendar-date--offset-right-${offset.right}`: '',
   ]">
     <div class="calendar-date__title">
-      <p class="primary--text">{{dateTitle}}</p>
+      <p class="primary--text headline">{{dateTitle}}</p>
     </div>
     <div class="calendar-select-date__content">
       <div
@@ -14,8 +14,8 @@
         :key="`roomsKeys${idx}`"
       >
         <div class="calendar-date__room-available">
-          <p :class="`${constVar.colorList[idx]}--text`" >{{roomTypeInfo[item].name}}</p>
-          <p :class="`${constVar.colorList[idx]}--text`" >{{methodShowRoomType(item)}}</p>
+          <p :class="`${constVar.colorList[idx]}--text body-2`" >{{roomTypeInfo[item].name}}</p>
+          <p :class="`${constVar.colorList[idx]}--text body-2`" >{{methodShowRoomType(item)}}</p>
         </div>
         <div class="calendar-select-date__button-group">
           <v-btn
@@ -23,7 +23,7 @@
             :disabled="!rooms[item] || !orderRoom[item]"
           >-</v-btn>
           <p
-            :class="!rooms[item] ? 'grey--text text--lighten-1': 'textBlack--text'"
+            :class="['subheading', !rooms[item] ? 'grey--text text--lighten-1': 'textBlack--text']"
           >{{orderRoom[item]}}</p>
           <v-btn
             @click="updateRoomNum(item,1)"
