@@ -17,7 +17,7 @@
           row
           v-for="(item, idx) in info[themeType]"
           :key="`info${themeType}${idx}`"
-          class="page-follow__content mb-5"
+          class="page-follow__content"
         >
           <v-flex xs4>
             <div class="page-follow__content--img">

@@ -27,7 +27,7 @@
       </v-stepper-header>
 
       <v-stepper-items>
-        <v-stepper-content step="1">
+        <v-stepper-content step="1" :class="$vuetify.breakpoint.xsOnly ? 'pa-0 pt-3':''">
             <v-layout row wrap>
               <v-flex sm12 md3>
                 <h3 class="primary--text">請依入住期間，查詢房間狀況</h3>
@@ -132,7 +132,7 @@
           </v-layout>
         </v-stepper-content>
 
-        <v-stepper-content step="2">
+        <v-stepper-content step="2" :class="$vuetify.breakpoint.xsOnly ? 'pa-0 pt-3':''">
           <div class="loading-view" v-if="waitResponse">
             <v-progress-circular
               :size="50"
@@ -333,7 +333,7 @@
           </v-layout>
         </v-stepper-content>
 
-        <v-stepper-content step="3">
+        <v-stepper-content step="3" :class="$vuetify.breakpoint.xsOnly ? 'pa-0 pt-3':''">
           <v-layout row wrap>
             <v-flex sm12 md3>
               <h3 class="primary--text">訂單已完成，請核對以下資訊</h3>
