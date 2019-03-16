@@ -15,13 +15,13 @@
             <v-flex xs6 class="rooms-list__title justify-center">
               <h2
                 :class="[
-                  'primary--text text-sm-center rooms-list__title-text',
+                  'primary--text text-xs-center rooms-list__title-text',
                   title.length >= 10 ? 'letter-space-zero' : ''
                 ]"
               >{{title}}</h2>
             </v-flex>
             <v-flex xs6 class="rooms-list__intro">
-              <p class="textBlack--text text-sm-center">{{intro}}</p>
+              <p class="textBlack--text text-xs-center">{{intro}}</p>
             </v-flex>
           </v-layout>
         </v-flex>

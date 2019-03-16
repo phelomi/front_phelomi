@@ -74,6 +74,7 @@ export default {
         cloudAni3,
       ],
     });
+    timeMax.repeat(-1);
   },
   data() {
     return {
