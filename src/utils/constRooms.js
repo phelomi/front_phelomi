@@ -83,11 +83,11 @@ export const roomList = {
     type: 'r4',
     imgList: ['/bfc/bfc01.jpg', '/bfc/bfc02.jpg', '/bfc/bfc03.jpg', '/bfc/bfc04.jpg'],
   },
-  bfcs: {
+  bfcp: {
     textUp: '彩虹堡四人房',
-    textDown: '珊瑚海',
+    textDown: '珊瑚粉',
     type: 'r4',
-    imgList: ['/bfcs/bfcs01.jpg', '/bfcs/bfcs02.jpg', '/bfcs/bfcs03.jpg', '/bfcs/bfcs04.jpg'],
+    imgList: ['/bfcp/bfcp01.jpg', '/bfcp/bfcp02.jpg', '/bfcp/bfcp03.jpg', '/bfcp/bfcp04.jpg'],
   },
 };
 
