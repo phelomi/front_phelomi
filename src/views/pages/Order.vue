@@ -638,6 +638,7 @@ export default {
           class: 'md10 overflow-scroll-y',
           options: [
             { label: '無', value: '無' },
+            { label: '加床', value: '加床' },
             { label: '租機車', value: '租機車' },
             { label: '租轎車', value: '租轎車' },
             { label: '租船出海', value: '租船出海' },
@@ -657,7 +658,7 @@ export default {
       clearSelected: false,
       notifySetting: {
         open: false,
-        timeout: 500000,
+        timeout: 5000,
         text: '',
         color: '',
       },
