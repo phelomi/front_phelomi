@@ -379,7 +379,7 @@
             <v-flex sm12 md10 offset-md1 py-3 v-if="orderInfoParams">
               <v-layout row wrap class="page-order__order-info">
                 <v-flex
-                  sm12 md4 py-1
+                  xs12 sm12 md4 py-1
                   v-for="(item, idx) in checkOrderInfo"
                   :key="`checkOrderInfo${idx}`"
                 >
