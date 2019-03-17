@@ -14,7 +14,7 @@
                 xs3
                 class="layout-footer__contact--list"
               >
-                <a :href="item.url ? item.url : null" target="_blank">
+                <a :href="item.url ? item.url : null" >
                   <v-layout row>
                     <v-flex xs4 class="layout-footer__contact--list-icon">
                       <img v-lazy="item.icon" alt="">
