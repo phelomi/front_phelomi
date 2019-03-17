@@ -16,13 +16,13 @@
     </v-layout>
     <div class="index-order__background">
       <!-- <div class="index-order__foreground" v-lazy:background-image="footerForeground"></div> -->
-      <img class="index-order__background--background" :src="footerBackground" alt="">
-      <img class="index-order__background--left" :src="cloudLeft" alt="">
-      <img class="index-order__background--center" :src="cloudCenter" alt="">
-      <img class="index-order__background--right" :src="cloudRight" alt="">
-      <img class="index-order__background--foreground" :src="footerForeground" alt="">
-      <img class="index-order__background--map" :src="footerMap" alt="">
-      <img class="index-order__background--ship" :src="footerShip" alt="">
+      <img class="index-order__background--background" v-lazy="footerBackground" alt="">
+      <img class="index-order__background--left" v-lazy="cloudLeft" alt="">
+      <img class="index-order__background--center" v-lazy="cloudCenter" alt="">
+      <img class="index-order__background--right" v-lazy="cloudRight" alt="">
+      <img class="index-order__background--foreground" v-lazy="footerForeground" alt="">
+      <img class="index-order__background--map" v-lazy="footerMap" alt="">
+      <img class="index-order__background--ship" v-lazy="footerShip" alt="">
     </div>
   </div>
 </template>
