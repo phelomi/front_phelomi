@@ -1,6 +1,11 @@
 <template>
   <div class="index-rooms">
-    <v-carousel class="index-topic__carousels" height="36.22vw" hide-delimiters>
+    <v-carousel
+      class="index-topic__carousels"
+      height="36.22vw"
+      hide-delimiters
+      :interval="18000"
+    >
       <v-carousel-item
         v-for="(roomsListGroup, idx) in roomsList"
         :key="`roomsList${idx}`"
