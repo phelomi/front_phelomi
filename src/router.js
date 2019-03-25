@@ -57,14 +57,14 @@ export default new Router({
             title: '交通位置',
           },
         },
-        {
-          path: 'order',
-          name: 'order',
-          component: () => import('@/views/pages/Order.vue'),
-          meta: {
-            title: '預定房型',
-          },
-        },
+        // {
+        //   path: 'order',
+        //   name: 'order',
+        //   component: () => import('@/views/pages/Order.vue'),
+        //   meta: {
+        //     title: '預定房型',
+        //   },
+        // },
       ],
     },
     // 維護頁
@@ -81,6 +81,7 @@ export default new Router({
       component: () => import('@/views/pages/Error.vue'),
       meta: {
         title: '找不到頁面',
+        goBackIndex: true,
       },
     },
   ],

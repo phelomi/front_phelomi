@@ -88,10 +88,14 @@
         </v-flex>
         <v-flex xs3>
           <div class="page-rooms__right">
-            <v-btn
-              @click="methodOrder"
-              class="page-rooms__order-btn white--text error"
-            >{{orderBtnText}}</v-btn>
+            <a
+              :href="constVar.orderLink"
+              target="_blank"
+            >
+              <v-btn
+                class="page-rooms__order-btn white--text error"
+              >{{orderBtnText}}</v-btn>
+            </a>
             <!-- <div class="page-rooms__summary">
               <p>{{info.roomSummary}}</p>
             </div> -->
@@ -116,7 +120,6 @@ export default {
     // servicesIcon,
   },
   mounted() {
-    console.log('TCL: updated -> updated');
     this.scrollToTop();
   },
   watch: {
@@ -190,9 +193,9 @@ export default {
     };
   },
   methods: {
-    methodOrder() {
-      this.$router.push('/order');
-    },
+    // methodOrder() {
+    //   this.$router.push('/order');
+    // },
     scrollToTop() {
       setTimeout(() => {
         this.$vuetify.goTo(-200, constVar.scrollPagAni);

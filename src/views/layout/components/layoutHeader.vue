@@ -100,7 +100,7 @@ export default {
           text: '跟我醬玩', target: 'follow', directToPage: false, regex: /^\/follow/,
         },
         {
-          text: '線上訂房', target: 'order', directToPage: true, regex: /^\/order/,
+          text: '線上訂房', target: null, directToPage: true, regex: /^\/order/,
         },
         {
           text: '聯絡我們', target: 'contact', directToPage: false, regex: /^\/contact/,

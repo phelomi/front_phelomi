@@ -5,5 +5,6 @@ const constVar = {
     easing: 'easeInOutCubic',
   },
   colorList: ['info', 'success', 'error', 'brown', 'blue-grey', 'secondary'],
+  orderLink: 'https://traiwan.com/official/booking.php?id=starrysky.family',
 };
 export default constVar;

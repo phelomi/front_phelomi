@@ -3,6 +3,8 @@
     class="header__button"
     @click="methodGoTo"
     v-lazy:background-image="buttonHeader"
+    :href="!this.target ? constVar.orderLink : null"
+    target="_blank"
   >
     <div class="header__button--text white--text">{{this.text}}</div>
   </a>
@@ -18,6 +20,7 @@ export default {
     return {
       localText: '',
       buttonHeader,
+      constVar,
     };
   },
   computed: {
@@ -27,6 +30,7 @@ export default {
   },
   methods: {
     methodGoTo() {
+      if (!this.target) return;
       const targetClass = `.outer-${this.target}`;
       if (this.directToPage) {
         this.$router.push(this.target);
@@ -34,11 +38,11 @@ export default {
         document.querySelectorAll(targetClass).length > 0
         && this.$route.name !== this.target
       ) {
-        this.$vuetify.goTo(targetClass, constVar.scrollPagAni);
+        this.$vuetify.goTo(targetClass, this.constVar.scrollPagAni);
       } else {
         this.$router.push('/home');
         setTimeout(() => {
-          this.$vuetify.goTo(targetClass, constVar.scrollPagAni);
+          this.$vuetify.goTo(targetClass, this.constVar.scrollPagAni);
         }, 300);
       }
     },

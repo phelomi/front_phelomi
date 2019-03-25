@@ -3,7 +3,8 @@
     <v-layout row>
       <v-flex xs6  offset-xs6 class="index-order__outer">
         <a
-          @click="$router.push('/order')"
+          :href="constVar.orderLink"
+          target="_blank"
           :class="[
             'index-order__button',
             $vuetify.breakpoint.mdAndDown ? 'index-order__button--mobile':''
@@ -35,6 +36,7 @@ import footerMap from '../../assets/footer/footer_map.svg';
 import cloudLeft from '../../assets/footer/cloud_left.svg';
 import cloudCenter from '../../assets/footer/cloud_center.svg';
 import cloudRight from '../../assets/footer/cloud_right.svg';
+import constVar from '@/utils/constVar';
 
 export default {
   name: 'indexOrder',
@@ -50,6 +52,7 @@ export default {
       cloudRight,
       title: '馬上\n訂房',
       text: '現在就為自己預約\n一個美好假期~',
+      constVar,
     };
   },
 };
