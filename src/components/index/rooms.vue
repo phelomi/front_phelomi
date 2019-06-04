@@ -58,7 +58,7 @@ export default {
       roomsList: [
         [
           {
-            img: rooms001,
+            img: rooms003,
             title: '星空號愛琴海四人房',
             type: 'afas',
             intro: '夜裡，總是幻想著星空裡那神秘的宇宙，到底有多大多遠多浩瀚啊？',
@@ -79,7 +79,7 @@ export default {
             url: '/rooms',
           },
           {
-            img: rooms003,
+            img: rooms001,
             title: '星空號愛爾蘭海雙人房',
             type: 'atis',
             intro: '喝點小酒，微醺的感覺很浪漫，讓這趟旅行，在那不經意的瞬間成行吧！',
