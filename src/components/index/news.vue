@@ -28,9 +28,7 @@
 </template>
 <script>
 import newsList from '@/components/newsList.vue';
-import news001 from '../../assets/img_sm/news001.jpg';
-import news002 from '../../assets/img_sm/news002.jpg';
-import news003 from '../../assets/img_sm/news003.jpg';
+import newsSM from '../../config/newsSM.json';
 
 export default {
   name: 'indexNews',
@@ -39,41 +37,13 @@ export default {
   },
   data() {
     return {
-      newsList: [
-        [
-          // {
-          //   img: news001,
-          //   theme: 'start',
-          //   title: '歡慶飛樂米星空號起航',
-          //   intro: '即日起至5/30，歡慶飛樂米星空號起航，優惠活動開跑囉',
-          // },
-          {
-            img: news002,
-            theme: 'fireworks',
-            title: '澎湖花火節',
-            intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜，...',
-          },
-          {
-            img: news003,
-            theme: 'newship',
-            title: '全新百麗快速客輪開航',
-            intro: '全世界最快高速客輪！百麗新船3月開航，嘉義到澎湖竟然只要...',
-          },
-        ],
-        // [
-        // {
-        //   img: news003,
-        //   theme: 'newship',
-        //   title: '全新百麗快速客輪開航',
-        //   intro: '全世界最快高速客輪！百麗新船3月開航，嘉義到澎湖竟然只要...',
-        // },
-        // {
-        //   img: news002,
-        //   title: '澎湖花火節',
-        //   intro: '澎湖花火節4/19、4/23，精彩可期，錯過可惜，...',
-        // },
-        // ],
-      ],
+      newsList: newsSM
+        .reduce((acc, cur, index) => {
+          const realIndex = parseInt(index / 2, 10);
+          if (acc[realIndex]) acc[realIndex].push(cur);
+          else acc.push([cur]);
+          return acc;
+        }, []),
     };
   },
 };
