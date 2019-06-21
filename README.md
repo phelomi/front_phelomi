@@ -1,29 +1,103 @@
-# phelomi_front
+# 飛樂米星空號前台網站
 
-## Project setup
-```
-npm install
-```
+## config目錄介紹
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### banner.json
 
-### Compiles and minifies for production
-```
-npm run build
-```
+自定 "首頁大圖" 部分。
 
-### Run your tests
-```
-npm run test
-```
+對外輸出陣列，陣列中的每一項為大圖信息。大圖信息包括：
+* `img`: 是圖片位置，根目錄為 `public`。`text`
+* `text`: 是圖片描述文字，會出現在大圖圖片上的右下方
 
-### Lints and fixes files
-```
-npm run lint
-```
+### basicIcon.json
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+目前網站用到的所有小icon。
+
+對外輸出物件。
+
+`key`(必填) 值為目前網站中用的圖標的名字，`value`為圖標具體的信息，其中包括：
+* `icon`(必填): 圖標的`className`
+* `val`: 圖標的附帶名字
+
+### follow.json
+
+自訂 "跟我醬玩！澎湖行程建議" 部分。
+
+對外輸出物件。
+
+`key`(必填) 為查詢值，跟我醬玩頁面根據這個值來決定是哪一篇文章。`value`(必填) 為這篇文章的具體內容，其中包括：
+* `theme`(選填): 標題
+* `primaryImg`(選填): 大圖展示
+* `info`(選填): 小圖展示，左邊圖片，右邊文字。接受陣列。陣列內物件共有三個`key`值，包括:
+  * `img`: 小圖圖片位置。
+  * `title`: 小標題
+  * `text`: 具體文字
+
+### news.json
+
+自訂 "最新消息" 部分。
+
+對外輸出物件。
+
+`key`(必填) 為查詢值，最新消息頁面根據這個值來決定是哪一篇文章。
+`value`(必填) 為這篇文章的具體內容，其中包括：
+* `theme`(選填): 標題
+* `info`(選填): 內容
+* `img`(選填): 圖片位置。
+* `extra`(選填): 額外內容，附加在文末。接受陣列，陣列內物件共有兩個`key`值，包括:
+  * `text`: 附加文字
+  * `color`: 文字顏色
+
+### newsSM.json
+
+自訂 "首頁-最新消息框"
+
+對外輸出陣列。陣列的每一項為最新消息文章信息。包括：
+* `img`(必填): 圖片位置
+* `title`(選填): 文章標題
+* `intro`(選填): 文章簡略內容
+* `theme`(必填): 文章查詢值，對應`news.json`的第一個`key`值。
+
+### roomCategory.json
+
+自訂 "房間介紹頁的房間類型內容"
+
+對外輸出物件。
+
+`key`(必填) 為房間類型查詢值，`value`(必填)為該房型的具體信息，其中包括：
+* `textUp`(必填): 房間介紹頁 最上方標題部分 上半部
+* `info`(必填): 房間介紹，房間基本參數。為陣列，陣列中每一個物件為房間基本參數介紹的一行，其中`text`為參數抬頭, `val`為參數內容。
+* `iconInfo`(必填): 房間介紹，圖標介紹部分。為陣列，陣列中每一個物件為，圖標介紹的一個類別。其中`text`為類別的名稱, `icon` 為使用到的圖標。
+
+### roomIntro.json
+
+自訂 “房間介紹頁的房間基本介紹內容”
+
+對外輸出物件
+
+* `liveNotice`: 住房須知的前導介紹內容
+* `liveRule`: 住房須知的住房守則部分
+* `end`: 住房須知的結尾部分
+* `unsubscribe`: 退訂政策
+
+### roomSpecify.json
+
+自訂 “房間介紹頁的指定房間內容”
+
+對外輸出物件
+
+`key`(必填) 為房間查詢值，對應，`value`(必填)為該房間特殊的具體內容，其中包括：
+* `textDown`: 房間介紹頁 最上方標題部分 下半部
+* `type`: 房間類型查詢值，決定了該房間的父類
+* `imgList`: 該房間的圖片
+
+### roomSM.json
+
+自訂 "首頁-房間介紹框"
+
+對外輸出陣列。陣列的每一項為單獨房間介紹信息。包括：
+* `img`(必填): 房間圖片，圖片位置
+* `title`(必填): 房間標題
+* `type`(必填): 房間查詢值，用於在房間介紹頁中，查詢指定房間的信息，如：照片等。
+* `intro`(選填): 房間介紹文

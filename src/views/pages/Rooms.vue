@@ -136,7 +136,7 @@ export default {
     },
     title() {
       return {
-        textUp: this.roomList[this.roomKey].textUp || '房間介紹',
+        textUp: this.roomType[this.roomTypeKey].textUp || '房間介紹',
         textDown: `ROOMS_${this.roomList[this.roomKey].textDown || ''}`,
         targetClass: 'target-rooms',
       };
