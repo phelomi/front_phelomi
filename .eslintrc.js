@@ -15,7 +15,7 @@ module.exports = {
     'no-unused-vars': 0,
   },
   globals:{
-    CustomEase,
+    CustomEase: 'readonly',
   },
   parserOptions: {
     parser: 'babel-eslint',
