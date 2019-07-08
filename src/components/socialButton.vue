@@ -77,7 +77,6 @@ export default {
   },
   methods: {
     methodCopyText(target, id) {
-      console.log('TCL: methodCopyText -> id', id);
       if (id) {
         const inputTag = document.createElement('input');
         inputTag.setAttribute('value', id);

@@ -16,7 +16,9 @@
       </v-flex>
     </v-layout>
     <div class="index-order__background">
-      <!-- <div class="index-order__foreground" v-lazy:background-image="footerForeground"></div> -->
+      <!-- <div
+        class="index-order__foreground"
+        v-lazy:background-image="footerForeground" /> -->
       <img class="index-order__background--background" v-lazy="footerBackground" alt="">
       <img class="index-order__background--left" v-lazy="cloudLeft" alt="">
       <img class="index-order__background--center" v-lazy="cloudCenter" alt="">
