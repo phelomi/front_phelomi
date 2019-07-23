@@ -2,7 +2,7 @@
   <div class="index-news">
     <v-carousel
       class="index-topic__carousels"
-      height="36.22vw"
+      height="auto"
       hide-delimiters
       :interval="15000"
       :hide-controls="newsList.length <= 1"
