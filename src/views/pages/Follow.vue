@@ -46,7 +46,7 @@
 import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
 import constVar from '@/utils/constVar';
-import follow from '../../config/follow.json';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'pageFollow',
@@ -63,10 +63,10 @@ export default {
     themeType() {
       return this.$route.query.theme;
     },
+    ...mapGetters(['follow']),
   },
   data() {
     return {
-      follow,
       constVar,
       title: {
         textUp: '跟我醬玩！',

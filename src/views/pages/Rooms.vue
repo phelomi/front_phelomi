@@ -43,18 +43,24 @@
                 :key="`iconList${groupIdx}`"
                 class="page-rooms__services-icon"
               >
-                <p>{{iconGroup.text}}</p>
-                <v-layout row wrap class="page-rooms__icon-list">
-                  <v-flex
-                    xs4
-                    md3
-                    v-for="(icon, idx) in iconGroup.icon"
-                    :key="`${icon.icon}${idx}`"
-                    class="page-rooms__icon-list--icon"
-                  >
-                    <v-icon>{{icon.icon}}</v-icon><span>{{icon.val}}</span>
-                  </v-flex>
-                </v-layout>
+                <template v-if="iconGroup">
+                  <p>{{iconGroup.text}}</p>
+                  <v-layout row wrap class="page-rooms__icon-list">
+                    <template v-if=iconGroup.icon>
+                      <v-flex
+                          xs4
+                          md3
+                          v-for="(icon, idx) in iconGroup.icon"
+                          :key="`icon${idx}`"
+                          class="page-rooms__icon-list--icon"
+                        >
+                          <template v-if="icon">
+                            <v-icon>{{icon.icon}}</v-icon><span>{{icon.val}}</span>
+                          </template>
+                        </v-flex>
+                    </template>
+                  </v-layout>
+                </template>
               </div>
             </div>
             <div class="page-rooms__space">
@@ -103,7 +109,7 @@ import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
 import constVar from '@/utils/constVar';
 import { roomList, roomType } from '@/utils/constRooms';
-import roomIntro from '../../config/roomIntro.json';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'pageRooms',
@@ -141,14 +147,16 @@ export default {
         targetClass: 'target-rooms',
       };
     },
+    ...mapGetters({
+      info: 'roomIntro',
+    }),
   },
   data() {
     return {
       constVar,
       roomList,
-      roomType,
+      roomType: roomType(),
       // roomsPhotoList: roomList[roomKey].imgList,
-      info: roomIntro,
       orderBtnText: '立即\n訂房',
     };
   },

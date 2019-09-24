@@ -39,7 +39,7 @@ import titleBoat from '@/components/titleBoat.vue';
 import showRooms from '@/views/layout/components/showRooms.vue';
 import constVar from '@/utils/constVar';
 import placeholder from '../../assets/bg_image/bg_placeholder.jpg';
-import news from '../../config/news.json';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'pageNews',
@@ -54,10 +54,10 @@ export default {
     themeType() {
       return this.$route.query.theme;
     },
+    ...mapGetters(['news']),
   },
   data() {
     return {
-      news,
       constVar,
       placeholder,
       title: {

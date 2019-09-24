@@ -28,7 +28,7 @@
 </template>
 <script>
 import newsList from '@/components/newsList.vue';
-import newsSM from '../../config/newsSM.json';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'indexNews',
@@ -37,14 +37,25 @@ export default {
   },
   data() {
     return {
-      newsList: newsSM
-        .reduce((acc, cur, index) => {
-          const realIndex = parseInt(index / 2, 10);
-          if (acc[realIndex]) acc[realIndex].push(cur);
-          else acc.push([cur]);
-          return acc;
-        }, []),
+      // newsList: newsSM
+      //   .reduce((acc, cur, index) => {
+      //     const realIndex = parseInt(index / 2, 10);
+      //     if (acc[realIndex]) acc[realIndex].push(cur);
+      //     else acc.push([cur]);
+      //     return acc;
+      //   }, []),
     };
+  },
+  computed: {
+    ...mapGetters(['newsSM']),
+    newsList() {
+      return this.newsSM.reduce((acc, cur, index) => {
+        const realIndex = parseInt(index / 2, 10);
+        if (acc[realIndex]) acc[realIndex].push(cur);
+        else acc.push([cur]);
+        return acc;
+      }, []);
+    },
   },
 };
 </script>

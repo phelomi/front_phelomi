@@ -13,14 +13,12 @@
   </v-carousel>
 </template>
 <script>
-import banner from '../config/banner.json';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'bannerCarousels',
-  data() {
-    return {
-      banner,
-    };
+  computed: {
+    ...mapGetters(['banner']),
   },
   methods: {
 

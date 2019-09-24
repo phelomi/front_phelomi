@@ -33,7 +33,7 @@ export default {
           text: '飛樂米\n私房行程', url: '/follow', color: 'info', theme: 'phelomi',
         },
         {
-          text: '2019花火節', url: '/follow', color: 'error', theme: 'fireworks',
+          text: '花火節', url: '/follow', color: 'error', theme: 'fireworks',
         },
       ],
     };
