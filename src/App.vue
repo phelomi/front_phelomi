@@ -7,9 +7,9 @@
           :size="250"
           color="primary" />
       </template>
-      <tempalte v-else>
+      <template v-else>
         <router-view/>
-      </tempalte>
+      </template>
     </v-content>
   </v-app>
 </template>

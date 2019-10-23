@@ -33,23 +33,24 @@
 </template>
 <script>
 import roomsList from '@/components/roomsList.vue';
-import roomsSM from '../../config/roomsSM.json';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'indexRooms',
   components: {
     roomsList,
   },
-  data() {
-    return {
-      roomsList: roomsSM
+  computed: {
+    ...mapGetters(['roomsSM']),
+    roomsList() {
+      return this.roomsSM
         .reduce((acc, cur, index) => {
           const realIndex = parseInt(index / 3, 10);
           if (acc[realIndex]) acc[realIndex].push(cur);
           else acc.push([cur]);
           return acc;
-        }, []),
-    };
+        }, []);
+    },
   },
 };
 </script>
