@@ -3,7 +3,7 @@
     <v-layout row>
       <v-flex xs6  offset-xs6 class="index-order__outer">
         <a
-          :href="constVar.orderLink"
+          :href="orderLink"
           target="_blank"
           :class="[
             'index-order__button',
@@ -30,6 +30,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import buttonBg from '../../assets/button/button_bg_order.png';
 import footerBackground from '../../assets/footer/footer_background.svg';
 import footerForeground from '../../assets/footer/footer_foreground.svg';
@@ -38,7 +39,6 @@ import footerMap from '../../assets/footer/footer_map.svg';
 import cloudLeft from '../../assets/footer/cloud_left.svg';
 import cloudCenter from '../../assets/footer/cloud_center.svg';
 import cloudRight from '../../assets/footer/cloud_right.svg';
-import constVar from '@/utils/constVar';
 
 export default {
   name: 'indexOrder',
@@ -54,8 +54,12 @@ export default {
       cloudRight,
       title: '馬上\n訂房',
       text: '現在就為自己預約\n一個美好假期~',
-      constVar,
     };
+  },
+  computed: {
+    ...mapGetters({
+      orderLink: 'orderLink',
+    }),
   },
 };
 </script>

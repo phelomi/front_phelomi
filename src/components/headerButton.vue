@@ -3,13 +3,14 @@
     class="header__button"
     @click="methodGoTo"
     v-lazy:background-image="buttonHeader"
-    :href="!this.target ? constVar.orderLink : null"
+    :href="!this.target ? orderLink : null"
     target="_blank"
   >
     <div class="header__button--text white--text">{{this.text}}</div>
   </a>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import constVar from '@/utils/constVar';
 import buttonHeader from '../assets/button/button_header.png';
 
@@ -27,6 +28,9 @@ export default {
     currentURL() {
       return this.$route.path;
     },
+    ...mapGetters({
+      orderLink: 'orderLink',
+    }),
   },
   methods: {
     methodGoTo() {

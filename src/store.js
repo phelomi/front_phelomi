@@ -9,7 +9,7 @@ const imgRef = fStorage.ref();
 
 const other = ['init'];
 const tmp = [
-  'banner', 'follow', 'news', 'newsSM', 'roomCategory', 'roomIntro', 'roomsSM',
+  'banner', 'follow', 'news', 'newsSM', 'roomCategory', 'roomIntro', 'roomsSM', 'orderLink',
 ];
 
 const getters = [...other, ...tmp]
@@ -33,6 +33,7 @@ export default new Vuex.Store({
     roomCategory: {},
     roomIntro: {},
     roomsSM: [],
+    orderLink: '',
     // roomSpecify: {},
   },
   mutations: {
@@ -44,7 +45,7 @@ export default new Vuex.Store({
   actions: {
     async setInfo({ commit }, info) {
       const {
-        banner, follow, news, newsSM, roomCategory, roomIntro, roomsSM,
+        banner, follow, news, newsSM, roomCategory, roomIntro, roomsSM, orderLink,
       } = info;
       const bannerRes = await asyncLoop(banner, async (v) => {
         v.img = await downloadImgUrl(v.img);
@@ -75,6 +76,7 @@ export default new Vuex.Store({
       commit('setInfo', { key: 'roomsSM', value: roomsSMRes });
       commit('setInfo', { key: 'roomIntro', value: roomIntro });
       commit('setInfo', { key: 'roomCategory', value: roomCategory });
+      commit('setInfo', { key: 'orderLink', value: orderLink });
       commit('setInfo', { key: 'init', value: false });
     },
   },

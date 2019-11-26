@@ -13,6 +13,7 @@ module.exports = {
     'no-param-reassign': 0,
     'no-underscore-dangle': 0,
     'no-unused-vars': 0,
+    'no-use-before-define': 0,
   },
   globals:{
     CustomEase: 'readonly',

@@ -90,7 +90,7 @@
         <v-flex xs3>
           <div class="page-rooms__right">
             <a
-              :href="constVar.orderLink"
+              :href="orderLink"
               target="_blank"
             >
               <v-btn
@@ -149,6 +149,7 @@ export default {
     },
     ...mapGetters({
       info: 'roomIntro',
+      orderLink: 'orderLink',
     }),
   },
   data() {
