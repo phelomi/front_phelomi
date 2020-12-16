@@ -33,7 +33,7 @@
                     xs6
                   >
                     <v-btn
-                      @click="methodCopyText(item.target, item.id)"
+                      @click="item.onClick"
                       color="#40A637"
                       class="white--text"
                     >
@@ -100,10 +100,18 @@ export default {
       ],
       addFriendList: [
         {
-          icon: imgPathWechat, text: '微信加入好友', target: '微信ID', id: 'f0967229968',
+          icon: imgPathWechat,
+          text: '微信加入好友',
+          onClick: () => {
+            this.methodCopyText('微信ID', 'f0967229968');
+          },
         },
         {
-          icon: imgPathLine, text: 'LINE 加入好友', target: 'LINE ID', id: '0967229968',
+          icon: imgPathLine,
+          text: 'LINE 加入好友',
+          onClick: () => {
+            window.open('https://lin.ee/1afwIoQ');
+          },
         },
       ],
       notifySetting: {
