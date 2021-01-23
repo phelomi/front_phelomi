@@ -7,7 +7,7 @@ const handleExpress = method => new Promise((res, rej) => {
     if (method()) return;
     clearInterval(intervalId);
     res();
-  }, 500);
+  }, 50);
 });
 
 router.beforeResolve((to, from, next) => {

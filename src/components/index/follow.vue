@@ -27,13 +27,13 @@ export default {
     return {
       followList: [
         {
-          text: '必遊行程', url: '/follow', color: 'warning', theme: 'necessary',
+          text: '跳島趣行程', url: '/follow', color: 'warning', theme: 'necessary',
         },
         {
-          text: '飛樂米\n私房行程', url: '/follow', color: 'info', theme: 'phelomi',
+          text: '愛玩水行程', url: '/follow', color: 'info', theme: 'phelomi',
         },
         {
-          text: '花火節', url: '/follow', color: 'error', theme: 'fireworks',
+          text: '愛浪漫行程', url: '/follow', color: 'error', theme: 'fireworks',
         },
       ],
     };

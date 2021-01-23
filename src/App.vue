@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <v-content :class="{ main: init }">
-      <template v-if="init">
+      <router-view/>
+      <!-- <template v-if="init">
         <v-progress-circular
           indeterminate
           :size="250"
@@ -9,7 +10,7 @@
       </template>
       <template v-else>
         <router-view/>
-      </template>
+      </template> -->
     </v-content>
   </v-app>
 </template>

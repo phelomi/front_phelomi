@@ -31,7 +31,8 @@
               v-if="item.title"
               class="page-follow__content--title textBlack--text"
             >・{{item.title}}</h4>
-            <p class="page-follow__content--text textBlack--text">{{item.text}}</p>
+            <!-- <p class="page-follow__content--text textBlack--text">{{item.text}}</p> -->
+            <p class="page-follow__content--text textBlack--text" v-html="item.text" />
           </v-flex>
         </v-layout>
       </div>
