@@ -28,7 +28,7 @@ export default new Router({
         {
           path: 'news',
           name: 'news',
-          component: () => import('@/views/pages/News.vue'),
+          component: () => import(/* webpackChunkName: "news" */ '@/views/pages/News.vue'),
           meta: {
             title: '最新消息',
           },
@@ -36,7 +36,7 @@ export default new Router({
         {
           path: 'follow',
           name: 'follow',
-          component: () => import('@/views/pages/Follow.vue'),
+          component: () => import(/* webpackChunkName: "follow" */ '@/views/pages/Follow.vue'),
           meta: {
             title: '跟我醬玩！',
           },
@@ -44,7 +44,7 @@ export default new Router({
         {
           path: 'rooms',
           name: 'rooms',
-          component: () => import('@/views/pages/Rooms.vue'),
+          component: () => import(/* webpackChunkName: "rooms" */ '@/views/pages/Rooms.vue'),
           meta: {
             title: '房間介紹',
           },
@@ -52,7 +52,7 @@ export default new Router({
         {
           path: 'location',
           name: 'location',
-          component: () => import('@/views/pages/Location.vue'),
+          component: () => import(/* webpackChunkName: "location" */ '@/views/pages/Location.vue'),
           meta: {
             title: '交通位置',
           },
@@ -70,7 +70,7 @@ export default new Router({
     // 維護頁
     {
       path: '/maintenance',
-      component: () => import('@/views/pages/Maintenance.vue'),
+      component: () => import(/* webpackChunkName: "maintenance" */ '@/views/pages/Maintenance.vue'),
       meta: {
         title: '維護中',
       },
@@ -78,7 +78,7 @@ export default new Router({
     // 404
     {
       path: '*',
-      component: () => import('@/views/pages/Error.vue'),
+      component: () => import(/* webpackChunkName: "error" */ '@/views/pages/Error.vue'),
       meta: {
         title: '找不到頁面',
         goBackIndex: true,
