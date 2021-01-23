@@ -11,7 +11,7 @@
     "@mdi/font": "^2.6.95",
     "axios": "^0.18.0",
     "firebase": "^6.6.2",
-    "gsap": "^2.1.2",
+    "gsap": "^3.6.0",
     "lodash": "^4.17.11",
     "register-service-worker": "^1.5.2",
     "roboto-fontface": "*",
