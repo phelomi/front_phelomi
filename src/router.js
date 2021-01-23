@@ -20,7 +20,7 @@ export default new Router({
         {
           path: 'home',
           name: 'home',
-          component: () => import('@/views/pages/Home.vue'),
+          component: () => import(/* webpackChunkName: "home" */ '@/views/pages/Home.vue'),
           meta: {
             title: '首頁',
           },
