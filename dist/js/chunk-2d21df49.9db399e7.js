@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d21df49"],{d403:function(n){n.exports=[{img:"/img/banner/banner005.jpg",text:""},{img:"/img/banner/banner001.jpg",text:""},{img:"/img/banner/banner002.jpg",text:""},{img:"/img/banner/banner005.jpg",text:""},{img:"/img/banner/banner003.jpg",text:""},{img:"/img/banner/banner004.jpg",text:""}]}}]);

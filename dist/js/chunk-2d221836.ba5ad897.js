@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d221836"],{cb56:function(n,o,p){n.exports=p.p+"img/icon_star.68be3988.svg"}}]);
