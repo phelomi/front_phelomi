@@ -1,4 +1,8 @@
+const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
+
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 module.exports = {
   productionSourceMap: process.env.NODE_ENV !== 'production',
@@ -9,17 +13,22 @@ module.exports = {
       },
     },
   },
-  configureWebpack: () => {
+  configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
-      return {
-        plugins: [
-          new CompressionPlugin({
-            test: /\.js$|\.html$|\.css$|\.jpg$|\.jpeg$|\.png/, // 需要压缩的文件类型
-            threshold: 10240, // 归档需要进行压缩的文件大小最小值，我这个是10K以上的进行压缩
-            deleteOriginalAssets: false, // 是否删除原文件
+      config.plugins.push(
+        new CompressionPlugin({
+          test: /\.js$|\.html$|\.css$|\.jpg$|\.jpeg$|\.png/, // 需要压缩的文件类型
+          threshold: 10240, // 归档需要进行压缩的文件大小最小值，我这个是10K以上的进行压缩
+          deleteOriginalAssets: false, // 是否删除原文件
+        }),
+        new PrerenderSPAPlugin({
+          staticDir: path.join(__dirname, 'dist'),
+          routes: ['/'],
+          renderer: new Renderer({
+            renderAfterDocumentEvent: 'render-event',
           }),
-        ],
-      };
+        }),
+      );
     }
   },
   chainWebpack: (config) => {

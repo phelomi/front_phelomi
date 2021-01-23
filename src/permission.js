@@ -24,6 +24,6 @@ router.beforeResolve((to, from, next) => {
 router.beforeEach(async (to, from, next) => {
   const res = await fDatabase.ref('/').once('value');
   store.dispatch('setInfo', res.val());
-  await handleExpress(() => store.getters.init);
+  // await handleExpress(() => store.getters.init);
   next();
 });
