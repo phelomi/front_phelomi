@@ -24,9 +24,9 @@ module.exports = {
         new PrerenderSPAPlugin({
           staticDir: path.join(__dirname, 'dist'),
           routes: ['/', '/home'],
-          renderer: new Renderer({
-            renderAfterDocumentEvent: 'render-event',
-          }),
+          // renderer: new Renderer({
+          //   renderAfterDocumentEvent: 'render-event',
+          // }),
         }),
       );
     }
