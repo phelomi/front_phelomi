@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b7259"],{"1fd2":function(n,o,p){n.exports=p.p+"img/button_order_active.7fd7f09c.svg"}}]);

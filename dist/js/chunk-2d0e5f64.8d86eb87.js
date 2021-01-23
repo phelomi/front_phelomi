@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0e5f64"],{"975e":function(o,p,n){o.exports=n.p+"img/footer_map.3c6f5631.svg"}}]);

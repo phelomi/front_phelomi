@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0ba690"],{"36a8":function(n,p,o){n.exports=o.p+"img/icon_airplane.5b9d4626.svg"}}]);

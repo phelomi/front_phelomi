@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0dd7b6"],{8228:function(c,n,p){c.exports=p.p+"img/icon_ship_active.c497edc5.svg"}}]);
