@@ -23,7 +23,7 @@ module.exports = {
         }),
         new PrerenderSPAPlugin({
           staticDir: path.join(__dirname, 'dist'),
-          routes: ['/'],
+          routes: ['/', '/home'],
           renderer: new Renderer({
             renderAfterDocumentEvent: 'render-event',
           }),
