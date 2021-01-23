@@ -2,6 +2,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   productionSourceMap: process.env.NODE_ENV !== 'production',
+
   devServer: {
     proxy: {
       '/v1/api': {
@@ -9,6 +10,7 @@ module.exports = {
       },
     },
   },
+
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
       config.plugins.push(
@@ -20,6 +22,7 @@ module.exports = {
       );
     }
   },
+
   chainWebpack: (config) => {
     // config
     //   .plugin('html')
@@ -39,7 +42,21 @@ module.exports = {
     config
       .devServer.port(8080);
   },
+
   pwa: {
     themeColor: '#2F599C',
+  },
+
+  pluginOptions: {
+    prerenderSpa: {
+      registry: undefined,
+      renderRoutes: [
+        '/',
+        '/home',
+      ],
+      useRenderEvent: true,
+      headless: true,
+      onlyProduction: true,
+    },
   },
 };
