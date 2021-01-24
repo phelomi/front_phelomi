@@ -14,6 +14,8 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-unused-vars': 0,
     'no-use-before-define': 0,
+    'template-curly-spacing' : 'off',
+    indent : 'off'
   },
   globals:{
     CustomEase: 'readonly',
