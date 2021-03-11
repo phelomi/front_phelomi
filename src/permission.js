@@ -24,6 +24,13 @@ router.beforeResolve((to, from, next) => {
 router.beforeEach(async (to, from, next) => {
   const res = await fDatabase.ref('/').once('value');
   store.dispatch('setInfo', res.val());
+  await new Promise((resolve) => {
+    const checkFunc = () => setTimeout(() => {
+      if (store.getters.init) checkFunc();
+      else resolve();
+    }, 100);
+    checkFunc();
+  });
   // await handleExpress(() => store.getters.init);
   next();
 });

@@ -33,35 +33,39 @@
           <div class="page-rooms__left">
             <div class="page-rooms__space">
               <div class="page-rooms__theme white--text secondary">房間介紹</div>
-              <p
-                v-for="(item, idx) in roomType[roomTypeKey].info"
-                :key="`roomTypeInfo${idx}`"
-                class="page-rooms__text textBlack--text"
-              >{{item.text}}：{{item.val}}</p>
-              <div
-                v-for="(iconGroup, groupIdx) in roomType[roomTypeKey].iconIntro"
-                :key="`iconList${groupIdx}`"
-                class="page-rooms__services-icon"
-              >
-                <template v-if="iconGroup">
-                  <p>{{iconGroup.text}}</p>
-                  <v-layout row wrap class="page-rooms__icon-list">
-                    <template v-if=iconGroup.icon>
-                      <v-flex
-                          xs4
-                          md3
-                          v-for="(icon, idx) in iconGroup.icon"
-                          :key="`icon${idx}`"
-                          class="page-rooms__icon-list--icon"
-                        >
-                          <template v-if="icon">
-                            <v-icon>{{icon.icon}}</v-icon><span>{{icon.val}}</span>
-                          </template>
-                        </v-flex>
-                    </template>
-                  </v-layout>
-                </template>
-              </div>
+              <template v-if="roomType[roomTypeKey] && roomType[roomTypeKey].info && roomType[roomTypeKey].info.length">
+                <p
+                  v-for="(item, idx) in roomType[roomTypeKey].info"
+                  :key="`roomTypeInfo${idx}`"
+                  class="page-rooms__text textBlack--text"
+                >{{item.text}}：{{item.val}}</p>
+              </template>
+              <template v-if="roomType[roomTypeKey] && roomType[roomTypeKey].iconInfo && roomType[roomTypeKey].iconInfo.length">
+                <div
+                  v-for="(iconGroup, groupIdx) in roomType[roomTypeKey].iconIntro"
+                  :key="`iconList${groupIdx}`"
+                  class="page-rooms__services-icon"
+                >
+                  <template v-if="iconGroup">
+                    <p>{{iconGroup.text}}</p>
+                    <v-layout row wrap class="page-rooms__icon-list">
+                      <template v-if=iconGroup.icon>
+                        <v-flex
+                            xs4
+                            md3
+                            v-for="(icon, idx) in iconGroup.icon"
+                            :key="`icon${idx}`"
+                            class="page-rooms__icon-list--icon"
+                          >
+                            <template v-if="icon">
+                              <v-icon>{{icon.icon}}</v-icon><span>{{icon.val}}</span>
+                            </template>
+                          </v-flex>
+                      </template>
+                    </v-layout>
+                  </template>
+                </div>
+              </template>
             </div>
             <div class="page-rooms__space">
               <div class="page-rooms__theme white--text info">住房須知</div>
@@ -120,6 +124,7 @@ export default {
   },
   mounted() {
     this.scrollToTop();
+    this.roomType = roomType();
   },
   watch: {
     roomKey: {
@@ -142,7 +147,7 @@ export default {
     },
     title() {
       return {
-        textUp: this.roomType[this.roomTypeKey].textUp || '房間介紹',
+        textUp: (this.roomType[this.roomTypeKey] && this.roomType[this.roomTypeKey].textUp) || '房間介紹',
         textDown: `ROOMS_${this.roomList[this.roomKey].textDown || ''}`,
         targetClass: 'target-rooms',
       };
