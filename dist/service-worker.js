@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.bb6aeac3584cb4ddda9153b4cf15e8d5.js"
+  "/precache-manifest.0ffe605ed04d41f61dbf355d72f00bba.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "phelomi_front"});
