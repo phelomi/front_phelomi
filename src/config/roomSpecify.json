@@ -108,8 +108,7 @@
     "imgList": [
       "/img/rooms/bfv/bfv01.jpg",
       "/img/rooms/bfv/bfv02.jpg",
-      "/img/rooms/bfv/bfv03.jpg",
-      "/img/rooms/bfv/bfv04.jpg"
+      "/img/rooms/bfv/bfv03.jpg"
     ]
   },
   "bfag": {
@@ -128,18 +127,14 @@
     "imgList": [
       "/img/rooms/bfc/bfc01.jpg",
       "/img/rooms/bfc/bfc02.jpg",
-      "/img/rooms/bfc/bfc03.jpg",
-      "/img/rooms/bfc/bfc04.jpg"
+      "/img/rooms/bfc/bfc03.jpg"
     ]
   },
   "bfcp": {
     "textDown": "珊瑚粉",
     "type": "r4",
     "imgList": [
-      "/img/rooms/bfcp/bfcp01.jpg",
-      "/img/rooms/bfcp/bfcp02.jpg",
-      "/img/rooms/bfcp/bfcp03.jpg",
-      "/img/rooms/bfcp/bfcp04.jpg"
+      "/img/rooms/bfcp/bfcp01.jpg"
     ]
   }
 }
