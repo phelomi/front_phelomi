@@ -8,8 +8,8 @@ self.__precacheManifest = [
     "url": "/img/rooms/atpo/atpo04.jpg"
   },
   {
-    "revision": "a1e82f9411fa054fcdd9",
-    "url": "/js/chunk-0635b894.bbe2a3bc.js"
+    "revision": "d7920a0bd71ef08ee029",
+    "url": "/js/chunk-0635b894.4334bff5.js"
   },
   {
     "revision": "9e22342bd0ac598e2c4c",
@@ -25,7 +25,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "96e2dfbaf2c268938a09bcdb37720323",
-    "url": "/img/rooms/bfc/bfc03.jpg"
+    "url": "/img/rooms/bfcp/bfcp02.jpg"
   },
   {
     "revision": "3f7ad64345bd9b6644c4",
@@ -33,7 +33,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "96e2dfbaf2c268938a09bcdb37720323",
-    "url": "/img/rooms/bfcp/bfcp02.jpg"
+    "url": "/img/rooms/bfc/bfc03.jpg"
   },
   {
     "revision": "1c6f2a2d22ae19761275",
@@ -132,8 +132,8 @@ self.__precacheManifest = [
     "url": "/js/chunk-2d0dd7b6.440079b6.js"
   },
   {
-    "revision": "553c1ea7a79ee1af01c3",
-    "url": "/js/chunk-2d0dee78.0f805eb6.js"
+    "revision": "dbd68d187ba0b1bfc7c3",
+    "url": "/js/chunk-2d0dee78.ba847bbc.js"
   },
   {
     "revision": "dbd81f236e5da351ca36",
@@ -244,8 +244,8 @@ self.__precacheManifest = [
     "url": "/js/chunk-513e2f9c.40ddaefb.js"
   },
   {
-    "revision": "cf6e940e25d2eb9eada1",
-    "url": "/js/chunk-544611b3.b7e13a12.js"
+    "revision": "d9ebfc93c459759e11a4",
+    "url": "/js/chunk-544611b3.c063005d.js"
   },
   {
     "revision": "7738ffaf598eb458af65",
@@ -316,16 +316,16 @@ self.__precacheManifest = [
     "url": "/js/chunk-746f9064.712b0eb7.js"
   },
   {
-    "revision": "18a5ecb57d3ea4a487c4ec1f6e0611bc",
-    "url": "/img/rooms/bfoo/bfoo02.jpg"
+    "revision": "67562076dc4f4d488062b4de2419fece",
+    "url": "/img/rooms/btsb/btsb01.jpg"
   },
   {
     "revision": "d5bf659b2d13f70f0a2d",
     "url": "/js/chunk-74704285.c9d0890f.js"
   },
   {
-    "revision": "67562076dc4f4d488062b4de2419fece",
-    "url": "/img/rooms/btsb/btsb01.jpg"
+    "revision": "18a5ecb57d3ea4a487c4ec1f6e0611bc",
+    "url": "/img/rooms/bfoo/bfoo02.jpg"
   },
   {
     "revision": "9f7635024ca49c675ad2",
@@ -364,24 +364,24 @@ self.__precacheManifest = [
     "url": "/js/chunk-7482abbb.558a7806.js"
   },
   {
-    "revision": "030ca575d4735d489463b09c550dffd4",
-    "url": "/img/rooms/bfoo/bfoo01.jpg"
+    "revision": "d7d7ec7c0a49a32efb4670c659183ce9",
+    "url": "/img/rooms/bfcr/bfcr01.jpg"
   },
   {
     "revision": "432d932cfef90e7686f2",
     "url": "/js/chunk-7484083d.26d333bb.js"
   },
   {
-    "revision": "a8d9fd92780e105084dbb933269ad5bb",
-    "url": "/img/rooms/bfcp/bfcp01.jpg"
+    "revision": "030ca575d4735d489463b09c550dffd4",
+    "url": "/img/rooms/bfoo/bfoo01.jpg"
   },
   {
     "revision": "8232cd625bab1f5768ab",
     "url": "/js/chunk-74847767.497b814a.js"
   },
   {
-    "revision": "d7d7ec7c0a49a32efb4670c659183ce9",
-    "url": "/img/rooms/bfcr/bfcr01.jpg"
+    "revision": "a8d9fd92780e105084dbb933269ad5bb",
+    "url": "/img/rooms/bfcp/bfcp01.jpg"
   },
   {
     "revision": "85b2d9b109b99f84ea0e",
@@ -416,16 +416,16 @@ self.__precacheManifest = [
     "url": "/js/chunk-74bc2e8d.d8dd6769.js"
   },
   {
-    "revision": "7d9a9ab0de70a1a34fad9fcef07ce736",
-    "url": "/img/rooms/bfcr/bfcr02.jpg"
+    "revision": "059c1bc060e496bb1326e886e88938ce",
+    "url": "/img/rooms/bfcr/bfcr04.jpg"
   },
   {
     "revision": "54adc26ac13982921fb1",
     "url": "/js/chunk-74bcdefc.00985959.js"
   },
   {
-    "revision": "059c1bc060e496bb1326e886e88938ce",
-    "url": "/img/rooms/bfcr/bfcr04.jpg"
+    "revision": "7d9a9ab0de70a1a34fad9fcef07ce736",
+    "url": "/img/rooms/bfcr/bfcr02.jpg"
   },
   {
     "revision": "74e54790d32739a90ff7",
@@ -456,16 +456,16 @@ self.__precacheManifest = [
     "url": "/js/chunk-76fe9cf4.694c4615.js"
   },
   {
-    "revision": "69e7950473f3de7f11a5249d75538a16",
-    "url": "/img/rooms/icon/icon-tv.svg"
+    "revision": "631f05a9ca553e89dfa8ef96b22d27b7",
+    "url": "/img/rooms/icon/icon-wifi.svg"
   },
   {
     "revision": "a0210b799d69b57e1f16",
     "url": "/js/chunk-770e1ae5.3cd933c5.js"
   },
   {
-    "revision": "631f05a9ca553e89dfa8ef96b22d27b7",
-    "url": "/img/rooms/icon/icon-wifi.svg"
+    "revision": "69e7950473f3de7f11a5249d75538a16",
+    "url": "/img/rooms/icon/icon-tv.svg"
   },
   {
     "revision": "2eb26b7547b91e485987",
@@ -524,12 +524,12 @@ self.__precacheManifest = [
     "url": "/js/chunk-ca460650.0bb16bd1.js"
   },
   {
-    "revision": "05b10088b1b70f01552a15b37071a601",
-    "url": "/img/rooms_sm/a4-arctic-ocean.jpg"
+    "revision": "faece89633d96de80a4ce3618f44e8e2",
+    "url": "/img/rooms_sm/b2-sky-blue.jpg"
   },
   {
-    "revision": "bca5995d775dae44ee7d",
-    "url": "/js/chunk-vendors.28a6a938.js"
+    "revision": "a4d970bbe476c8eef44b",
+    "url": "/js/chunk-vendors.a278590b.js"
   },
   {
     "revision": "6a107b2bf6c9c0981087",
@@ -540,8 +540,8 @@ self.__precacheManifest = [
     "url": "/js/follow.951b87bc.js"
   },
   {
-    "revision": "faece89633d96de80a4ce3618f44e8e2",
-    "url": "/img/rooms_sm/b2-sky-blue.jpg"
+    "revision": "05b10088b1b70f01552a15b37071a601",
+    "url": "/img/rooms_sm/a4-arctic-ocean.jpg"
   },
   {
     "revision": "6280313be3411d62c1cb",
@@ -564,56 +564,56 @@ self.__precacheManifest = [
     "url": "/js/news.7d772313.js"
   },
   {
-    "revision": "00df47b6053076f23704",
-    "url": "/js/rooms.e5d4ffbe.js"
+    "revision": "0d75b0f6c3c8b292a12a",
+    "url": "/js/rooms.d764e20f.js"
   },
   {
     "revision": "f6c04ed204c13195b4e8afaa73370a16",
     "url": "/img/rooms_sm/a4-aegean-sea.jpg"
   },
   {
-    "revision": "099a9a4eb4b3aa4f9b41bfd5d60200b2",
-    "url": "/img/rooms_sm/a2-irish-sea.jpg"
-  },
-  {
     "revision": "9142526169d29096dd65e47f9f5ae683",
     "url": "/img/rooms_sm/a2-the-pacific-ocean.jpg"
+  },
+  {
+    "revision": "099a9a4eb4b3aa4f9b41bfd5d60200b2",
+    "url": "/img/rooms_sm/a2-irish-sea.jpg"
   },
   {
     "revision": "8fd4233e6093f46bf9d38b4cbdc64980",
     "url": "/img/rooms_sm/a2-coral-sea.jpg"
   },
   {
-    "revision": "0e93e6e3703049ca3b14b60ea5c07bfe",
-    "url": "/img/rooms_sm/a2-indian-ocean.jpg"
-  },
-  {
     "revision": "f64f4388336d87cae4b5c92bc9d17aa8",
     "url": "/img/rooms_sm/a2-atlantic.jpg"
   },
   {
-    "revision": "0faa0a38868620067384100eee68eb2e",
-    "url": "/img/rooms_sm/b4-coral-sea.jpg"
+    "revision": "0e93e6e3703049ca3b14b60ea5c07bfe",
+    "url": "/img/rooms_sm/a2-indian-ocean.jpg"
   },
   {
     "revision": "89197c4f7093740db34589b2ffcec448",
     "url": "/img/rooms_sm/b4-orange-and-orange.jpg"
   },
   {
-    "revision": "1aac85b5958d08630d4d722f3f95c311",
-    "url": "/img/rooms_sm/b4-chestnut-red.jpg"
+    "revision": "0faa0a38868620067384100eee68eb2e",
+    "url": "/img/rooms_sm/b4-coral-sea.jpg"
   },
   {
-    "revision": "6f171a9b3314fe4731061d9bff383abe",
-    "url": "/img/titleBoatStar.6f171a9b.svg"
+    "revision": "1aac85b5958d08630d4d722f3f95c311",
+    "url": "/img/rooms_sm/b4-chestnut-red.jpg"
   },
   {
     "revision": "5582497245d2b09da0d629a03d2fbd6b",
     "url": "/img/text-order.55824972.png"
   },
   {
-    "revision": "96347a75884bcb1a177c",
-    "url": "/js/app.f58c0e95.js"
+    "revision": "6f171a9b3314fe4731061d9bff383abe",
+    "url": "/img/titleBoatStar.6f171a9b.svg"
+  },
+  {
+    "revision": "f3dc1dc6bff229705270",
+    "url": "/js/app.68ffd963.js"
   },
   {
     "revision": "6280313be3411d62c1cb",
@@ -740,8 +740,8 @@ self.__precacheManifest = [
     "url": "/img/icon_position.20afa8e4.svg"
   },
   {
-    "revision": "5b261d0ef7d54c0898007b68beee6e5e",
-    "url": "/img/button_header_active.5b261d0e.png"
+    "revision": "0f8d51f26902e7a0e081f4526564ed8f",
+    "url": "/img/map_arrow.0f8d51f2.svg"
   },
   {
     "revision": "f547d239535356c5f039f4e4781ff9f3",
@@ -756,12 +756,12 @@ self.__precacheManifest = [
     "url": "/img/news/new-ship.jpg"
   },
   {
-    "revision": "42a9d4cb52d8f370128ba6fa6f8148b7",
-    "url": "/img/rooms/atcs/atcs04.jpg"
-  },
-  {
     "revision": "a3b434fc18aee0cdbad29599f50250e7",
     "url": "/img/rooms/atio/atio04.jpg"
+  },
+  {
+    "revision": "42a9d4cb52d8f370128ba6fa6f8148b7",
+    "url": "/img/rooms/atcs/atcs04.jpg"
   },
   {
     "revision": "c66c5918a39ccb2a45012299f80221e4",
@@ -792,24 +792,24 @@ self.__precacheManifest = [
     "url": "/img/rooms/ata/ata02.jpg"
   },
   {
-    "revision": "0a0c7742ce29a9896b97c55f5df78152",
-    "url": "/img/rooms/atpo/atpo01.jpg"
-  },
-  {
     "revision": "1fc4a84d5d711061a0c08bb1d0b6827b",
     "url": "/img/rooms/atpo/atpo02.jpg"
+  },
+  {
+    "revision": "0a0c7742ce29a9896b97c55f5df78152",
+    "url": "/img/rooms/atpo/atpo01.jpg"
   },
   {
     "revision": "1f18c806a4c049013c67b22f129f1c1f",
     "url": "/img/rooms/atio/atio03.jpg"
   },
   {
-    "revision": "ac1fb6b68cd938024f4f3d492ef59a71",
-    "url": "/img/rooms/ata/ata03.jpg"
-  },
-  {
     "revision": "37fbc59631f7da69994ded6b3cc6c9df",
     "url": "/img/rooms/ata/ata01.jpg"
+  },
+  {
+    "revision": "ac1fb6b68cd938024f4f3d492ef59a71",
+    "url": "/img/rooms/ata/ata03.jpg"
   },
   {
     "revision": "884ee8ccb033b1d02dc3c09f460d9112",
@@ -896,8 +896,8 @@ self.__precacheManifest = [
     "url": "/img/img_sm/placeholder.jpg"
   },
   {
-    "revision": "0f8d51f26902e7a0e081f4526564ed8f",
-    "url": "/img/map_arrow.0f8d51f2.svg"
+    "revision": "5b261d0ef7d54c0898007b68beee6e5e",
+    "url": "/img/button_header_active.5b261d0e.png"
   },
   {
     "revision": "7fd7f09ce3e94213071ac4bad5bcded9",
@@ -920,20 +920,20 @@ self.__precacheManifest = [
     "url": "/img/icon_ship_active.c497edc5.svg"
   },
   {
-    "revision": "bcd9739c134a8131f8854afa3cf73dff",
-    "url": "/img/button_rooms_active_arrow.bcd9739c.svg"
-  },
-  {
     "revision": "411860f37055806ff3d826df07bf8581",
     "url": "/img/icon_position_active.411860f3.svg"
+  },
+  {
+    "revision": "68be39881ef35f9ca8493c2d3d82bb21",
+    "url": "/img/icon_star.68be3988.svg"
   },
   {
     "revision": "bea3d8f400c48cb70a9c6fde2f8c82bc",
     "url": "/img/button_rooms_active.bea3d8f4.svg"
   },
   {
-    "revision": "68be39881ef35f9ca8493c2d3d82bb21",
-    "url": "/img/icon_star.68be3988.svg"
+    "revision": "bcd9739c134a8131f8854afa3cf73dff",
+    "url": "/img/button_rooms_active_arrow.bcd9739c.svg"
   },
   {
     "revision": "fad5e078adcdc319bca6c456eef8692a",
@@ -944,12 +944,12 @@ self.__precacheManifest = [
     "url": "/img/logo_horizon.7c12bc30.svg"
   },
   {
-    "revision": "d8d0e9918afeaef529ad2998f7d84e6c",
-    "url": "/img/rooms/afas/afas01.jpg"
-  },
-  {
     "revision": "283afda1bcf5dabab2602d4d98744bd9",
     "url": "/img/rooms/afas/afas02.jpg"
+  },
+  {
+    "revision": "d8d0e9918afeaef529ad2998f7d84e6c",
+    "url": "/img/rooms/afas/afas01.jpg"
   },
   {
     "revision": "3a3e5aa23ba26299d0bf35d46a6efb4c",
@@ -988,8 +988,8 @@ self.__precacheManifest = [
     "url": "/img/bg_footer.f659e93e.png"
   },
   {
-    "revision": "3b20876c092ade1af3510ac3aa3f0035",
-    "url": "/img/bg_image/bg_haveFun.jpg"
+    "revision": "97c6d1a4793d8a5d80222415a09cc29b",
+    "url": "/img/banner/banner005.jpg"
   },
   {
     "revision": "010aa1ffe57d99a5150d",
@@ -1012,24 +1012,24 @@ self.__precacheManifest = [
     "url": "/css/chunk-772efa8c.2df2f851.css"
   },
   {
-    "revision": "bca5995d775dae44ee7d",
+    "revision": "a4d970bbe476c8eef44b",
     "url": "/css/chunk-vendors.20756bf1.css"
   },
   {
-    "revision": "97c6d1a4793d8a5d80222415a09cc29b",
-    "url": "/img/banner/banner005.jpg"
+    "revision": "3b20876c092ade1af3510ac3aa3f0035",
+    "url": "/img/bg_image/bg_haveFun.jpg"
   },
   {
-    "revision": "33bbacc3a3cb302fd66b43e498a18112",
-    "url": "/img/banner/banner002.jpg"
+    "revision": "459118748df2a5fcd7f684546cc8591b",
+    "url": "/fonts/materialdesignicons-webfont.45911874.woff2"
   },
   {
     "revision": "4981aad6ae4562d777c84c0246e243a6",
     "url": "/img/banner/banner001.jpg"
   },
   {
-    "revision": "459118748df2a5fcd7f684546cc8591b",
-    "url": "/fonts/materialdesignicons-webfont.45911874.woff2"
+    "revision": "33bbacc3a3cb302fd66b43e498a18112",
+    "url": "/img/banner/banner002.jpg"
   },
   {
     "revision": "4b882ad484d11b49f4a69212ad8e8901",
@@ -1052,12 +1052,12 @@ self.__precacheManifest = [
     "url": "/fonts/materialdesignicons-webfont.d15c1216.ttf"
   },
   {
-    "revision": "83e114c316fcc3f23f524ec3e1c65984",
-    "url": "/fonts/Roboto-MediumItalic.83e114c3.woff"
-  },
-  {
     "revision": "4fe0f73cc919ba2b7a3c36e4540d725c",
     "url": "/fonts/Roboto-BoldItalic.4fe0f73c.woff"
+  },
+  {
+    "revision": "13efe6cbc10b97144a28310ebdeda594",
+    "url": "/fonts/Roboto-LightItalic.13efe6cb.woff"
   },
   {
     "revision": "ad538a69b0e8615ed0419c4529344ffc",
@@ -1068,16 +1068,16 @@ self.__precacheManifest = [
     "url": "/fonts/Roboto-Light.d26871e8.woff2"
   },
   {
+    "revision": "83e114c316fcc3f23f524ec3e1c65984",
+    "url": "/fonts/Roboto-MediumItalic.83e114c3.woff"
+  },
+  {
     "revision": "f5902d5ef961717ed263902fc429e6ae",
     "url": "/fonts/Roboto-RegularItalic.f5902d5e.woff"
   },
   {
     "revision": "8a96edbbcd9a6991d79371aed0b0288e",
     "url": "/fonts/Roboto-ThinItalic.8a96edbb.woff"
-  },
-  {
-    "revision": "13efe6cbc10b97144a28310ebdeda594",
-    "url": "/fonts/Roboto-LightItalic.13efe6cb.woff"
   },
   {
     "revision": "73f0a88bbca1bec19fb1303c689d04c6",
@@ -1088,48 +1088,48 @@ self.__precacheManifest = [
     "url": "/fonts/Roboto-Black.313a6563.woff"
   },
   {
-    "revision": "b52fac2bb93c5858f3f2675e4b52e1de",
-    "url": "/fonts/Roboto-Bold.b52fac2b.woff2"
+    "revision": "90d1676003d9c28c04994c18bfd8b558",
+    "url": "/fonts/Roboto-Medium.90d16760.woff2"
   },
   {
     "revision": "59eb3601394dd87f30f82433fb39dd94",
     "url": "/fonts/Roboto-Black.59eb3601.woff2"
   },
   {
-    "revision": "90d1676003d9c28c04994c18bfd8b558",
-    "url": "/fonts/Roboto-Medium.90d16760.woff2"
-  },
-  {
-    "revision": "5b4a33e176ff736a74f0ca2dd9e6b396",
-    "url": "/fonts/Roboto-ThinItalic.5b4a33e1.woff2"
+    "revision": "b52fac2bb93c5858f3f2675e4b52e1de",
+    "url": "/fonts/Roboto-Bold.b52fac2b.woff2"
   },
   {
     "revision": "f86705b7883c8ad4ecfdca3d03dda440",
     "url": "/img/banner/banner003.jpg"
   },
   {
-    "revision": "1d6594826615607f6dc860bb49258acb",
-    "url": "/fonts/Roboto-Medium.1d659482.woff"
+    "revision": "5b4a33e176ff736a74f0ca2dd9e6b396",
+    "url": "/fonts/Roboto-ThinItalic.5b4a33e1.woff2"
   },
   {
     "revision": "50d75e48e0a3ddab1dd15d6bfb9d3700",
     "url": "/fonts/Roboto-Bold.50d75e48.woff"
   },
   {
+    "revision": "1d6594826615607f6dc860bb49258acb",
+    "url": "/fonts/Roboto-Medium.1d659482.woff"
+  },
+  {
     "revision": "35b07eb2f8711ae08d1f58c043880930",
     "url": "/fonts/Roboto-Regular.35b07eb2.woff"
   },
   {
-    "revision": "4357beb823a5f8d65c260f045d9e019a",
-    "url": "/fonts/Roboto-RegularItalic.4357beb8.woff2"
+    "revision": "e8eaae902c3a4dacb9a5062667e10576",
+    "url": "/fonts/Roboto-LightItalic.e8eaae90.woff2"
   },
   {
     "revision": "d3b47375afd904983d9be8d6e239a949",
     "url": "/fonts/Roboto-Thin.d3b47375.woff"
   },
   {
-    "revision": "e8eaae902c3a4dacb9a5062667e10576",
-    "url": "/fonts/Roboto-LightItalic.e8eaae90.woff2"
+    "revision": "4357beb823a5f8d65c260f045d9e019a",
+    "url": "/fonts/Roboto-RegularItalic.4357beb8.woff2"
   },
   {
     "revision": "13ec0eb5bdb821ff4930237d7c9f943f",
@@ -1192,12 +1192,12 @@ self.__precacheManifest = [
     "url": "/css/chunk-74b6f911.15a377f8.css"
   },
   {
-    "revision": "b7f6fa41a5c23d3d9c32",
-    "url": "/css/chunk-76f13012.0e433876.css"
-  },
-  {
     "revision": "b9e35cc6b12dcc654a37",
     "url": "/css/chunk-74bc2e8d.d56b81c4.css"
+  },
+  {
+    "revision": "b7f6fa41a5c23d3d9c32",
+    "url": "/css/chunk-76f13012.0e433876.css"
   },
   {
     "revision": "74e54790d32739a90ff7",
@@ -1252,11 +1252,11 @@ self.__precacheManifest = [
     "url": "/css/chunk-187f2124.14f5a390.css"
   },
   {
-    "revision": "96347a75884bcb1a177c",
+    "revision": "f3dc1dc6bff229705270",
     "url": "/css/app.3ee41afb.css"
   },
   {
-    "revision": "97970cc855d8f76b226e9db14683ea64",
+    "revision": "62a83ddb449f3beb2d92c46da03bd1d3",
     "url": "/app.html"
   },
   {
