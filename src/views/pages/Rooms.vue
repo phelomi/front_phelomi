@@ -40,7 +40,7 @@
                   class="page-rooms__text textBlack--text"
                 >{{item.text}}：{{item.val}}</p>
               </template>
-              <template v-if="roomType[roomTypeKey] && roomType[roomTypeKey].iconInfo && roomType[roomTypeKey].iconInfo.length">
+              <template v-if="roomType[roomTypeKey] && roomType[roomTypeKey].iconIntro && roomType[roomTypeKey].iconIntro.length">
                 <div
                   v-for="(iconGroup, groupIdx) in roomType[roomTypeKey].iconIntro"
                   :key="`iconList${groupIdx}`"
